@@ -133,22 +133,51 @@ background:#eee;
 color:#111;
 }
 
-/* WORK LAYOUT */
+/* WORK SECTION */
+
+.work{
+background:#eee;
+color:#111;
+padding:120px 0;
+}
+
+/* LAYOUT */
 
 .layout{
 display:grid;
 grid-template-columns:40% 60%;
-min-height:100vh;
 }
+
+/* LEFT SIDE */
+
+.left{
+position:sticky;
+top:0;
+height:100vh;
+}
+
+.work-image{
+background:url("portrait.jpg");
+background-size:cover;
+background-position:center;
+width:100%;
+height:100%;
+}
+
+/* RIGHT SIDE */
 
 .right{
-background:#eee;
-padding:120px 4vw;
-
-display:flex;
-flex-direction:column;
-justify-content:center;
+padding:120px 6vw;
+width:100%;
 }
+
+/* PROJECT */
+
+.project{
+margin-bottom:120px;
+}
+  
+/* PROJECT GRID */
 
 .work-grid{
 display:grid;
@@ -158,14 +187,42 @@ gap:20px;
 
 .work-grid img{
 width:100%;
-height:120px;
+height:160px;
 object-fit:cover;
-}
-
-.project{
-margin-bottom:80px;
+display:block;
 }
   
+/* TABLET */
+
+@media (max-width:1000px){
+
+.work-grid{
+grid-template-columns:repeat(2,1fr);
+}
+
+}
+
+/* MOBILE */
+
+@media (max-width:768px){
+
+.layout{
+grid-template-columns:1fr;
+}
+
+.left{
+display:none;
+}
+
+.right{
+padding:80px 8vw;
+}
+
+.work-grid{
+grid-template-columns:1fr;
+}
+
+}
 /* BIOGRAPHY */
 
 .bio{

@@ -96,22 +96,40 @@ opacity:.8;
 /* INTRO SECTION */
 
 .intro{
-background:#000;
-color:#fff;
-min-height:100vh;
-padding:160px 8vw;
-display:flex;
-align-items:center;
-border-bottom:1px solid #222;
+position:relative;
+background:black;
+overflow:hidden;
 }
 
-/* layout */
+/* VIDEO BACKGROUND */
 
-.intro-inner{
+.intro-video{
+position:absolute;
+top:0;
+left:0;
 width:100%;
-display:grid;
-grid-template-columns:1fr 1.4fr;
-gap:120px;
+height:100%;
+object-fit:cover;
+
+opacity:0;
+filter:brightness(0.4);
+filter:brightness(0.4) blur(2px);
+transition:opacity 2s ease;
+
+z-index:0;
+}
+
+/* TEXT LAYER */
+
+.intro-content{
+position:relative;
+z-index:2;
+}
+
+/* FADE VIDEO WHEN HOVER */
+
+.intro:hover .intro-video{
+opacity:0.35;
 }
 
 /* left */

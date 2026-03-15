@@ -46,6 +46,13 @@ text-decoration:none;
 margin-right:20px;
 opacity:.8;
 }
+@media (max-width:640px){
+
+.nav-right{
+display:none;
+}
+
+}
 
 /* HERO */
 
@@ -63,34 +70,56 @@ padding-left:10vw;
 
 @media (max-width:1024px){
 
-.hero{
-background-image:url("hero-tablet.jpg");
-background-position:center;
+.layout{
+grid-template-columns:1fr;
+}
+
+.left{
+position:relative;
+height:60vh;
+}
+
+.work-image{
+height:100%;
+}
+
+.right{
+padding:80px 8vw;
+}
+
+.work-grid{
+grid-template-columns:repeat(2,1fr);
 }
 
 }
 
 /* MOBILE */
 
-@media (max-width:768px){
+@media (max-width:640px){
 
-.hero{
-background-image:url("hero-mobile.jpg");
-background-position:center;
+.left{
+display:none;
 }
 
+.layout{
+grid-template-columns:1fr;
 }
 
-.hero h1{
-font-family:"Playfair Display";
-font-size:90px;
-line-height:1;
-color:#d8d8d8;
+.right{
+padding:60px 6vw;
 }
 
-.hero-th{
-margin-top:10px;
-opacity:.8;
+.work-grid{
+grid-template-columns:1fr;
+gap:16px;
+}
+
+.work-grid img{
+height:200px;
+}
+
+.project{
+margin-bottom:80px;
 }
 
 /* INTRO SECTION */

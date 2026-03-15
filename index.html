@@ -90,23 +90,32 @@ opacity:.8;
 }
 
 /* INTRO */
+/* INTRO SECTION */
+
 .intro{
 background:#000;
 color:#fff;
-padding:180px 10vw;
+min-height:100vh;
+padding:160px 8vw;
+display:flex;
+align-items:center;
+border-bottom:1px solid #222;
 }
+
+/* layout */
 
 .intro-inner{
 width:100%;
+display:grid;
+grid-template-columns:1fr 1.4fr;
+gap:120px;
 }
 
-.intro-left{
-margin-bottom:80px;
-}
+/* left */
 
 .intro-left h2{
-font-size:48px;
-margin-bottom:10px;
+font-size:52px;
+margin-bottom:12px;
 }
 
 .intro-sub{
@@ -114,13 +123,12 @@ font-size:13px;
 color:#888;
 }
 
+/* text columns */
+
 .intro-text{
 display:grid;
 grid-template-columns:1fr 1fr;
-gap:140px;
-margin-top:80px;
-padding-left:20vw;
-padding-right:10vw;
+gap:80px;
 }
 
 .intro-text p{

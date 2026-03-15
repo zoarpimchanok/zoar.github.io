@@ -1,94 +1,181 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Pimchanok Yaemsiri</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Portfolio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400&display=swap" rel="stylesheet">
 
 <style>
 
-body{
+*{
 margin:0;
-font-family: Helvetica, Arial, sans-serif;
-background:#fff;
-color:#111;
+padding:0;
+box-sizing:border-box;
 }
 
-/* NAVBAR */
-
-nav{
-position:absolute;
-top:0;
-width:100%;
-display:flex;
-justify-content:space-between;
-padding:20px 40px;
+body{
+background:#0e0e0e;
 color:white;
-z-index:10;
-}
-
-nav a{
-margin-right:20px;
-color:white;
-text-decoration:none;
-font-size:14px;
+font-family:Inter, sans-serif;
+overflow-x:hidden;
 }
 
 /* HERO */
 
 .hero{
 height:100vh;
-background-image:url("hero.jpg");
-background-size:cover;
-background-position:center;
 display:flex;
 align-items:center;
-padding-left:80px;
-color:white;
+padding:7vw;
+
+background-image:url("hero.jpg");
+background-size:cover;
+background-position:right center;
+background-repeat:no-repeat;
+}
+
+.hero-text{
+max-width:550px;
+animation:fadeUp 1.2s ease;
 }
 
 .hero h1{
-font-size:80px;
-line-height:0.9;
-font-weight:500;
+font-family:"Playfair Display", serif;
+font-size:90px;
+line-height:1;
+letter-spacing:-2px;
+margin-bottom:20px;
 }
 
-/* INTRO */
+.hero p{
+font-size:18px;
+opacity:.75;
+margin-bottom:30px;
+}
 
-.intro{
-background:black;
+.button{
+display:inline-block;
+padding:12px 30px;
+border:1px solid white;
+text-decoration:none;
 color:white;
-padding:80px;
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:60px;
+transition:.3s;
 }
 
-/* WORK */
+.button:hover{
+background:white;
+color:black;
+}
+
+/* ABOUT */
+
+.about{
+padding:120px 8vw;
+max-width:900px;
+margin:auto;
+}
+
+.about h2{
+font-size:34px;
+margin-bottom:20px;
+}
+
+.about p{
+opacity:.8;
+line-height:1.7;
+}
+
+/* WORK GRID */
+
+.works{
+padding:120px 8vw;
+}
+
+.works h2{
+font-size:34px;
+margin-bottom:40px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:25px;
+}
 
 .work{
-display:grid;
-grid-template-columns:1fr 1fr;
-padding:80px;
-gap:40px;
+height:320px;
+background:#1b1b1b;
+position:relative;
+overflow:hidden;
+cursor:pointer;
 }
 
 .work img{
 width:100%;
+height:100%;
+object-fit:cover;
+transition:transform .6s ease;
 }
 
-/* BIO */
+.work:hover img{
+transform:scale(1.1);
+}
 
-.bio{
-padding:80px;
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:40px;
+.work-title{
+position:absolute;
+bottom:20px;
+left:20px;
+font-size:18px;
+opacity:.9;
 }
 
 /* CONTACT */
 
 .contact{
-padding:80px;
+padding:120px 8vw;
+text-align:center;
+}
+
+.contact h2{
+font-size:32px;
+margin-bottom:20px;
+}
+
+footer{
+padding:40px;
+text-align:center;
+opacity:.5;
+font-size:14px;
+}
+
+/* ANIMATION */
+
+@keyframes fadeUp{
+from{
+opacity:0;
+transform:translateY(40px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+.hero h1{
+font-size:52px;
+}
+
+.hero{
+background-position:70% center;
+}
+
 }
 
 </style>
@@ -96,113 +183,62 @@ padding:80px;
 
 <body>
 
-<nav>
-
-<div>
-<a href="#">Home</a>
-<a href="#">About</a>
-<a href="#">Work</a>
-<a href="#">Contact</a>
-</div>
-
-<div>ZOAR</div>
-
-<div>
-<a href="#">Instagram</a>
-<a href="#">Facebook</a>
-<a href="#">Portfolio</a>
-</div>
-
-</nav>
-
 <section class="hero">
 
-<h1>
-PIMCHANOK<br>
-YAEMSIRI
-</h1>
+<div class="hero-text">
 
-</section>
-
-
-<section class="intro">
-
-<div>
-
-<h2>Introduction</h2>
+<h1>Your Name</h1>
 
 <p>
-I'm a multidisciplinary creative working across film,
-visual design, and digital media.
+Film / Visual Artist based in Chiang Mai.  
+Exploring moving image, narrative and digital media.
 </p>
+
+<a class="button" href="#works">View Works</a>
 
 </div>
 
-<div>
+</section>
+
+
+<section class="about">
+
+<h2>About</h2>
 
 <p>
-ฉันเป็นนักสร้างสรรค์ที่ทำงานข้ามสื่อ
-ทั้งภาพยนตร์ การออกแบบภาพ
-และสื่อดิจิทัล
+I am a multidisciplinary artist working across film, visual storytelling and digital media. 
+My work explores emotion, memory and narrative through cinematic imagery and experimental forms.
 </p>
 
-</div>
-
 </section>
 
 
-<section class="work">
+<section class="works" id="works">
 
-<div>
+<h2>Selected Works</h2>
 
-<h3>2025 — Music Video</h3>
+<div class="grid">
 
-<p>Assistant Director / Editing / Color Grading</p>
-
-<img src="mv1.jpg">
-
+<div class="work">
+<img src="hero.jpg">
+<div class="work-title">Film Project</div>
 </div>
 
-
-<div>
-
-<h3>2025 — Mimesis</h3>
-
-<p>Interactive media project using Unreal Engine</p>
-
-<img src="mimesis.jpg">
-
+<div class="work">
+<img src="hero.jpg">
+<div class="work-title">Music Video</div>
 </div>
 
-</section>
-
-
-<section class="bio">
-
-<div>
-<h4>Based in</h4>
-Thailand
+<div class="work">
+<img src="hero.jpg">
+<div class="work-title">Interactive Work</div>
 </div>
 
-<div>
-<h4>Education</h4>
-Media Arts and Design<br>
-Chiang Mai University
+<div class="work">
+<img src="hero.jpg">
+<div class="work-title">Visual Experiment</div>
 </div>
 
-<div>
-<h4>Fields</h4>
-Film<br>
-Visual Design<br>
-Editing<br>
-Color Grading
-</div>
-
-<div>
-<h4>Tools</h4>
-Unreal Engine<br>
-Premiere Pro<br>
-DaVinci Resolve
 </div>
 
 </section>
@@ -210,12 +246,21 @@ DaVinci Resolve
 
 <section class="contact">
 
-<h3>Contact</h3>
+<h2>Contact</h2>
 
-<p>Email: zoarpimchanok@gmail.com</p>
-<p>Instagram: zoarrq</p>
+<p>
+Instagram — @yourname  
+<br>
+Email — your@email.com
+</p>
 
 </section>
+
+<footer>
+
+© 2026 Portfolio
+
+</footer>
 
 </body>
 </html>

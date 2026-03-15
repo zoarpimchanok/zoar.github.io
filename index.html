@@ -8,35 +8,87 @@
 
 body{
 margin:0;
-font-family:Arial;
-background:black;
-color:white;
+font-family: Helvetica, Arial, sans-serif;
+background:#fff;
+color:#111;
 }
+
+/* NAVBAR */
+
+nav{
+position:absolute;
+top:0;
+width:100%;
+display:flex;
+justify-content:space-between;
+padding:20px 40px;
+color:white;
+z-index:10;
+}
+
+nav a{
+margin-right:20px;
+color:white;
+text-decoration:none;
+font-size:14px;
+}
+
+/* HERO */
 
 .hero{
 height:100vh;
+background-image:url("hero.jpg");
+background-size:cover;
+background-position:center;
 display:flex;
-flex-direction:column;
-justify-content:center;
 align-items:center;
-text-align:center;
+padding-left:80px;
+color:white;
 }
 
-h1{
+.hero h1{
 font-size:80px;
-letter-spacing:2px;
-margin:0;
+line-height:0.9;
+font-weight:500;
 }
 
-p{
-font-size:20px;
-opacity:0.8;
-}
+/* INTRO */
 
-.section{
+.intro{
+background:black;
+color:white;
 padding:80px;
-max-width:900px;
-margin:auto;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:60px;
+}
+
+/* WORK */
+
+.work{
+display:grid;
+grid-template-columns:1fr 1fr;
+padding:80px;
+gap:40px;
+}
+
+.work img{
+width:100%;
+}
+
+/* BIO */
+
+.bio{
+padding:80px;
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:40px;
+}
+
+/* CONTACT */
+
+.contact{
+padding:80px;
 }
 
 </style>
@@ -44,29 +96,126 @@ margin:auto;
 
 <body>
 
-<div class="hero">
+<nav>
 
-<h1>PIMCHANOK<br>YAEMSIRI</h1>
-
-<p>Film • Visual Design • Digital Media</p>
-
+<div>
+<a href="#">Home</a>
+<a href="#">About</a>
+<a href="#">Work</a>
+<a href="#">Contact</a>
 </div>
 
-<div class="section">
+<div>ZOAR</div>
+
+<div>
+<a href="#">Instagram</a>
+<a href="#">Facebook</a>
+<a href="#">Portfolio</a>
+</div>
+
+</nav>
+
+<section class="hero">
+
+<h1>
+PIMCHANOK<br>
+YAEMSIRI
+</h1>
+
+</section>
+
+
+<section class="intro">
+
+<div>
 
 <h2>Introduction</h2>
 
 <p>
-I'm a multidisciplinary creative working across film, visual design, and digital media. 
-My work explores visual storytelling, spatial experience, and experimental media practices.
-</p>
-
-<p>
-ฉันเป็นนักสร้างสรรค์ที่ทำงานข้ามสื่อ ทั้งภาพยนตร์ การออกแบบภาพ และสื่อดิจิทัล
-โดยสนใจการเล่าเรื่องผ่านภาพ ประสบการณ์ของพื้นที่ และการทดลองกับสื่อร่วมสมัย
+I'm a multidisciplinary creative working across film,
+visual design, and digital media.
 </p>
 
 </div>
+
+<div>
+
+<p>
+ฉันเป็นนักสร้างสรรค์ที่ทำงานข้ามสื่อ
+ทั้งภาพยนตร์ การออกแบบภาพ
+และสื่อดิจิทัล
+</p>
+
+</div>
+
+</section>
+
+
+<section class="work">
+
+<div>
+
+<h3>2025 — Music Video</h3>
+
+<p>Assistant Director / Editing / Color Grading</p>
+
+<img src="mv1.jpg">
+
+</div>
+
+
+<div>
+
+<h3>2025 — Mimesis</h3>
+
+<p>Interactive media project using Unreal Engine</p>
+
+<img src="mimesis.jpg">
+
+</div>
+
+</section>
+
+
+<section class="bio">
+
+<div>
+<h4>Based in</h4>
+Thailand
+</div>
+
+<div>
+<h4>Education</h4>
+Media Arts and Design<br>
+Chiang Mai University
+</div>
+
+<div>
+<h4>Fields</h4>
+Film<br>
+Visual Design<br>
+Editing<br>
+Color Grading
+</div>
+
+<div>
+<h4>Tools</h4>
+Unreal Engine<br>
+Premiere Pro<br>
+DaVinci Resolve
+</div>
+
+</section>
+
+
+<section class="contact">
+
+<h3>Contact</h3>
+
+<p>Email: zoarpimchanok@gmail.com</p>
+<p>Instagram: zoarrq</p>
+
+</section>
 
 </body>
 </html>

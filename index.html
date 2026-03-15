@@ -47,12 +47,34 @@ opacity:.8;
 
 .hero{
 height:100vh;
-background-image:url("hero.jpg");
+background-image:url("hero-desktop.jpg");
 background-size:cover;
 background-position:right center;
 display:flex;
 align-items:center;
 padding-left:10vw;
+}
+
+/* TABLET */
+
+@media (max-width:1024px){
+
+.hero{
+background-image:url("hero-tablet.jpg");
+background-position:center;
+}
+
+}
+
+/* MOBILE */
+
+@media (max-width:768px){
+
+.hero{
+background-image:url("hero-mobile.jpg");
+background-position:center;
+}
+
 }
 
 .hero h1{

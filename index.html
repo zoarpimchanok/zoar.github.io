@@ -259,6 +259,30 @@ grid-template-columns:1fr;
 }
   
 }
+.video-hover{
+position:relative;
+overflow:hidden;
+}
+
+.video-hover img,
+.video-hover video{
+width:100%;
+height:240px;
+object-fit:cover;
+display:block;
+}
+
+.video-hover video{
+position:absolute;
+top:0;
+left:0;
+opacity:0;
+transition:opacity .3s ease;
+}
+
+.video-hover:hover video{
+opacity:1;
+}
 /* BIOGRAPHY */
 
 .bio{
@@ -438,12 +462,21 @@ interested in learning, experimenting, and collaborating with others.
 <p class="role">Assistant Director / Editing / Color Grading</p>
 
 <div class="work-grid">
-<img src="mv1.jpg">
-<img src="mv2.jpg">
-<img src="mv3.jpg">
-</div>
 
-<p class="caption">YONLAPA — Saltburn</p>
+  <div class="video-hover">
+    <img src="mv1.jpg" alt="">
+    <video src="mv1.mp4" muted loop></video>
+  </div>
+
+  <div class="video-hover">
+    <img src="mv2.jpg" alt="">
+    <video src="mv2.mp4" muted loop></video>
+  </div>
+
+  <div class="video-hover">
+    <img src="mv3.jpg" alt="">
+    <video src="mv3.mp4" muted loop></video>
+  </div>
 
 </div>
 
@@ -538,6 +571,23 @@ Presented at ImaginAsia 2025 Taipei as a seminar presentation under the theme
 </div>
 
 </section>
-  
+  <script>
+
+document.querySelectorAll('.video-hover').forEach(box => {
+
+const video = box.querySelector('video')
+
+box.addEventListener('mouseenter', () => {
+video.play()
+})
+
+box.addEventListener('mouseleave', () => {
+video.pause()
+video.currentTime = 0
+})
+
+})
+
+</script>
 </body>
 </html>

@@ -209,18 +209,13 @@ opacity:0.8;
 .intro-menu a:hover{
 opacity:1;
 }
-/* WORK  */
-.work{
-background:#eee;
-color:#111;
-position:relative;
-}
 /* WORK SECTION */
 
 .work{
 background:#eee;
 color:#111;
 padding:0 10vw 120px;
+position:relative;
 }
 
 /* LAYOUT */
@@ -242,18 +237,18 @@ height:100vh;
 .work-image{
 background-image:url("portrait.jpg");
 background-size:cover;
-background-position:center center;
+background-position:center;
 background-repeat:no-repeat;
 width:100%;
 height:100%;
 }
+
 /* RIGHT SIDE */
 
 .right{
 padding:120px 6vw;
 width:100%;
 }
-
 /* PROJECT */
 
 .project{
@@ -585,7 +580,7 @@ scroll-behavior:smooth;
 .side-menu{
 position:absolute;
 
-top:120px;
+top:80px;
 left:80px;
 
 display:flex;
@@ -593,13 +588,13 @@ flex-direction:column;
 gap:8px;
 
 font-size:14px;
-z-index:10;
+z-index:20;
 }
 
 .side-menu a{
-color:white;
 text-decoration:none;
-opacity:0.8;
+color:white;
+opacity:.7;
 }
 
 .side-menu a:hover{
@@ -716,7 +711,16 @@ interested in learning, experimenting, and collaborating with others.
 <div class="layout">
 
 <div class="left">
+
+<nav class="side-menu">
+<a href="#home">Home</a>
+<a href="#about">About</a>
+<a href="#work">Work</a>
+<a href="#contact">Contact</a>
+</nav>
+
 <div class="work-image"></div>
+
 </div>
 
 <div class="right">

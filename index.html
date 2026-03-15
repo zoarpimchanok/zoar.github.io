@@ -103,6 +103,32 @@ background-size:cover;
 background-position:center;
 }
 
+/* video background */
+
+.intro-bg{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+object-fit:cover;
+
+opacity:0;
+animation: videoFade 2s ease forwards;
+
+z-index:0;
+}
+
+@keyframes videoFade{
+0%{
+opacity:0;
+}
+
+100%{
+opacity:1;
+}
+}
+
 .overlay{
 position:absolute;
 top:0;
@@ -510,6 +536,10 @@ YAEMSIRI
 </section>
 
 <section class="intro">
+
+<video class="intro-bg" autoplay muted loop playsinline>
+  <source src="intro.mp4" type="video/mp4">
+</video>
 
 <div class="overlay"></div>
 

@@ -689,15 +689,17 @@ Interactive media thesis project developed using Unreal Engine.
 </section>
 <script>
 
-document.querySelectorAll('.video').forEach(box => {
+document.querySelectorAll('.video-hover').forEach(card => {
 
-const video = box.querySelector('video')
+const video = card.querySelector('video')
 
-box.addEventListener('mouseenter', () => {
+if(!video) return
+
+card.addEventListener('mouseenter', () => {
 video.play()
 })
 
-box.addEventListener('mouseleave', () => {
+card.addEventListener('mouseleave', () => {
 video.pause()
 video.currentTime = 0
 })

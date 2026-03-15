@@ -101,9 +101,9 @@ background:black;
 overflow:hidden;
 }
 
-/* VIDEO BACKGROUND */
+/* video background */
 
-.intro-video{
+.intro-bg{
 position:absolute;
 top:0;
 left:0;
@@ -112,24 +112,23 @@ height:100%;
 object-fit:cover;
 
 opacity:0;
-filter:brightness(0.4);
-filter:brightness(0.4) blur(2px);
-transition:opacity 2s ease;
+transition:opacity 1.8s ease;
 
 z-index:0;
+filter:brightness(0.35);
 }
 
-/* TEXT LAYER */
+/* text layer */
 
-.intro-content{
+.intro *{
 position:relative;
 z-index:2;
 }
 
-/* FADE VIDEO WHEN HOVER */
+/* hover effect */
 
-.intro:hover .intro-video{
-opacity:0.35;
+.intro:hover .intro-bg{
+opacity:0.4;
 }
 
 /* left */
@@ -520,6 +519,10 @@ YAEMSIRI
 
 <section class="intro">
 
+<video class="intro-bg" autoplay muted loop playsinline>
+<source src="intro.mp4" type="video/mp4">
+</video>
+
 <div class="intro-inner">
 
 <div class="intro-left">
@@ -707,6 +710,29 @@ Interactive media thesis project developed using Unreal Engine.
 </section>
 <script>
 
+const intro = document.querySelector(".intro")
+const video = document.querySelector(".intro-bg")
+
+let delay
+
+intro.addEventListener("mouseenter", () => {
+
+delay = setTimeout(()=>{
+video.style.opacity = "0.4"
+},1200)
+
+})
+
+intro.addEventListener("mouseleave", () => {
+
+clearTimeout(delay)
+video.style.opacity = "0"
+
+})
+
+</script>
+<script>
+
 document.querySelectorAll('.video-hover').forEach(card => {
 
 const video = card.querySelector('video')
@@ -718,6 +744,24 @@ video.play()
 })
 
 card.addEventListener('mouseleave', () => {
+video.pause()
+video.currentTime = 0
+})
+
+})
+
+</script>
+<script>
+
+document.querySelectorAll('.video').forEach(box => {
+
+const video = box.querySelector('video')
+
+box.addEventListener('mouseenter', () => {
+video.play()
+})
+
+box.addEventListener('mouseleave', () => {
 video.pause()
 video.currentTime = 0
 })

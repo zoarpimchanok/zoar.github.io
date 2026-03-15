@@ -309,6 +309,75 @@ transform:scale(1.06);
 z-index:2;
 box-shadow:0 20px 40px rgba(0,0,0,0.35);
 }
+.hover-card{
+position:relative;
+overflow:hidden;
+transition:transform .35s ease, opacity .35s ease;
+}
+
+.hover-card img,
+.hover-card video{
+width:100%;
+height:240px;
+object-fit:cover;
+display:block;
+transition:transform .35s ease;
+}
+
+.hover-card video{
+position:absolute;
+top:0;
+left:0;
+opacity:0;
+}
+
+.hover-card .overlay{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.55);
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+padding:20px;
+opacity:0;
+transition:opacity .35s ease;
+color:white;
+font-size:14px;
+line-height:1.4;
+}
+
+/* zoom */
+
+.hover-card:hover{
+transform:scale(1.05);
+z-index:2;
+}
+
+/* video show */
+
+.hover-card.video:hover video{
+opacity:1;
+}
+
+/* text show */
+
+.hover-card.text:hover .overlay{
+opacity:1;
+}
+
+/* fade others */
+
+.work-grid:hover .hover-card{
+opacity:0.4;
+}
+
+.work-grid .hover-card:hover{
+opacity:1;
+}
 /* BIOGRAPHY */
 
 .bio{
@@ -516,15 +585,35 @@ Interactive visual project exploring immersive digital environments.
 </p>
 
 <div class="work-grid">
+
+<!-- VIDEO -->
+
+<div class="hover-card video">
 <img src="mimesis1.jpg">
-<img src="mimesis2.jpg">
-<img src="mimesis3.jpg">
+<video src="mimesis1.mp4" muted loop></video>
 </div>
 
+<!-- TEXT 1 -->
+
+<div class="hover-card text">
+<img src="mimesis2.jpg">
+<div class="overlay">
+<p>Exhibition installation exploring liminal space and digital memory.</p>
+</div>
+</div>
+
+<!-- TEXT 2 -->
+
+<div class="hover-card text">
+<img src="mimesis3.jpg">
+<div class="overlay">
+<p>Presented at ImaginAsia 2025 Taipei under the theme Crossing Borders.</p>
+</div>
+</div>
+
+</div>
 <p class="description">
-Interactive media thesis project developed using Unreal Engine.<br><br>
-Presented at ImaginAsia 2025 Taipei as a seminar presentation under the theme 
-“Crossing Borders: A Journey of Discovery.”
+Interactive media thesis project developed using Unreal Engine.
 </p>
 
 <a href="#" class="more-link">MORE >>></a>

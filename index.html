@@ -575,6 +575,8 @@ grid-template-columns:1fr;
 .contact-grid{
 grid-template-columns:1fr;
 }
+
+}
 html{
 scroll-behavior:smooth;
 }
@@ -599,6 +601,27 @@ opacity:.7;
 }
 
 .side-menu a:hover{
+opacity:1;
+}
+.bottom-menu{
+position:absolute;
+bottom:40px;
+left:50%;
+transform:translateX(-50%);
+
+display:flex;
+gap:30px;
+
+font-size:14px;
+}
+
+.bottom-menu a{
+text-decoration:none;
+color:#111;
+opacity:.7;
+}
+
+.bottom-menu a:hover{
 opacity:1;
 }
   
@@ -855,7 +878,13 @@ Interactive media thesis project developed using Unreal Engine.
 
 <p>Tel.</p>
 <p>+66 918154326</p>
-
+  
+<nav class="bottom-menu">
+<a href="#home">Home</a>
+<a href="#about">About</a>
+<a href="#work">Work</a>
+<a href="#contact">Contact</a>
+</nav>
 </div>
 
 </div>

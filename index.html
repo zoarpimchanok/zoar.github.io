@@ -96,9 +96,41 @@ opacity:.8;
 /* INTRO SECTION */
 
 .intro{
-position:relative;
-background:black;
-overflow:hidden;
+  position: relative;
+  height: 100vh;
+  background-image: url("image.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.overlay{
+  position: absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background: rgba(0,0,0,0.6); /* ความมืดของภาพ */
+}
+
+.intro-content{
+  position: relative;
+  z-index:2;
+  color:white;
+  padding:80px;
+}
+.intro-inner{
+    position: relative;
+    z-index: 2;
+
+    max-width: 1200px;
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    height: 100%;
+    padding: 80px;
 }
 
 /* video background */
@@ -518,10 +550,7 @@ YAEMSIRI
 </section>
 
 <section class="intro">
-
-<video class="intro-bg" autoplay muted loop playsinline>
-<source src="intro.mp4" type="video/mp4">
-</video>
+   <div class="overlay"></div>
 
 <div class="intro-inner">
 

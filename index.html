@@ -167,20 +167,44 @@ display:block;
 /* BIOGRAPHY */
 
 .bio{
-background:#e9e9e9;
-color:black;
-padding:80px 10vw;
+background:#eee;
+color:#111;
+padding:120px 10vw;
+}
+
+.bio h2{
+font-size:40px;
+margin-bottom:80px;
 }
 
 .bio-grid{
 display:grid;
 grid-template-columns:repeat(4,1fr);
-gap:40px;
-margin-top:40px;
+gap:80px;
+margin-bottom:100px;
 }
 
-.bio h4{
-margin-bottom:10px;
+.bio-item h4{
+font-weight:500;
+margin-bottom:20px;
+padding-bottom:8px;
+border-bottom:1px solid #999;
+}
+
+.bio-item p{
+margin:6px 0;
+}
+
+/* CONTACT */
+
+.contact h2{
+margin-bottom:40px;
+}
+
+.contact-grid{
+display:grid;
+grid-template-columns:150px 1fr;
+row-gap:14px;
 }
 
 /* CONTACT */
@@ -331,41 +355,36 @@ ImaginAsia 2025 in Taipei under the theme “Crossing Borders: A Journey of Disc
 
 <div class="bio-grid">
 
-<div>
+<div class="bio-item">
 <h4>Based in</h4>
+<p>2004 – Present</p>
 <p>Thailand</p>
 </div>
 
-<div>
+<div class="bio-item">
 <h4>Education</h4>
-<p>
-2022 — Present<br>
-Media Arts and Design (MADs)<br>
-Chiang Mai University
-</p>
+<p>2022 – Present</p>
+<p>Media Arts and Design (MADs)</p>
+<p>Chiang Mai University</p>
 </div>
 
-<div>
+<div class="bio-item">
 <h4>Fields</h4>
-<p>
-Film<br>
-Visual Design<br>
-Editing<br>
-Art Direction<br>
-Film Production
-</p>
+<p>Film</p>
+<p>Visual Design</p>
+<p>Editing</p>
+<p>Color Grading</p>
+<p>Art Direction</p>
 </div>
 
-<div>
-<h4>Tools</h4>
-<p>
-Unreal Engine<br>
-Photography<br>
-Video<br>
-Premiere Pro<br>
-DaVinci Resolve<br>
-Adobe Creative Suite
-</p>
+<div class="bio-item">
+<h4>Tool</h4>
+<p>Unreal Engine</p>
+<p>DaVinci Resolve</p>
+<p>Premiere Pro</p>
+<p>Adobe Creative Suite</p>
+<p>Photography</p>
+<p>Video</p>
 </div>
 
 </div>
@@ -373,19 +392,24 @@ Adobe Creative Suite
 
 <div class="contact">
 
-<h3>Contact</h3>
+<h2>Contact</h2>
 
-<p>
-Email — zoarpimchanok@gmail.com  
-<br>
-Instagram — zoarrq  
-<br>
-Tel — +66 918154326
-</p>
+<div class="contact-grid">
+
+<p>Email</p>
+<p>zoarpimchanok@gmail.com</p>
+
+<p>Instagram</p>
+<p>zoarrq</p>
+
+<p>Tel.</p>
+<p>+66 918154326</p>
+
+</div>
 
 </div>
 
 </section>
-
+  
 </body>
 </html>

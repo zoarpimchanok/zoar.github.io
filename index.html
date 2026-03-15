@@ -96,57 +96,36 @@ opacity:.8;
 /* INTRO SECTION */
 
 .intro{
-  position: relative;
-  height: 100vh;
-  background-image: url("image.jpg");
-  background-size: cover;
-  background-position: center;
+position:relative;
+height:100vh;
+background-image:url("image.jpg");
+background-size:cover;
+background-position:center;
 }
 
 .overlay{
-  position: absolute;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  background: rgba(0,0,0,0.6); /* ความมืดของภาพ */
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.6);
 }
 
-.intro-content{
-  position: relative;
-  z-index:2;
-  color:white;
-  padding:80px;
-}
 .intro-inner{
-    position: relative;
-    z-index: 2;
-
-    max-width: 1200px;
-    margin: 0 auto;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-
-    height: 100%;
-    padding: 80px;
-}
-
-/* text layer */
-
-.intro *{
 position:relative;
 z-index:2;
+
+max-width:1200px;
+margin:auto;
+
+display:flex;
+flex-direction:column;
+justify-content:center;
+
+height:100%;
+padding:80px;
 }
-
-/* hover effect */
-
-.intro:hover .intro-bg{
-opacity:0.4;
-}
-
-/* left */
 
 .intro-left h2{
 font-size:52px;
@@ -157,8 +136,6 @@ margin-bottom:12px;
 font-size:13px;
 color:#888;
 }
-
-/* text columns */
 
 .intro-text{
 display:grid;
@@ -571,6 +548,8 @@ interested in learning, experimenting, and collaborating with others.
 </p>
 
 </div>
+
+</div>   <!-- ปิด intro-inner -->
 
 </section>
 

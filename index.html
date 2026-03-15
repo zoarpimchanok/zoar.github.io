@@ -214,8 +214,9 @@ opacity:1;
 .work{
 background:#eee;
 color:#111;
-}
 
+position:relative;
+}
 /* WORK SECTION */
 
 .work{
@@ -562,6 +563,30 @@ grid-template-columns:1fr;
 html{
 scroll-behavior:smooth;
 }
+.side-menu{
+position:absolute;
+
+top:120px;
+left:80px;
+
+display:flex;
+flex-direction:column;
+gap:8px;
+
+font-size:14px;
+z-index:10;
+}
+
+.side-menu a{
+color:white;
+text-decoration:none;
+opacity:0.8;
+}
+
+.side-menu a:hover{
+opacity:1;
+}
+  
 }
 </style>
 </head>
@@ -661,7 +686,14 @@ interested in learning, experimenting, and collaborating with others.
 </section>
 
 <section id="work" class="work">
-
+  
+<nav class="side-menu">
+<a href="#">Home</a>
+<a href="#">About</a>
+<a href="#">Work</a>
+<a href="#">Contact</a>
+</nav>
+  
 <div class="layout">
 
 <div class="left">

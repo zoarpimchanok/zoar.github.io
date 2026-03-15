@@ -529,7 +529,9 @@ grid-template-columns:1fr;
 .contact-grid{
 grid-template-columns:1fr;
 }
-
+html{
+scroll-behavior:smooth;
+}
 }
 </style>
 </head>
@@ -539,10 +541,10 @@ grid-template-columns:1fr;
 <nav>
 
 <div>
-<a href="#">Home</a>
-<a href="#">About</a>
-<a href="#">Work</a>
-<a href="#">Contact</a>
+<a href="#home">Home</a>
+<a href="#about">About</a>
+<a href="#work">Work</a>
+<a href="#contact">Contact</a>
 </div>
 
 <div>ZOAR</div>
@@ -556,7 +558,7 @@ grid-template-columns:1fr;
 </nav>
 
 
-<section class="hero">
+<section id="home" class="hero">
 
 <div>
 
@@ -573,7 +575,7 @@ YAEMSIRI
 
 </section>
 
-<section class="intro">
+<section id="about" class="intro">
 
 <video class="intro-bg" autoplay muted loop playsinline>
   <source src="intro.mp4" type="video/mp4">
@@ -621,7 +623,7 @@ interested in learning, experimenting, and collaborating with others.
 
 </section>
 
-<section class="work">
+<section id="work" class="work">
 
 <div class="layout">
 
@@ -706,7 +708,7 @@ Interactive media thesis project developed using Unreal Engine.
 
 </section>
 
-<section class="bio">
+<section id="contact" class="bio">
 
 <h2>Biography</h2>
 

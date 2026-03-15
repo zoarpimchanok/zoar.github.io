@@ -227,6 +227,10 @@ transition:transform .3s ease;
 .work-grid img:hover{
 transform:scale(1.05);
 }
+.work-grid img,
+.work-grid video{
+border-radius:12px;
+}
   
 /* TABLET */
 
@@ -259,10 +263,15 @@ grid-template-columns:1fr;
 }
   
 }
+/* video hover container */
+
 .video-hover{
 position:relative;
 overflow:hidden;
+transition:transform .35s ease, opacity .35s ease;
 }
+
+/* zoom */
 
 .video-hover img,
 .video-hover video{
@@ -270,18 +279,35 @@ width:100%;
 height:240px;
 object-fit:cover;
 display:block;
+transition:transform .35s ease, opacity .35s ease;
 }
+
+/* video overlay */
 
 .video-hover video{
 position:absolute;
 top:0;
 left:0;
 opacity:0;
-transition:opacity .3s ease;
 }
+
+/* show video */
 
 .video-hover:hover video{
 opacity:1;
+}
+
+/* zoom effect */
+
+.work-grid:hover .video-hover{
+opacity:0.4;
+}
+
+.work-grid .video-hover:hover{
+opacity:1;
+transform:scale(1.06);
+z-index:2;
+box-shadow:0 20px 40px rgba(0,0,0,0.35);
 }
 /* BIOGRAPHY */
 

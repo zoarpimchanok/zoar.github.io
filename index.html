@@ -631,7 +631,81 @@ opacity:.7;
 .bottom-menu a:hover{
 opacity:1;
 }
+  
+.storyboard{
+background:#000;
+color:#fff;
+padding:120px 6vw;
 }
+
+.storyboard-header{
+margin-bottom:80px;
+}
+
+.storyboard-header h2{
+font-size:28px;
+margin-bottom:10px;
+}
+
+.storyboard-header p{
+opacity:.7;
+}
+
+/* GRID */
+  
+.storyboard-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+grid-auto-rows:auto;
+gap:60px;
+}
+
+/* ITEM */
+
+.item img{
+width:100%;
+display:block;
+transition:.4s;
+}
+
+.item .text{
+margin-top:12px;
+font-size:14px;
+opacity:.8;
+}
+
+.year{
+font-size:12px;
+opacity:.5;
+margin-bottom:6px;
+}
+
+.item-nitto{
+grid-column:1/2;
+grid-row:1/2;
+}
+
+.item-pramyact{
+grid-column:2/3;
+grid-row:1/2;
+}
+
+.item-laneige{
+grid-column:2/3;
+grid-row:2/3;
+}
+
+.item-mission{
+grid-column:1/2;
+grid-row:2/3;
+max-width:300px;
+}
+
+.item:hover img{
+transform:scale(1.03);
+opacity:.8;
+}
+
 </style>
 </head>
 
@@ -894,6 +968,55 @@ Interactive media thesis project developed using Unreal Engine.
 </div>
 
 </div>
+
+</section>
+
+<section class="storyboard">
+
+  <div class="storyboard-header">
+    <h2>Storyboard</h2>
+    <p>Pre-visualizing narrative structure<br>and shot composition for commercial films.</p>
+  </div>
+
+  <div class="storyboard-grid">
+
+    <!-- รูปซ้าย -->
+    <div class="item item-nitto">
+      <img src="production-nitto.jpg">
+      <div class="text">
+        <p class="year">2023</p>
+        <p>Nitto Thailand project description...</p>
+      </div>
+    </div>
+
+    <!-- รูปขวาบน -->
+    <div class="item item-pramyact">
+      <img src="production-pramyact.jpg">
+      <div class="text">
+        <p class="year">2023</p>
+        <p>Pramyact x Jeff Satur...</p>
+      </div>
+    </div>
+
+    <!-- รูปขวาล่าง -->
+    <div class="item item-laneige">
+      <img src="production-laneige.jpg">
+      <div class="text">
+        <p class="year">2024</p>
+        <p>Laneige campaign...</p>
+      </div>
+    </div>
+
+    <!-- รูปล่างเล็ก -->
+    <div class="item item-mission">
+      <img src="production-mission.jpg">
+      <div class="text">
+        <p class="year">2024</p>
+        <p>New mission alert...</p>
+      </div>
+    </div>
+
+  </div>
 
 </section>
 <script>

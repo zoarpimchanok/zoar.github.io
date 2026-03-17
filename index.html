@@ -1129,28 +1129,6 @@ video.pause()
 video.currentTime = 0
 })
 
-<script>
-const faders = document.querySelectorAll('.fade-in');
-
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if(entry.isIntersecting){
-      entry.target.classList.add('show');
-    }
-  });
-});
-
-faders.forEach(el => observer.observe(el));
-
-/* parallax */
-
-window.addEventListener('scroll', () => {
-  document.querySelectorAll('.parallax img').forEach(img => {
-    let speed = 0.15;
-    let y = window.scrollY;
-    img.style.transform = `translateY(${y * speed}px)`;
-  });
-});
 })
 
 </script>

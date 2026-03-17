@@ -42,6 +42,49 @@ body{
   margin-top:6px;
   text-decoration:none;
 }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Work</title>
+
+<style>
+
+/* RESET */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  background:#000;
+  color:#fff;
+  font-family: Helvetica, Arial, sans-serif;
+  position: relative;
+  height: 100vh;
+}
+
+/* LEFT FIXED */
+.sidebar{
+  position:fixed;
+  left:60px;
+  top:60px;
+  width:200px;
+}
+
+.sidebar h2{
+  font-size:16px;
+  margin-bottom:10px;
+}
+
+.sidebar a{
+  display:block;
+  font-size:12px;
+  color:#777;
+  margin-top:6px;
+  text-decoration:none;
+}
 
 /* MAIN */
 .main{
@@ -58,19 +101,13 @@ body{
 /* ===================== */
 
 /* CANVAS */
-
 .canvas{
-  margin-top: 0;
-  padding-top: 80px; /* เว้นให้ header */
-}
-.header{
-  position: fixed;
-  top: 0;
-  left: 0;
+  position: relative;
   width: 100%;
-  z-index: 999;
-  background: black; /* สำคัญ กันโปร่ง */
+  height: 100vh;
+  padding: 0 0 0 0; /* เอา padding ออก */
 }
+
 /* IMAGE BASE */
 .item{
   position: absolute;
@@ -105,14 +142,14 @@ body{
 /* BIG RIGHT */
 .img1{
   width: 38%;
-  right: 50px;
+  right: 90px;
   bottom: 0;
 }
 
 /* TOP CENTER */
 .img2{
   width: 30%;
-  left: 50%;
+  left: 70%;
   top: 0px;
   transform: translateX(-50%);
 }
@@ -127,7 +164,7 @@ body{
 /* SMALL BOTTOM */
 .img4{
   width: 14%;
-  left: 60%;
+  left: 20%;
   bottom: 50px;
 }
 

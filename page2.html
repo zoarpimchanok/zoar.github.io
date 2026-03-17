@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Work & Experience</title>
+
+<style>
+
+/* RESET */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family: Helvetica, Arial, sans-serif;
+  background:black;
+  color:white;
+}
+
+/* SIDEBAR */
+.sidebar{
+  position:fixed;
+  left:40px;
+  top:40px;
+  z-index:10;
+}
+
+.sidebar h2{
+  font-size:16px;
+  margin-bottom:10px;
+}
+
+.sidebar a{
+  display:block;
+  font-size:12px;
+  color:#aaa;
+  text-decoration:none;
+  margin-top:5px;
+}
+
+/* TIMELINE */
+.timeline{
+  padding:120px 120px;
+}
+
+.timeline__item{
+  display:flex;
+  gap:40px;
+  margin-bottom:100px;
+  align-items:center;
+}
+
+.timeline__item.reverse{
+  flex-direction:row-reverse;
+}
+
+.timeline__image{
+  width:50%;
+}
+
+.timeline__image img{
+  width:100%;
+  display:block;
+}
+
+.timeline__text{
+  width:50%;
+}
+
+.year{
+  font-size:14px;
+  color:#888;
+  margin-bottom:10px;
+}
+
+/* PRODUCTION */
+.production{
+  padding:100px 120px;
+}
+
+.production__header{
+  margin-bottom:40px;
+}
+
+.production__row{
+  display:flex;
+  gap:12px;
+  overflow-x:auto;
+}
+
+.production__row img{
+  width:140px;
+  height:200px;
+  object-fit:cover;
+  transition:.3s;
+}
+
+.production__row img:hover{
+  transform:scale(1.05);
+}
+
+/* PHOTOGRAPHY */
+.photography{
+  background:#e5e5e5;
+  color:black;
+  padding:120px;
+}
+
+.photo__grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:50px;
+}
+
+.photo{
+  font-size:12px;
+}
+
+.photo img{
+  width:100%;
+  margin-top:10px;
+}
+
+/* BIO */
+.bio{
+  display:flex;
+  padding:120px;
+  gap:80px;
+}
+
+.bio__image img{
+  width:250px;
+}
+
+.bio__content{
+  display:flex;
+  gap:60px;
+}
+
+.bio__col{
+  max-width:200px;
+}
+
+.bio__col h4{
+  margin-bottom:10px;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+  <h2>CREATIVE WORK >></h2>
+  <h2>EXPERIENCE >></h2>
+
+  <a href="index.html">Home</a>
+  <a href="#">About</a>
+  <a href="#">Work</a>
+  <a href="#">Contact</a>
+</div>
+
+<!-- TIMELINE -->
+<section class="timeline">
+
+  <div class="timeline__item">
+    <div class="timeline__image">
+      <img src="production-pramyact.jpg">
+    </div>
+    <div class="timeline__text">
+      <div class="year">2023</div>
+      <p>Pramycat x Jeff Satur (Music Video)</p>
+    </div>
+  </div>
+
+  <div class="timeline__item reverse">
+    <div class="timeline__image">
+      <img src="production-laneige.jpg">
+    </div>
+    <div class="timeline__text">
+      <div class="year">2024</div>
+      <p>LANEIGE Campaign</p>
+    </div>
+  </div>
+
+</section>
+
+<!-- PRODUCTION -->
+<section class="production">
+
+  <div class="production__header">
+    <h3>Production</h3>
+    <p>Collaborating across visual storytelling</p>
+  </div>
+
+  <div class="production__row">
+    <img src="https://picsum.photos/200/300?1">
+    <img src="https://picsum.photos/200/300?2">
+    <img src="https://picsum.photos/200/300?3">
+    <img src="https://picsum.photos/200/300?4">
+    <img src="https://picsum.photos/200/300?5">
+    <img src="https://picsum.photos/200/300?6">
+  </div>
+
+</section>
+
+<!-- PHOTOGRAPHY -->
+<section class="photography">
+
+  <div class="photo__grid">
+
+    <div class="photo">(1)<img src="https://picsum.photos/300?1"></div>
+    <div class="photo">(2)<img src="https://picsum.photos/300?2"></div>
+    <div class="photo">(3)<img src="https://picsum.photos/300?3"></div>
+    <div class="photo">(4)<img src="https://picsum.photos/300?4"></div>
+    <div class="photo">(5)<img src="https://picsum.photos/300?5"></div>
+    <div class="photo">(6)<img src="https://picsum.photos/300?6"></div>
+
+  </div>
+
+</section>
+
+<!-- BIO -->
+<section class="bio">
+
+  <div class="bio__image">
+    <img src="https://picsum.photos/300/400">
+  </div>
+
+  <div class="bio__content">
+
+    <div class="bio__col">
+      <h4>Biography</h4>
+      <p>Visual storytelling through still images</p>
+    </div>
+
+    <div class="bio__col">
+      <h4>Biography</h4>
+      <p>Visual storytelling through still images</p>
+    </div>
+
+    <div class="bio__col">
+      <h4>Biography</h4>
+      <p>Visual storytelling through still images</p>
+    </div>
+
+  </div>
+
+</section>
+
+</body>
+</html>

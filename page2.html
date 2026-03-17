@@ -56,14 +56,14 @@ body{
 
 /* STORYBOARD = ทั้งหน้าจอ */
 .storyboard{
-  height:100vh;
+ height:100vh;
   display:grid;
-  grid-template-columns: 1fr 1.5fr;
+  grid-template-columns: 38% 62%;
 }
 
 /* LEFT */
 .story{
-  padding:60px;
+  padding:80px 60px;
   display:flex;
   flex-direction:column;
   justify-content:space-between;
@@ -72,11 +72,16 @@ body{
 /* LEFT BOTTOM (2 รูป) */
 .left-bottom{
   display:flex;
-  gap:20px;
+  gap:24px;
+  align-items:flex-end;
 }
 
-.left-item img{
-  width:100%;
+.left-item:nth-child(1){
+  width:55%;
+}
+
+.left-item:nth-child(2){
+  width:45%;
 }
 
 .left-item{
@@ -93,7 +98,7 @@ body{
 
 /* TOP IMAGE */
 .right-top{
-  height:45%;
+  height:42%;
 }
 
 .right-top img{
@@ -104,7 +109,7 @@ body{
 
 /* BOTTOM IMAGE */
 .right-bottom{
-  height:55%;
+  height:58%;
 }
 
 .right-bottom img{
@@ -113,13 +118,33 @@ body{
   object-fit:cover;
 }
 
+body{
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+h2{
+  font-size:14px;
+  letter-spacing:1px;
+}
+
+h3{
+  font-size:13px;
+}
+
+p{
+  font-size:11px;
+  color:#aaa;
+}
+
 /* CAPTION */
 .hero-caption{
   position:absolute;
-  top:40px;
-  right:60px;
+  top:30px;
+  right:50px;
+  width:220px;
   font-size:11px;
   text-align:right;
+  line-height:1.4;
 }
 
 /* ===================== */

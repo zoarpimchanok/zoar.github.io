@@ -632,10 +632,12 @@ opacity:.7;
 opacity:1;
 }
   
+/* BASE */
+
 .storyboard{
   background:#000;
   color:#fff;
-  padding:120px 80px;
+  padding:140px 80px;
 }
 
 .storyboard-inner{
@@ -643,18 +645,22 @@ opacity:1;
   margin:0 auto;
 }
 
+/* HEADER */
+
 .storyboard-header{
-  max-width:400px;
-  margin-bottom:120px;
+  max-width:420px;
+  margin-bottom:160px;
 }
 
 .storyboard-header h2{
-  font-size:28px;
-  margin-bottom:10px;
+  font-size:32px;
+  margin-bottom:12px;
+  letter-spacing:0.5px;
 }
 
 .storyboard-header p{
-  opacity:.7;
+  opacity:.6;
+  line-height:1.6;
 }
 
 /* LIST */
@@ -662,7 +668,7 @@ opacity:1;
 .storyboard-list{
   display:flex;
   flex-direction:column;
-  gap:120px;
+  gap:160px;
 }
 
 /* ITEM */
@@ -670,38 +676,69 @@ opacity:1;
 .story-item{
   display:flex;
   align-items:center;
-  gap:60px;
+  justify-content:space-between;
+  gap:80px;
 }
 
 .story-item.reverse{
   flex-direction:row-reverse;
 }
 
-.story-item img{
+/* IMAGE */
+
+.image{
   width:55%;
-  height:auto;
-  object-fit:cover;
-  transition:.4s;
+  overflow:hidden;
 }
 
-.story-item img:hover{
-  transform:scale(1.03);
-  opacity:.85;
+.image img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:0.6s ease;
+}
+
+/* hover subtle */
+
+.image:hover img{
+  transform:scale(1.04);
+  opacity:.9;
 }
 
 /* TEXT */
 
 .text{
-  width:40%;
+  width:35%;
   font-size:14px;
-  line-height:1.6;
+  line-height:1.7;
   opacity:.85;
 }
 
 .text .year{
-  font-size:12px;
-  opacity:.5;
-  margin-bottom:10px;
+  font-size:11px;
+  letter-spacing:1px;
+  opacity:.4;
+  margin-bottom:12px;
+}
+
+/* FADE IN */
+
+.fade-in{
+  opacity:0;
+  transform:translateY(40px);
+  transition:all 1s ease;
+}
+
+.fade-in.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* PARALLAX */
+
+.parallax img{
+  transform:translateY(0);
+  transition:transform 0.2s linear;
 }
 </style>
 </head>
@@ -966,71 +1003,73 @@ Interactive media thesis project developed using Unreal Engine.
 
 </div>
 
-</section>
-
 <section class="storyboard">
   <div class="storyboard-inner">
-    
-    <div class="storyboard-header">
-    <h2>Storyboard</h2>
-    <p>Pre-visualizing narrative structure<br>and shot composition for commercial films.</p>
+
+    <div class="storyboard-header fade-in">
+      <h2>Storyboard</h2>
+      <p>
+        Pre-visualizing narrative structure<br>
+        and shot composition for commercial films.
+      </p>
+    </div>
+
+    <div class="storyboard-list">
+
+      <!-- 1 -->
+      <div class="story-item fade-in">
+        <div class="text">
+          <div class="year">2024</div>
+          <p>
+            Welcome Back "LANEIGE's Housemate"<br>
+            กลับมาครั้งนี้เจอแต่ความเซอร์ไพรส์
+            เมื่อเพื่อนๆเปลี่ยนไป ไม่สดใสอย่างที่เคย
+          </p>
+        </div>
+        <div class="image parallax">
+          <img src="production-laneige.jpg">
+        </div>
+      </div>
+
+      <!-- 2 -->
+      <div class="story-item reverse fade-in">
+        <div class="image parallax">
+          <img src="production-nitto.jpg">
+        </div>
+        <div class="text">
+          <div class="year">2023</div>
+          <p>
+            NittoTireThailand<br>
+            ทำเป็นเซียนเหมือนเรียนมา แบบนี้ต้องให้เซียนตัวจริงเขาสั่งสอน
+          </p>
+        </div>
+      </div>
+
+      <!-- 3 -->
+      <div class="story-item fade-in">
+        <div class="text">
+          <div class="year">2023</div>
+          <p>Pramyact x Jeff Satur...</p>
+        </div>
+        <div class="image parallax">
+          <img src="production-pramyact.jpg">
+        </div>
+      </div>
+
+      <!-- 4 -->
+      <div class="story-item reverse fade-in">
+        <div class="image parallax">
+          <img src="production-mission.jpg">
+        </div>
+        <div class="text">
+          <div class="year">2024</div>
+          <p>NEW MISSION Alert! Let's explore the LANEIGE planet.</p>
+        </div>
+      </div>
+
+    </div>
+
   </div>
-
-  <div class="storyboard-grid">
-
-    <!-- รูปซ้าย -->
-    <div class="item item-nitto">
-  <img src="production-nitto.jpg">
-</div>
-
-<div class="text-block text-nitto">
-  <div class="year">2023</div>
-  <p>
-NittoTireThailand<br>
-ทำเป็นเซียนเหมือนเรียนมา
-แบบนี้ต้องให้เซียนตัวจริงเขาสั่งสอน
-จะซื้อยางทั้งที ต้องเลือกยางคุณภาพดีที่เหล่าเซียนเขาแนะนำ
-จำชื่อให้แม่นต้อง "นิตโตะ" เท่านั้น
-"นิตโตะ" สุดในรุ่น เนื้อดี พิมพ์นิยม
-  </p>
-</div>
-
-    <!-- รูปขวาบน -->
-    <div class="item item-pramyact">
-  <img src="production-pramyact.jpg">
-</div>
-
-<div class="text-block text-pramyact">
-  <div class="year">2023</div>
-  <p>Pramyact x Jeff Satur...</p>
-</div>
-
-    <!-- รูปขวาล่าง -->
-  <div class="item item-laneige">
-  <img src="production-laneige.jpg">
-</div>
-
-<div class="text-block text-pramyact">
-  <div class="year">2024</div>
-  <p>PWelcome Back "LANEIGE's Housemate"
-กลับมาครั้งนี้เจอแต่ความเซอร์ไพรส์ เมื่อเพื่อนๆเปลี่ยนไป
-ไม่สดใสอย่างที่เคย อะไรจะมาช่วยคืนความชุ่มชื้น</p>
-</div>
-
-    <!-- รูปล่างเล็ก -->
-    
-      <div class="item item-mission">
-  <img src="production-mission.jpg">
-</div>
-
-<div class="text-block text-pramyact">
-  <div class="year">2024</div>
-  <p>NEW MISSION Alert !
-Let's explore the LANEIGE planet.</p>
-</div>
-
-  </div>
-
 </section>
 <script>
 
@@ -1090,6 +1129,29 @@ video.pause()
 video.currentTime = 0
 })
 
+<script>
+const faders = document.querySelectorAll('.fade-in');
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add('show');
+    }
+  });
+});
+
+faders.forEach(el => observer.observe(el));
+
+/* parallax */
+
+window.addEventListener('scroll', () => {
+  document.querySelectorAll('.parallax img').forEach(img => {
+    let speed = 0.15;
+    let y = window.scrollY;
+    img.style.transform = `translateY(${y * speed}px)`;
+  });
+});
+</script>
 })
 
 </script>

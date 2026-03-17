@@ -54,7 +54,7 @@ body{
 /* HERO / STORYBOARD */
 /* ===================== */
 
-/* FIX SECTION แรกให้เต็มจอ */
+/* STORYBOARD = ทั้งหน้าจอ */
 .storyboard{
   height:100vh;
   display:grid;
@@ -63,108 +63,63 @@ body{
 
 /* LEFT */
 .story{
-  padding:80px;
+  padding:60px;
   display:flex;
   flex-direction:column;
   justify-content:space-between;
 }
 
-.story h3{
-  font-size:14px;
+/* LEFT BOTTOM (2 รูป) */
+.left-bottom{
+  display:flex;
+  gap:20px;
 }
 
-.line{
-  width:60px;
-  height:1px;
-  background:#666;
-  margin:10px 0;
+.left-item img{
+  width:100%;
 }
 
-.story p{
-  font-size:12px;
+.left-item{
+  font-size:11px;
   color:#aaa;
-  line-height:1.6;
 }
 
 /* RIGHT */
 .storyboard-right{
+  display:flex;
+  flex-direction:column;
   position:relative;
 }
 
-.storyboard-right img{
+/* TOP IMAGE */
+.right-top{
+  height:45%;
+}
+
+.right-top img{
   width:100%;
   height:100%;
   object-fit:cover;
 }
 
+/* BOTTOM IMAGE */
+.right-bottom{
+  height:55%;
+}
+
+.right-bottom img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+/* CAPTION */
 .hero-caption{
   position:absolute;
   top:40px;
   right:60px;
+  font-size:11px;
   text-align:right;
-  font-size:11px;
-}
-
-.top-menu{
-  margin-bottom:40px;
-  opacity:.7;
-}
-
-/* ===================== */
-/* TIMELINE (4 BLOCK) */
-/* ===================== */
-
-.timeline{
-  height:100vh;
-  display:grid;
-  grid-template-columns: 1fr 1.5fr;
-  gap:60px;
-  padding:80px;
-}
-
-/* LEFT */
-.left-col{
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-}
-
-.left-item img{
-  width:100%;
-  display:block;
-}
-
-.left-item .text{
-  margin-top:10px;
-  font-size:12px;
-  color:#aaa;
-  line-height:1.5;
-}
-
-/* RIGHT */
-.right-col{
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-}
-
-.right-item img{
-  width:100%;
-  height:70%;
-  object-fit:cover;
-}
-
-.right-text{
-  font-size:12px;
-  color:#aaa;
-  line-height:1.5;
-}
-
-/* YEAR */
-.year{
-  color:#777;
-  margin-bottom:6px;
-  font-size:11px;
 }
 
 /* ===================== */
@@ -319,57 +274,70 @@ body{
   </section>
 
   <!-- TIMELINE (ครบ 4 รูป) -->
-  <section class="timeline">
+<section class="storyboard">
 
-    <!-- LEFT -->
-    <div class="left-col">
+  <!-- LEFT -->
+  <div class="story">
 
-      <!-- 2023 -->
-      <div class="left-item">
-        <img src="https://picsum.photos/300/250">
-        <div class="text">
-          <div class="year">2023</div>
-          <p>
-            Nitto Tire Thailand<br>
-            Creative campaign storytelling
-          </p>
-        </div>
-      </div>
+    <!-- TOP -->
+    <div>
+      <h2>CREATIVE WORK >></h2>
+      <h2>EXPERIENCE >></h2>
+    </div>
 
-      <!-- 2024 -->
+    <!-- MIDDLE -->
+    <div>
+      <h3>Storyboard</h3>
+      <div class="line"></div>
+      <p>
+        Pre-visualizing narrative structure<br>
+        and shot composition for commercial films.
+      </p>
+    </div>
+
+    <!-- BOTTOM (LEFT 2 รูป) -->
+    <div class="left-bottom">
+
       <div class="left-item">
         <img src="https://picsum.photos/300/200">
-        <div class="text">
-          <div class="year">2024</div>
-          <p>
-            NEW MISSION Alert !<br>
-            Let's explore the LANEIGE planet.
-          </p>
-        </div>
+        <div class="year">2023</div>
+        <p>Nitto Tire Thailand</p>
       </div>
 
-    </div>
-
-    <!-- RIGHT -->
-    <div class="right-col">
-
-      <!-- BIG IMAGE -->
-      <div class="right-item">
-        <img src="https://picsum.photos/800/500">
-      </div>
-
-      <!-- TEXT -->
-      <div class="right-text">
+      <div class="left-item">
+        <img src="https://picsum.photos/300/150">
         <div class="year">2024</div>
-        <p>
-          Welcome Back LANEIGE’s Housemate<br>
-          Campaign storytelling with immersive narrative
-        </p>
+        <p>NEW MISSION Alert</p>
       </div>
 
     </div>
 
-  </section>
+  </div>
+
+  <!-- RIGHT -->
+  <div class="storyboard-right">
+
+    <!-- TOP IMAGE -->
+    <div class="right-top">
+      <img src="https://picsum.photos/1000/500">
+    </div>
+
+    <!-- BOTTOM IMAGE -->
+    <div class="right-bottom">
+      <img src="https://picsum.photos/1000/400">
+    </div>
+
+    <!-- TEXT -->
+    <div class="hero-caption">
+      <div class="top-menu">Home About Work Contact</div>
+
+      <div class="year">2024</div>
+      <p>Welcome Back LANEIGE’s Housemate</p>
+    </div>
+
+  </div>
+
+</section>
   <!-- PRODUCTION -->
   <section class="section production">
 

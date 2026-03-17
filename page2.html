@@ -56,52 +56,108 @@ body{
 /* HERO / STORYBOARD */
 /* ===================== */
 
-/* STORYBOARD = ทั้งหน้าจอ */
-
+/* CANVAS */
 .canvas{
-  position:relative;
-  width:100%;
-  height:100vh;
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  padding: 0 80px;
 }
 
-/* IMAGE BLOCK */
+/* IMAGE BASE */
 .item{
-  position: relative;
-  height: 100vh;
+  position: absolute;
 }
 
 .item img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  display:block;
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
-/* TEXT ON IMAGE */
+/* CAPTION */
 .caption{
-  position:absolute;
-  color:white;
-  line-height:1.4;
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  font-size: 12px;
+  color: white;
 }
 
-/* STORYBOARD TEXT */
+/* TEXT */
 .story-text{
-  position:absolute;
-  left:60px;
-  top:250px;
+  position: absolute;
+  left: 80px;
+  top: 200px;
 }
 
-.story-text h3{
-  margin:0;
-  font-size:14px;
+/* ================= */
+/* LAYOUT POSITION */
+/* ================= */
+
+/* BIG RIGHT */
+.img1{
+  width: 38%;
+  right: 80px;
+  bottom: 60px;
 }
 
-.story-text p{
-  margin-top:8px;
-  font-size:11px;
-  color:#aaa;
-  line-height:1.5;
+/* TOP CENTER */
+.img2{
+  width: 30%;
+  left: 50%;
+  top: 40px;
+  transform: translateX(-50%);
+}
 
+/* LEFT */
+.img3{
+  width: 18%;
+  left: 80px;
+  top: 420px;
+}
+
+/* SMALL BOTTOM */
+.img4{
+  width: 14%;
+  left: 35%;
+  bottom: 60px;
+}
+
+@media (max-width: 1200px){
+  .img1{ width:45%; }
+  .img2{ width:40%; }
+  .img3{ width:25%; }
+  .img4{ width:20%; }
+}
+
+@media (max-width: 768px){
+  .canvas{
+    height:auto;
+    padding:40px;
+  }
+
+  .item{
+    position: relative;
+    width:100%;
+    margin-bottom:20px;
+  }
+
+  .img2, .img3, .img4, .img1{
+    left:auto;
+    right:auto;
+    top:auto;
+    bottom:auto;
+    transform:none;
+  }
+
+  .story-text{
+    position: relative;
+    left:0;
+    top:0;
+    margin-bottom:20px;
+  }
+}
 /* ===================== */
 /* PRODUCTION */
 /* ===================== */
@@ -218,47 +274,38 @@ body{
     <!-- MIDDLE -->
 <div class="canvas">
 
-  <!-- STORYBOARD TEXT -->
+  <!-- TEXT -->
   <div class="story-text">
     <h3>Storyboard</h3>
     <p>Pre-visualizing narrative structure<br>
     and shot composition for commercial films.</p>
   </div>
 
-  <!-- IMAGE 1 -->
-  <div class="item" style="width:826px; height:619px; left:1200px; bottom:0;">
+  <!-- IMAGE 1 (BIG RIGHT) -->
+  <div class="item img1">
     <img src="production-laneige.jpg">
-    <div class="caption" style="left:20px; top:20px; font-size:14px;">
-      2024<br>Welcome Back
-    </div>
+    <div class="caption">2024<br>Welcome Back</div>
   </div>
 
-  <!-- IMAGE 2 -->
-<div class="item" style="width:640px; height:480px; left:1000px; top:0;">
+  <!-- IMAGE 2 (TOP CENTER) -->
+  <div class="item img2">
     <img src="production-pramyact.jpg">
-    <div class="caption" style="left:20px; top:20px; font-size:14px;">
-      2023<br>Music Video
-    </div>
+    <div class="caption">2023<br>Music Video</div>
   </div>
 
-  <!-- IMAGE 3 -->
-<div class="item" style="width:300px; height:200px; left:0; top:500px;">
+  <!-- IMAGE 3 (LEFT) -->
+  <div class="item img3">
     <img src="production-nitto.jpg">
-    <div class="caption" style="left:10px; top:10px; font-size:12px;">
-      2023<br>Nitto Tire Thailand
-    </div>
+    <div class="caption">2023<br>Nitto Tire</div>
   </div>
 
-  <!-- IMAGE 4 -->
-<div class="item" style="width:220px; height:165px; left:420px; bottom:0;">
+  <!-- IMAGE 4 (BOTTOM MID) -->
+  <div class="item img4">
     <img src="production-mission.jpg">
-    <div class="caption" style="left:10px; top:10px; font-size:12px;">
-      2024<br>NEW MISSION Alert
-    </div>
+    <div class="caption">2024<br>NEW MISSION</div>
   </div>
 
 </div>
-
 </section>
   <!-- PRODUCTION -->
   <section class="section production">

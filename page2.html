@@ -55,97 +55,49 @@ body{
 /* ===================== */
 
 /* STORYBOARD = ทั้งหน้าจอ */
-.storyboard{
- height:100vh;
-  display:grid;
-  grid-template-columns: 38% 62%;
-}
 
-/* LEFT */
-.story{
-  padding:80px 60px;
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-}
-
-/* LEFT BOTTOM (2 รูป) */
-.left-bottom{
-  display:flex;
-  gap:24px;
-  align-items:flex-end;
-}
-
-.left-item:nth-child(1){
-  width:55%;
-}
-
-.left-item:nth-child(2){
-  width:45%;
-}
-
-.left-item{
-  font-size:11px;
-  color:#aaa;
-}
-
-/* RIGHT */
-.storyboard-right{
-  display:flex;
-  flex-direction:column;
+.canvas{
   position:relative;
-}
-
-/* TOP IMAGE */
-.right-top{
-  height:42%;
-}
-
-.right-top img{
   width:100%;
-  height:100%;
-  object-fit:cover;
+  height:100vh;
 }
 
-/* BOTTOM IMAGE */
-.right-bottom{
-  height:58%;
-}
-
-.right-bottom img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-
-body{
-  font-family: Helvetica, Arial, sans-serif;
-}
-
-h2{
-  font-size:14px;
-  letter-spacing:1px;
-}
-
-h3{
-  font-size:13px;
-}
-
-p{
-  font-size:11px;
-  color:#aaa;
-}
-
-/* CAPTION */
-.hero-caption{
+/* IMAGE BLOCK */
+.item{
   position:absolute;
-  top:30px;
-  right:50px;
-  width:220px;
-  font-size:11px;
-  text-align:right;
+}
+
+.item img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+/* TEXT ON IMAGE */
+.caption{
+  position:absolute;
+  color:white;
   line-height:1.4;
 }
+
+/* STORYBOARD TEXT */
+.story-text{
+  position:absolute;
+  left:60px;
+  top:250px;
+}
+
+.story-text h3{
+  margin:0;
+  font-size:14px;
+}
+
+.story-text p{
+  margin-top:8px;
+  font-size:11px;
+  color:#aaa;
+  line-height:1.5;
 
 /* ===================== */
 /* PRODUCTION */
@@ -261,56 +213,48 @@ p{
     </div>
 
     <!-- MIDDLE -->
-    <div>
-      <h3>Storyboard</h3>
-      <div class="line"></div>
-      <p>
-        Pre-visualizing narrative structure<br>
-        and shot composition for commercial films.
-      </p>
-    </div>
+<div class="canvas">
 
-    <!-- BOTTOM (LEFT 2 รูป) -->
-    <div class="left-bottom">
-
-      <div class="left-item">
-        <img src="https://picsum.photos/300/200">
-        <div class="year">2023</div>
-        <p>Nitto Tire Thailand</p>
-      </div>
-
-      <div class="left-item">
-        <img src="https://picsum.photos/300/150">
-        <div class="year">2024</div>
-        <p>NEW MISSION Alert</p>
-      </div>
-
-    </div>
-
+  <!-- STORYBOARD TEXT -->
+  <div class="story-text">
+    <h3>Storyboard</h3>
+    <p>Pre-visualizing narrative structure<br>
+    and shot composition for commercial films.</p>
   </div>
 
-  <!-- RIGHT -->
-  <div class="storyboard-right">
-
-    <!-- TOP IMAGE -->
-    <div class="right-top">
-      <img src="https://picsum.photos/1000/500">
+  <!-- IMAGE 1 -->
+  <div class="item" style="width:600px; height:300px; left:500px; top:0px;">
+    <img src="img1.jpg">
+    <div class="caption" style="left:20px; top:20px; font-size:14px;">
+      2024<br>Welcome Back
     </div>
-
-    <!-- BOTTOM IMAGE -->
-    <div class="right-bottom">
-      <img src="https://picsum.photos/1000/400">
-    </div>
-
-    <!-- TEXT -->
-    <div class="hero-caption">
-      <div class="top-menu">Home About Work Contact</div>
-
-      <div class="year">2024</div>
-      <p>Welcome Back LANEIGE’s Housemate</p>
-    </div>
-
   </div>
+
+  <!-- IMAGE 2 -->
+  <div class="item" style="width:600px; height:400px; left:500px; top:300px;">
+    <img src="img2.jpg">
+    <div class="caption" style="left:20px; top:20px; font-size:14px;">
+      2023<br>Music Video
+    </div>
+  </div>
+
+  <!-- IMAGE 3 -->
+  <div class="item" style="width:250px; height:150px; left:80px; top:500px;">
+    <img src="img3.jpg">
+    <div class="caption" style="left:10px; top:10px; font-size:12px;">
+      2023<br>Nitto Tire Thailand
+    </div>
+  </div>
+
+  <!-- IMAGE 4 -->
+  <div class="item" style="width:250px; height:150px; left:350px; top:520px;">
+    <img src="img4.jpg">
+    <div class="caption" style="left:10px; top:10px; font-size:12px;">
+      2024<br>NEW MISSION Alert
+    </div>
+  </div>
+
+</div>
 
 </section>
   <!-- PRODUCTION -->

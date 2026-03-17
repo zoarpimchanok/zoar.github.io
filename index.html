@@ -636,8 +636,18 @@ opacity:1;
 background:#000;
 color:#fff;
 padding:120px 6vw;
+
+.storyboard-inner{
+max-width:1400px;
+margin:0 auto;
+padding:0 6vw;
 }
 
+/* เพิ่มอันนี้ */
+max-width:1400px;
+margin:0 auto;
+}
+  
 .storyboard-header{
 margin-bottom:80px;
 max-width:400px;
@@ -659,6 +669,9 @@ opacity:.7;
 display:grid;
 grid-template-columns:repeat(6, 1fr);
 gap:40px;
+
+/* เพิ่ม */
+padding:0 40px;
 }
 /* ITEM */
 
@@ -669,6 +682,11 @@ transition:.4s;
 }
 .item-nitto img{
 width:200px;
+}
+
+.item-pramyact img{
+max-width:900px;
+width:100%;
 }
 
 .item .text{
@@ -979,8 +997,9 @@ Interactive media thesis project developed using Unreal Engine.
 </section>
 
 <section class="storyboard">
-
-  <div class="storyboard-header">
+  <div class="storyboard-inner">
+    
+    <div class="storyboard-header">
     <h2>Storyboard</h2>
     <p>Pre-visualizing narrative structure<br>and shot composition for commercial films.</p>
   </div>

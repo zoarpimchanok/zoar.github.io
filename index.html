@@ -455,8 +455,6 @@ h2 a:hover{
 text-decoration:underline;
 }
 
-/* MORE>>> */
-
 .more-btn{
 display:inline-block;
 margin-top:40px;
@@ -472,10 +470,28 @@ font-size:14px;
 letter-spacing:1px;
 
 transition: all 0.35s ease;
+position:relative;
+overflow:hidden;
 }
+
+/* เส้นวิ่ง */
+.more-btn::after{
+content:"";
+position:absolute;
+left:0;
+bottom:0;
+width:0;
+height:1px;
+background:#222;
+transition:0.4s;
+}
+
+.more-btn:hover::after{
+width:100%;
+}
+
 .more-btn:hover{
 background-color:#d9d9d9;
-color:#222;
 transform:translateY(-2px);
 }
 .side-menu{
@@ -823,7 +839,7 @@ Interactive visual project exploring immersive digital environments.
 Interactive media thesis project developed using Unreal Engine.
 </p>
 
-<a class="more-btn" href="#">MORE >>></a>
+<a class="more-btn" href="page2.html">MORE >>></a>
 
 </div>
 
@@ -898,74 +914,7 @@ Interactive media thesis project developed using Unreal Engine.
 
 </div>
 </section>
-<section class="storyboard">
-  <div class="storyboard-inner">
 
-    <div class="storyboard-header fade-in">
-      <h2>Storyboard</h2>
-      <p>
-        Pre-visualizing narrative structure<br>
-        and shot composition for commercial films.
-      </p>
-    </div>
-
-    <div class="storyboard-list">
-
-      <!-- 1 -->
-      <div class="story-item fade-in">
-        <div class="text">
-          <div class="year">2024</div>
-          <p>
-            Welcome Back "LANEIGE's Housemate"<br>
-            กลับมาครั้งนี้เจอแต่ความเซอร์ไพรส์
-            เมื่อเพื่อนๆเปลี่ยนไป ไม่สดใสอย่างที่เคย
-          </p>
-        </div>
-        <div class="image parallax">
-          <img src="production-laneige.jpg">
-        </div>
-      </div>
-
-      <!-- 2 -->
-      <div class="story-item reverse fade-in">
-        <div class="image parallax">
-          <img src="production-nitto.jpg">
-        </div>
-        <div class="text">
-          <div class="year">2023</div>
-          <p>
-            NittoTireThailand<br>
-            ทำเป็นเซียนเหมือนเรียนมา แบบนี้ต้องให้เซียนตัวจริงเขาสั่งสอน
-          </p>
-        </div>
-      </div>
-
-      <!-- 3 -->
-      <div class="story-item fade-in">
-        <div class="text">
-          <div class="year">2023</div>
-          <p>Pramyact x Jeff Satur...</p>
-        </div>
-        <div class="image parallax">
-          <img src="production-pramyact.jpg">
-        </div>
-      </div>
-
-      <!-- 4 -->
-      <div class="story-item reverse fade-in">
-        <div class="image parallax">
-          <img src="production-mission.jpg">
-        </div>
-        <div class="text">
-          <div class="year">2024</div>
-          <p>NEW MISSION Alert! Let's explore the LANEIGE planet.</p>
-        </div>
-      </div>
-
-    </div>
-
-  </div>
-</section>
 <script>
 
 const intro = document.querySelector(".intro")

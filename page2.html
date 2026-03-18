@@ -119,6 +119,33 @@ body{
   display: block;
 }
 
+.story-text{
+  position: absolute;
+  left: 80px;
+  top: 200px;
+  max-width: 240px; /* คุมความกว้างให้เหมือน ref */
+}
+
+.story-text h3{
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+
+.story-text .line{
+  width: 60px;          /* เส้นสั้นแบบใน ref */
+  height: 1px;
+  background: #fff;
+  opacity: 0.5;
+  margin-bottom: 10px;
+}
+
+.story-text p{
+  font-size: 12px;
+  color: #aaa;
+  line-height: 1.6;
+}
+
 /* CAPTION */
 .caption{
   position: absolute;
@@ -339,11 +366,14 @@ body{
 <div class="canvas">
 
   <!-- TEXT -->
-  <div class="story-text">
-    <h3>Storyboard</h3>
-    <p>Pre-visualizing narrative structure<br>
-    and shot composition for commercial films.</p>
-  </div>
+<div class="story-text">
+  <h3>Storyboard</h3>
+  <div class="line"></div>
+  <p>
+    Pre-visualizing narrative structure<br>
+    and shot composition for commercial films.
+  </p>
+</div>
 
   <!-- IMAGE 1 (BIG RIGHT) -->
   <div class="item img1">

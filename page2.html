@@ -49,150 +49,119 @@ body{
 }
 
 /* ===================== */
-/* HERO / STORYBOARD */
+/* STORYBOARD V2 (Monochrome to Motion) */
 /* ===================== */
 
-/* ===================== */
-/* SECTION: STORYBOARD (Hero Area) */
-/* ===================== */
-
-.storyboard {
+.storyboard-v2 {
   position: relative;
   width: 100vw;
-  min-height: 120vh; /* ให้พื้นที่สูงหน่อย รูปจะได้มีที่วาง */
+  min-height: 120vh; /* ให้พื้นที่เยอะๆ รูปจะได้วางสวยๆ */
   background: #000;
   overflow: hidden;
 }
 
-/* คอนเทนเนอร์สำหรับวาดรูป */
-.canvas {
+.story-title {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
-/* กล่องหัวข้อ Storyboard */
-.story-text {
-  position: absolute;
-  top: 25%;         /* ดันลงมาจากข้างบน 25% */
-  left: 15%;        /* ดันจากขอบซ้าย 15% */
-  max-width: 260px;
-  z-index: 10;
-}
-
-.story-text h3 {
-  font-size: 16px;
-  margin-bottom: 6px;
-}
-
-.story-text .line {
-  width: 100px;
-  height: 1px;
-  background: #fff;
-  opacity: 0.5;
-  margin-bottom: 10px;
-}
-
-.story-text p {
-  font-size: 14px;
-  color: #aaa;
-  line-height: 1.6;
-}
-
-/* ================= */
-/* IMAGE & CAPTION POSITIONS (ตามเรฟเป๊ะๆ) */
-/* ================= */
-
-.item {
-  position: absolute;
-  z-index: 5;
-}
-
-.item img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-.caption {
-  position: absolute;
-  color: #ffd5d5f0;
-  font-size: 14px;
-  line-height: 1.6;
-  z-index: 10;
-}
-
-/* 1. รูปขวาใหญ่ (LANEIGE) */
-.img1 {
-  width: 40%;
-  right: 5%;
-  top: 45%;
-}
-.cap1 {
-  top: 45%;
-  right: 48%; /* ขยับข้อความให้อยู่ข้างซ้ายของรูป */
-  text-align: right;
-  width: 300px;
-}
-
-/* 2. รูปบนกลาง (Pramycat) */
-.img2 {
-  width: 30%;
-  left: 50%;
-  top: -5%;
-  transform: translateX(-50%); /* ดึงให้ตรงกลางเป๊ะ */
-}
-.cap2 {
   top: 25%;
-  left: 68%;
-  text-align: left;
-  width: 250px;
-}
-
-/* 3. รูปซ้าย (NittoTire) */
-.img3 {
-  width: 25%;
-  left: 2%;
-  top: 55%;
-}
-.cap3 {
-  top: 60%;
-  left: 30%;
-  text-align: left;
-  width: 250px;
-}
-
-/* 4. รูปล่างกลาง (NEW MISSION) */
-.img4 {
-  width: 18%;
-  left: 35%;
-  top: 85%;
-}
-.cap4 {
-  top: 85%;
   left: 15%;
-  text-align: right;
-  width: 200px;
+  z-index: 20;
+}
+.story-title h3 { font-size: 16px; margin-bottom: 6px; }
+.story-title .line { width: 100px; height: 1px; background: #fff; opacity: 0.5; margin-bottom: 10px; }
+.story-title p { font-size: 14px; color: #aaa; }
+
+/* --------------------------- */
+/* ITEM STYLING (หัวใจของความอาร์ต) */
+/* --------------------------- */
+.story-item {
+  position: absolute;
+  filter: grayscale(100%) opacity(0.4); /* ดาร์กๆ กลืนไปกับพื้นหลัง */
+  transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+  cursor: pointer;
 }
 
-/* ================= */
-/* RESPONSIVE (มือถือ / จอเล็ก) */
-/* ================= */
+.story-item img {
+  width: 100%;
+  display: block;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+}
+
+.story-caption {
+  position: absolute;
+  opacity: 0; /* ซ่อนข้อความไว้ก่อน */
+  transform: translateY(10px);
+  transition: all 0.5s ease;
+  color: #ddd;
+  font-size: 12px;
+  line-height: 1.6;
+  width: 250px;
+  pointer-events: none;
+}
+
+/* เมื่อเอาเมาส์ชี้ (Desktop Only) */
+.story-item:hover {
+  filter: grayscale(0%) opacity(1);
+  transform: scale(1.05);
+  z-index: 30;
+}
+.story-item:hover .story-caption {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --------------------------- */
+/* POSITIONING (จัดวางตามเรฟ) */
+/* --------------------------- */
+.pos-1 { width: 35%; right: 10%; top: 40%; }
+.pos-1 .story-caption { right: 110%; top: 20px; text-align: right; }
+
+.pos-2 { width: 22%; left: 45%; top: 10%; }
+.pos-2 .story-caption { left: 110%; bottom: 0; text-align: left; }
+
+.pos-3 { width: 18%; left: 8%; top: 60%; }
+.pos-3 .story-caption { left: 110%; top: 30%; text-align: left; }
+
+.pos-4 { width: 15%; left: 35%; bottom: 5%; }
+.pos-4 .story-caption { right: 110%; bottom: 0; text-align: right; }
+
+/* --------------------------- */
+/* RESPONSIVE (IPAD & MOBILE) */
+/* --------------------------- */
 @media (max-width: 1024px) {
-  .storyboard {
+  .storyboard-v2 {
     min-height: auto;
-    padding-bottom: 100px;
+    padding: 120px 40px 80px 40px; /* เพิ่มพื้นที่หายใจ */
+    overflow-y: auto;
   }
-  .canvas { position: relative; height: auto; }
-  .item, .caption, .story-text {
+  .story-title {
     position: relative;
-    top: auto !important; left: auto !important; right: auto !important; bottom: auto !important;
-    transform: none !important;
-    width: 90% !important;
-    margin: 40px auto;
+    top: 0; left: 0;
+    margin-bottom: 60px;
+  }
+  .story-container {
+    display: flex;
+    flex-direction: column; /* จับเรียงแถวตอนลึก */
+    gap: 80px;
+  }
+  .story-item {
+    position: relative;
+    width: 100% !important; /* เต็มหน้าจอมือถือ */
+    top: auto !important; right: auto !important; left: auto !important; bottom: auto !important;
+  }
+  .story-caption {
+    position: relative;
+    opacity: 1; /* แสดงข้อความตลอดเวลาบนมือถือ */
+    transform: none;
+    width: 100%;
+    top: auto !important; right: auto !important; left: auto !important; bottom: auto !important;
     text-align: left !important;
+    margin-top: 15px;
+  }
+  
+  /* Class พิเศษสำหรับโชว์ Effect เวลาเลื่อนจอ (ทำงานคู่กับ JS) */
+  .story-item.in-view {
+    filter: grayscale(0%) opacity(1);
+    transform: translateY(0);
   }
 }
 /* =========================================
@@ -431,51 +400,97 @@ body{
 </div>
 
   <!-- IMAGE 1 (BIG RIGHT) -->
-  <div class="item img1">
-    <img src="production-laneige.jpg">
-</div>
+<div class="story-container">
+    
+    <div class="story-item pos-1">
+      <img src="production-laneige.jpg" alt="Laneige">
+      <div class="story-caption">
+        <span style="color:#888;">2024</span><br><br>
+        <strong>Welcome Back "LANEIGE's Housemate"</strong><br>
+        กลับมาครั้งนี้เจอแต่ความเซอร์ไพรส์<br>
+        เมื่อเพื่อนๆเปลี่ยนไป ไม่สดใสอย่างที่เคย<br>
+        อะไรจะมาช่วยคืนความชุ่มชื้น
+      </div>
+    </div>
 
-<div class="caption cap1">
-  2024<br><br>Welcome Back "LANEIGE's Housemate"<br>
-กลับมาครั้งนี้เจอแต่ความเซอร์ไพรส์<br>เมื่อเพื่อนๆเปลี่ยนไป
-ไม่สดใสอย่างที่เคย<br>อะไรจะมาช่วยคืนความชุ่มชื้น
-</div>
+    <div class="story-item pos-2">
+      <img src="production-pramyact.jpg" alt="Pramycat">
+      <div class="story-caption">
+        <span style="color:#888;">2023</span><br><br>
+        <strong>Pramycat x Jeff Satur [Full Song Video]</strong><br>
+        Producer, Composer, Lyrics [Jeff Satur]
+      </div>
+    </div>
 
-  <!-- IMAGE 2 (TOP CENTER) -->
-  <div class="item img2">
-    <img src="production-pramyact.jpg">
-</div>
+    <div class="story-item pos-3">
+      <img src="production-nitto.jpg" alt="Nitto">
+      <div class="story-caption">
+        <span style="color:#888;">2023</span><br><br>
+        <strong>NittoTireThailand</strong><br>
+        ทำเป็นเซียนเหมือนเรียนมา แบบนี้ต้องให้<br>
+        เซียนตัวจริงเขาสั่งสอน จะซื้อยางทั้งที<br>
+        ต้องเลือกยางคุณภาพดีที่เหล่าเซียน<br>
+        เขาแนะนำ จำชื่อให้แม่นต้อง "นิตโตะ" เท่านั้น<br>
+        "นิตโตะ" สุดในรุ่น เนื้อดี พิมพ์นิยม
+      </div>
+    </div>
 
-<div class="caption cap2">
-  2023<br><br>Pramycat x Jeff Satur [Full Song Video]<br>
-Producer, Composer, Lyrics [Jeff Satur]
-</div>
+    <div class="story-item pos-4">
+      <img src="production-mission.jpg" alt="Mission">
+      <div class="story-caption">
+        <span style="color:#888;">2024</span><br><br>
+        <strong>NEW MISSION Alert !</strong><br>
+        Let's explore the<br>
+        LANEIGE planet.
+      </div>
+    </div>
 
-  <!-- IMAGE 3 (LEFT) -->
-  <div class="item img3">
-    <img src="production-nitto.jpg">
-</div>
+  </div><div class="story-container">
+    
+    <div class="story-item pos-1">
+      <img src="production-laneige.jpg" alt="Laneige">
+      <div class="story-caption">
+        <span style="color:#888;">2024</span><br><br>
+        <strong>Welcome Back "LANEIGE's Housemate"</strong><br>
+        กลับมาครั้งนี้เจอแต่ความเซอร์ไพรส์<br>
+        เมื่อเพื่อนๆเปลี่ยนไป ไม่สดใสอย่างที่เคย<br>
+        อะไรจะมาช่วยคืนความชุ่มชื้น
+      </div>
+    </div>
 
-<div class="caption cap3">
-  2023<br><br>NittoTireThailand<br>
-ทำเป็นเซียนเหมือนเรียนมา
-แบบนี้ต้องให้<br>เซียนตัวจริงเขาสั่งสอน
-จะซื้อยางทั้งที<br>ต้องเลือกยางคุณภาพดีที่เหล่าเซียน<br>เขาแนะนำ
-จำชื่อให้แม่นต้อง "นิตโตะ" เท่านั้น<br>
-"นิตโตะ" สุดในรุ่น เนื้อดี พิมพ์นิยม
-</div>
+    <div class="story-item pos-2">
+      <img src="production-pramyact.jpg" alt="Pramycat">
+      <div class="story-caption">
+        <span style="color:#888;">2023</span><br><br>
+        <strong>Pramycat x Jeff Satur [Full Song Video]</strong><br>
+        Producer, Composer, Lyrics [Jeff Satur]
+      </div>
+    </div>
 
-  <!-- IMAGE 4 (BOTTOM MID) -->
-  <div class="item img4">
-    <img src="production-mission.jpg">
-</div>
+    <div class="story-item pos-3">
+      <img src="production-nitto.jpg" alt="Nitto">
+      <div class="story-caption">
+        <span style="color:#888;">2023</span><br><br>
+        <strong>NittoTireThailand</strong><br>
+        ทำเป็นเซียนเหมือนเรียนมา แบบนี้ต้องให้<br>
+        เซียนตัวจริงเขาสั่งสอน จะซื้อยางทั้งที<br>
+        ต้องเลือกยางคุณภาพดีที่เหล่าเซียน<br>
+        เขาแนะนำ จำชื่อให้แม่นต้อง "นิตโตะ" เท่านั้น<br>
+        "นิตโตะ" สุดในรุ่น เนื้อดี พิมพ์นิยม
+      </div>
+    </div>
 
-<div class="caption cap4">
-  2024<br><br>NEW MISSION Alert !<br>
-Let's explore the<br>LANEIGE planet.
-</div>
+    <div class="story-item pos-4">
+      <img src="production-mission.jpg" alt="Mission">
+      <div class="story-caption">
+        <span style="color:#888;">2024</span><br><br>
+        <strong>NEW MISSION Alert !</strong><br>
+        Let's explore the<br>
+        LANEIGE planet.
+      </div>
+    </div>
 
-</div>
+  </div>
 </section>
   <!-- PRODUCTION -->
   <section class="section production">
@@ -611,6 +626,30 @@ Let's explore the<br>LANEIGE planet.
   </section>
 
 </div>
+  
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    // เลือกรูปทั้งหมดใน Storyboard
+    const items = document.querySelectorAll('.story-item');
+    
+    // ตั้งค่าเซ็นเซอร์จับการเลื่อนจอ
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        // ถ้ารูปเลื่อนเข้ามาในจอเกิน 30% ให้เพิ่มคลาส in-view
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+        } else {
+          // ถ้าเลื่อนผ่านไปแล้ว ให้กลับไปดาร์กเหมือนเดิม (เอาออกได้ถ้าอยากให้สว่างค้างไว้)
+          entry.target.classList.remove('in-view'); 
+        }
+      });
+    }, { threshold: 0.3 }); 
 
+    // สั่งให้เซ็นเซอร์เริ่มทำงานกับทุกรูป
+    items.forEach(item => {
+      observer.observe(item);
+    });
+  });
+</script>
 </body>
 </html>

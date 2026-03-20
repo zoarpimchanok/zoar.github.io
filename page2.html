@@ -49,103 +49,137 @@ body{
 }
 
 /* =========================================
-   CSS: STORYBOARD FIXED (Viewport Scale)
+   CSS: STORYBOARD (FOLDER CONCEPT)
    ========================================= */
 
-.storyboard-fixed {
+.sectionStoryboard {
   position: relative;
   width: 100vw;
-  height: 120vh; /* เผื่อพื้นที่ให้วางกระจายได้สวยๆ */
-  background: #000;
-  color: #fff;
-  overflow: hidden; /* ล็อกไว้ไม่ให้มีอะไรทะลุจอ */
+  height: 100vh;
+  background: #d4d4d4; /* สีพื้นหลังเทาอ่อนตามเรฟ */
+  color: #000;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
 }
 
-/* ข้อความ Storyboard หลัก */
-.story-header {
+.story-desc {
   position: absolute;
-  left: 15vw;
-  top: 25vh;
-  max-width: 250px;
+  left: 10vw;
+  top: 50%;
+  transform: translateY(-50%);
   z-index: 10;
 }
-.story-header h3 { font-size: 16px; margin-bottom: 6px; }
-.story-header .line { width: 100px; height: 1px; background: #fff; opacity: 0.5; margin-bottom: 10px; }
-.story-header p { font-size: 14px; color: #aaa; line-height: 1.6; }
+.story-desc h3 { font-size: 16px; margin-bottom: 6px; }
+.story-desc .line { width: 100px; height: 1px; background: #000; opacity: 0.3; margin-bottom: 10px; }
+.story-desc p { font-size: 14px; color: #444; line-height: 1.6; }
 
 /* -------------------------------------
-   ตั้งค่าเริ่มต้นให้รูปภาพและข้อความ
+   การจัดเรียงแฟ้ม (STACKING)
    ------------------------------------- */
-.board-item {
+.folder-stack-container {
   position: absolute;
-  z-index: 5;
+  right: 10vw; /* วางแฟ้มไว้ทางขวา */
+  top: 50%;
+  transform: translateY(-50%);
+  width: 60vw; /* ความกว้างของแฟ้ม */
+  height: 60vh;
 }
-.board-item img {
+
+.folder-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  cursor: pointer;
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.4s ease;
+}
+
+/* ล็อกตำแหน่งซ้อนกันแบบขั้นบันได (Offset) */
+#folder-laneige2 { z-index: 4; top: 0px; }
+#folder-laneige1 { z-index: 3; top: 30px; }
+#folder-pramy { z-index: 2; top: 60px; }
+#folder-nitto { z-index: 1; top: 90px; }
+
+.folder-tab-img {
   width: 100%;
   height: auto;
   display: block;
-  filter: grayscale(0.7); /* ทำสีดรอปลงนิดนึงให้อาร์ตๆ */
-  transition: 0.4s ease;
+  /* ใส่เงาบางๆ ให้ดูเป็นแผ่นๆ ซ้อนกัน */
+  filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1));
 }
-.board-item:hover img {
-  filter: grayscale(0); /* เอาเมาส์ชี้แล้วสีสด */
-  transform: scale(1.03); /* ขยายขึ้นนิดนึงแบบพองาม */
-  box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-}
-.board-item:hover { z-index: 20; } /* ดันขึ้นมาหน้าสุดตอนชี้ */
 
-.board-caption {
+/* เอฟเฟกต์เด้งตอนเอาเมาส์ชี้แฟ้ม */
+.folder-wrapper:hover {
+  transform: translateY(-15px);
+}
+
+/* เมื่อแฟ้มนี้ถูกคลิก (ดึงแฟ้มออกมา) */
+.folder-wrapper.opened {
+  transform: translateY(-50px); /* ดึงขึ้นมาสูงกว่าปกติ */
+  opacity: 0; /* ทำให้โปร่งใสเพื่อโชว์เนื้อหาข้างใน */
+  pointer-events: none; /* คลิกซ้ำไม่ได้ */
+}
+
+/* ทำให้แฟ้มอื่นๆ หายไปเมื่อมีแฟ้มใดแฟ้มหนึ่งถูกเปิด */
+.folder-stack-container.has-opened-folder .folder-wrapper:not(.opened) {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* -------------------------------------
+   กล่องเนื้อหาข้างในแฟ้ม (INSIDE CONTENT)
+   ------------------------------------- */
+.folder-contents-container {
   position: absolute;
-  width: 320px;
-  font-size: 13px;
-  color: #ccc;
-  line-height: 1.6;
+  right: 10vw;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 60vw;
+  height: 60vh;
+  z-index: 20; /* ให้อยู่เหนือแฟ้มที่ปิดอยู่ */
+  pointer-events: none; /* ตอนแรกให้ทะลุการคลิกได้ */
 }
-.board-caption .year { color: #888; }
-.text-right { text-align: right; }
 
-/* -------------------------------------
-   จัดตำแหน่งแต่ละรูป (ใช้ VW / VH ล็อกสัดส่วน)
-   ------------------------------------- */
+.folder-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0; /* ซ่อนไว้ก่อน */
+  transform: translateY(30px); /* เลื่อนลงมานิดนึงเพื่อเตรียมเด้งขึ้น */
+  transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+  display: flex;
+}
 
-/* 1. Pramycat (บน) */
-.pramycat { width: 22vw; right: 25vw; top: 10vh; }
-.pramycat .board-caption { right: -300px; top: 30%; text-align: left; }
+/* เมื่อแฟ้มถูกเปิด */
+.folder-content.show {
+  opacity: 1;
+  transform: translateY(0); /* เด้งเข้าที่ */
+  pointer-events: auto; /* รับการคลิกได้แล้ว */
+}
 
-/* 2. Nitto (ซ้ายกลาง) */
-.nitto { width: 18vw; left: 5vw; top: 55vh; }
-.nitto .board-caption { left: 110%; top: 20px; text-align: left; }
+.inside-img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px; /* ขอบมนนิดนึง */
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
 
-/* 3. Laneige (ขวาล่าง รูปใหญ่สุด) */
-.laneige { width: 35vw; right: 8vw; bottom: 8vh; }
-.laneige .board-caption { right: 110%; bottom: 20px; }
+/* รูปตัวอย่าง Storyboard (ex_tab.png) */
+.ex-tab-img {
+  position: absolute;
+  left: -80px; /* วางไว้ทางซ้ายของเนื้อหาหลัก */
+  bottom: -40px; /* ห้อยลงมาข้างล่างนิดนึงตามเรฟ */
+  width: 180px;
+  border-radius: 5px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+  transition: transform 0.3s ease;
+}
 
-/* 4. Mission (ล่างซ้ายกึ่งกลาง) */
-.mission { width: 15vw; left: 35vw; bottom: 8vh; }
-.mission .board-caption { right: 110%; bottom: 0; text-align: right; }
-
-/* -------------------------------------
-   โหมดมือถือ / หน้าจอเล็ก (เรียงแถวลงมาสวยๆ)
-   ------------------------------------- */
-@media (max-width: 1024px) {
-  .storyboard-fixed { height: auto; padding: 120px 40px; overflow-y: auto; }
-  .story-header { position: relative; left: 0; top: 0; margin-bottom: 60px; }
-  
-  .board-item { 
-    position: relative; 
-    width: 100% !important; 
-    left: auto !important; right: auto !important; top: auto !important; bottom: auto !important; 
-    margin-bottom: 60px; 
-  }
-  .board-item img { filter: grayscale(0); } /* มือถือสีสดเลยไม่ต้อง Hover */
-  
-  .board-caption { 
-    position: relative; 
-    width: 100%; 
-    left: auto !important; right: auto !important; top: auto !important; bottom: auto !important; 
-    text-align: left !important; 
-    margin-top: 15px; 
-  }
+.ex-tab-img:hover {
+  transform: scale(1.1) rotate(-3deg); /* เอฟเฟกต์เฟี้ยวๆ ตอนชี้ที่ตัวอย่าง */
+  cursor: pointer;
 }
 /* ===================== */
 /* PRODUCTION ROW (แถวรูปภาพที่จัดกลาง) */
@@ -313,81 +347,58 @@ body{
 
 <body>
 
-  <!-- TIMELINE (ครบ 4 รูป) -->
-<section class="storyboard">
-
-  <!-- LEFT -->
-  <div class="story">
-
-    <!-- TOP -->
-    <div>
-      <h2>CREATIVE WORK >></h2>
-      <h2>EXPERIENCE >></h2>
-    </div>
-
-    <!-- MIDDLE -->
-<div class="canvas">
-
-  <!-- TEXT -->
-<div class="story-text">
-  <h3>Storyboard</h3>
-  <div class="line"></div>
-  <p>
-    Pre-visualizing narrative structure<br>
-    and shot composition for commercial films.
-  </p>
-</div>
-
-  <!-- IMAGE 1 (BIG RIGHT) -->
-<section class="storyboard-refined" id="storyboard">
+<section class="sectionStoryboard" id="storyboard">
   
-  <div class="story-container">
+  <div class="story-desc">
+    <h3>Storyboard</h3>
+    <div class="line"></div>
+    <p>Pre-visualizing narrative structure<br>and shot composition for commercial films.</p>
+  </div>
+
+  <div class="folder-stack-container">
     
-    <div class="story-item pos-1">
-      <img src="production-laneige.jpg" alt="Laneige">
-      <div class="story-caption">
-        <span style="color:#888;">2024</span><br><br>
-        <strong>Welcome Back "LANEIGE's Housemate"</strong><br>
-        กลับมาครั้งนี้เจอแต่ความเซอร์ไพรส์<br>
-        เมื่อเพื่อนๆเปลี่ยนไป ไม่สดใสอย่างที่เคย<br>
-        อะไรจะมาช่วยคืนความชุ่มชื้น
-      </div>
+    <div class="folder-wrapper" id="folder-nitto" data-target="inside-nitto">
+      <img src="nitto_tab.png" class="folder-tab-img" alt="Nitto Tab">
     </div>
 
-    <div class="story-item pos-2">
-      <img src="production-pramyact.jpg" alt="Pramycat">
-      <div class="story-caption">
-        <span style="color:#888;">2023</span><br><br>
-        <strong>Pramycat x Jeff Satur [Full Song Video]</strong><br>
-        Producer, Composer, Lyrics [Jeff Satur]
-      </div>
+    <div class="folder-wrapper" id="folder-pramy" data-target="inside-pramy">
+      <img src="pramy_tab.png" class="folder-tab-img" alt="Pramy Tab">
     </div>
 
-    <div class="story-item pos-3">
-      <img src="production-nitto.jpg" alt="Nitto">
-      <div class="story-caption">
-        <span style="color:#888;">2023</span><br><br>
-        <strong>NittoTireThailand</strong><br>
-        ทำเป็นเซียนเหมือนเรียนมา แบบนี้ต้องให้<br>
-        เซียนตัวจริงเขาสั่งสอน จะซื้อยางทั้งที<br>
-        ต้องเลือกยางคุณภาพดีที่เหล่าเซียน<br>
-        เขาแนะนำ จำชื่อให้แม่นต้อง "นิตโตะ" เท่านั้น<br>
-        "นิตโตะ" สุดในรุ่น เนื้อดี พิมพ์นิยม
-      </div>
+    <div class="folder-wrapper" id="folder-laneige1" data-target="inside-laneige1">
+      <img src="laneige1_tab.png" class="folder-tab-img" alt="Laneige 1 Tab">
     </div>
 
-    <div class="story-item pos-4">
-      <img src="production-mission.jpg" alt="Mission">
-      <div class="story-caption">
-        <span style="color:#888;">2024</span><br><br>
-        <strong>NEW MISSION Alert !</strong><br>
-        Let's explore the<br>
-        LANEIGE planet.
-      </div>
+    <div class="folder-wrapper" id="folder-laneige2" data-target="inside-laneige2">
+      <img src="laneige2_tab.png" class="folder-tab-img" alt="Laneige 2 Tab">
     </div>
 
   </div>
-</section>
+
+  <div class="folder-contents-container">
+    
+    <div class="folder-content" id="inside-nitto">
+      <img src="inside_nitto.png" class="inside-img" alt="Inside Nitto">
+      <img src="ex_tab.png" class="ex-tab-img" alt="Storyboard Example">
+    </div>
+
+    <div class="folder-content" id="inside-pramy">
+      <img src="inside_pramy.png" class="inside-img" alt="Inside Pramy">
+      <img src="ex_tab.png" class="ex-tab-img" alt="Storyboard Example">
+    </div>
+
+    <div class="folder-content" id="inside-laneige1">
+      <img src="inside_laneige1.png" class="inside-img" alt="Inside Laneige 1">
+      <img src="ex_tab.png" class="ex-tab-img" alt="Storyboard Example">
+    </div>
+
+    <div class="folder-content" id="inside-laneige2">
+      <img src="inside_laneige2.png" class="inside-img" alt="Inside Laneige 2">
+      <img src="ex_tab.png" class="ex-tab-img" alt="Storyboard Example">
+    </div>
+
+  </div>
+
 </section>
   <!-- PRODUCTION -->
   <section class="section production">
@@ -545,6 +556,43 @@ body{
     // สั่งให้เซ็นเซอร์เริ่มทำงานกับทุกรูป
     items.forEach(item => {
       observer.observe(item);
+    });
+  });
+</script>
+  <script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const folders = document.querySelectorAll('.folder-wrapper');
+    const contents = document.querySelectorAll('.folder-content');
+    const stackContainer = document.querySelector('.folder-stack-container');
+
+    // ฟังก์ชันสำหรับเปิดแฟ้ม
+    folders.forEach(folder => {
+      folder.addEventListener('click', function() {
+        const targetId = this.getAttribute('data-target');
+        const targetContent = document.getElementById(targetId);
+
+        // 1. ซ่อนแฟ้มอื่นๆ ทั้งหมด
+        stackContainer.classList.add('has-opened-folder');
+        this.classList.add('opened');
+
+        // 2. โชว์เนื้อหาข้างในแฟ้มที่เลือก
+        if(targetContent) {
+          targetContent.classList.add('show');
+        }
+      });
+    });
+
+    // ฟังก์ชันสำหรับปิดแฟ้ม (คลิกที่เนื้อหาเพื่อย่อกลับไปเป็นแฟ้มเหมือนเดิม)
+    contents.forEach(content => {
+      content.addEventListener('click', function() {
+        
+        // 1. ซ่อนเนื้อหา
+        this.classList.remove('show');
+
+        // 2. เอาแฟ้มกลับมาโชว์เหมือนเดิม
+        stackContainer.classList.remove('has-opened-folder');
+        folders.forEach(f => f.classList.remove('opened'));
+      });
     });
   });
 </script>

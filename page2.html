@@ -2,12 +2,13 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Work</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Work Portfolio</title>
 
 <style>
-/* ===================== */
-/* RESET & BASE */
-/* ===================== */
+/* =========================================
+   RESET & BASE
+   ========================================= */
 * {
   margin: 0;
   padding: 0;
@@ -18,212 +19,107 @@ body {
   background: #000;
   color: #fff;
   font-family: Helvetica, Arial, sans-serif;
-  position: relative;
-  /* padding-top: 80px; ลบทิ้งแล้ว แถบดำข้างบนจะหายไป */
+  overflow-x: hidden;
 }
 
 /* =========================================
-   CSS: DEFINTIVE MASTER ORGANIZED FIX 
-   (ขาวสะอาด จัดกลุ่มข้อความฝั่งซ้าย ไม่เละซ้อนกัน)
+   1. STORYBOARD (CLEAN FOLDER SYSTEM)
    ========================================= */
-
 .sectionStoryboard {
   position: relative;
   width: 100vw;
-  height: 120vh; /* เผื่อพื้นที่สูงหน่อย รูปจะได้กระจายสวยๆ */
-  background: #fff; /* สีพื้นหลังขาวสะอาดตาตามเรฟ screenshot image_0.png และ Master wireframe */
-  color: #000; /* ตัวอักษรสีดำบนพื้นหลังขาว */
-  overflow: hidden; /* ล็อกไว้ไม่ให้มีอะไรทะลุจอ */
-}
-
-/* Master Layout Flex (Left text/tabs, Right scattered items) */
-.storyboard-master-layout {
-  display: flex;
-  width: 100%;
-  height: 100%;
-}
-
-/* -------------------------------------
-   ฝั่งซ้าย: FIXED GROUP (TEXTS + TABS)
-   จัดกลุ่มข้อความและปุ่มทั้งหมดเข้าด้วยกัน ดันขึ้นด้านบน ไม่ตัดขอบ
-   ------------------------------------- */
-.story-left-group {
-  display: flex;
-  flex-direction: column;
-  width: 25vw; /* ปรับความกว้างตามสัดส่วนเรฟ */
-  padding-top: 100px; /* ดันกลุ่มคอนเทนต์ทั้งหมดขึ้นด้านบน ไม่ตัดขอบ */
-  padding-left: 10vw; /* เว้นระยะจากขอบซ้าย */
-  z-index: 50; /* ให้อยู่บนสุดเสมอ */
-}
-
-/* sidebar texts styling for white background */
-.sidebar-texts {
-  margin-bottom: 40px;
-}
-.sidebar-texts h2 {
-  font-size: 14px;
-  font-weight: bold;
-  letter-spacing: 1px;
-  margin-bottom: 5px;
+  height: 100vh;
+  background: #e2e2e2; /* สีเทาอ่อนตามเรฟ */
+  overflow: hidden;
   color: #000;
 }
 
-/* description text styling for white background */
-.main-desc {
-  margin-bottom: 50px; /* Space between text and tabs */
-}
-.main-desc h3 { font-size: 16px; margin-bottom: 6px; color: #000; }
-.main-desc .line { width: 100px; height: 1px; background: #000; opacity: 0.5; margin-bottom: 10px; }
-.main-desc p { font-size: 14px; color: #333; line-height: 1.6; }
-
-/* FOLDER TABS (ปุ่มกด) - color updated for white bg */
-.folder-tabs-container {
-  display: flex;
-  flex-direction: column; /* เรียงแถวตอนลึก */
-  justify-content: flex-start; /* PUSH TO TOP, grouping with text */
-  gap: 12px; /* ระยะห่างระหว่างปุ่ม */
-}
-
-.folder-tab {
-  background: none;
-  border: none;
-  color: #666; /* default tab color on white */
-  font-size: 14px;
-  text-align: left;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  position: relative;
-  white-space: nowrap; /* กันข้อความตกบรรทัด */
-  font-family: Helvetica, Arial, sans-serif;
-}
-
-/* เอฟเฟกต์ตอน Hover และตอน Active */
-.folder-tab:hover, .folder-tab.active {
-  color: #000; /* dark active color */
-  font-weight: bold;
-}
-
-/* เส้นขีดคั่นแบบเรฟ (Drawing) เมื่อปุ่ม Active - color updated for white bg */
-.folder-tab.active::after {
-  content: '';
+/* กลุ่มข้อความฝั่งซ้าย */
+.left-titles {
   position: absolute;
-  left: 110%; /* ดันเส้นไปทางขวาของตัวหนังสือ */
+  left: 8vw;
   top: 50%;
   transform: translateY(-50%);
-  width: 60px; /* ความยาวเส้น */
-  height: 1px;
-  background: #000; /* dark active line */
-  opacity: 0.3;
+  z-index: 50;
 }
+.left-titles h5 { margin: 0 0 5px 0; font-size: 13px; font-weight: 800; letter-spacing: 1px; }
+.left-titles h3 { margin: 40px 0 5px 0; font-size: 16px; font-weight: bold; }
+.left-titles .line { width: 40px; height: 1px; background: #000; margin-bottom: 10px; }
+.left-titles p { font-size: 13px; color: #444; line-height: 1.5; margin: 0; }
 
-/* -------------------------------------
-   ฝั่งขวา: DYNAMIC CONTENT PANE (โชว์เนื้อหาของทีละแฟ้ม - ORGANIZED)
-   ------------------------------------- */
-.content-panes-container {
-  position: relative;
-  flex: 1; /* กินพื้นที่ที่เหลือทางขวา */
-  height: 100%;
-}
-
-/* ตั้งค่าเริ่มต้นให้กล่องเนื้อหา "ซ่อน" ทั้งหมด */
-.content-pane {
-  display: none;
+/* กองแฟ้มฝั่งขวา */
+.folders-wrap {
   position: absolute;
-  top: 0;
+  right: 5vw;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 55vw;
+  height: 70vh;
+  transition: opacity 0.4s ease;
+  z-index: 10;
+}
+
+.folder-img {
+  position: absolute;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: auto;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  filter: drop-shadow(0 15px 25px rgba(0,0,0,0.15));
+}
+.folder-img:hover { transform: translateY(-15px); }
+
+/* รูปเนื้อหาด้านใน (inside_...jpg) */
+.inside-wrap {
+  position: absolute;
+  right: 5vw;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 60vw;
+  height: 70vh;
+  z-index: 20;
+  pointer-events: none; /* ตอนซ่อนให้คลิกทะลุได้ */
 }
 
-/* คลาสพิศษสำหรับ "โชว์" กล่องเนื้อหาที่ Active */
-.content-pane.active {
-  display: block;
-}
-
-/* -------------------------------------
-   --- THE POSITIONING FIX ---
-   ล็อกตำแหน่งรูปและ Text ตาม VW/VH ของคอนเทนเนอร์ฝั่งขวา
-   ------------------------------------- */
-
-.all-content-wrapper, .exploded-item {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-
-/* scattered image styling - colors updated for clean editorial look */
-.exploded-item img {
+.inside-content-img {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%) scale(0.95);
   width: 100%;
   height: auto;
-  display: block;
-  filter: grayscale(0.5); /* หม่นๆ ดาร์กๆ */
-  transition: 0.4s ease;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5); /* เพิ่มเงาฟุ้งๆ ดูมีมิติ */
-}
-.exploded-item:hover img {
-  filter: grayscale(0); /* สว่างวาบเป็นสีจริงตอนเอาเมาส์ลูบ */
-  box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+  opacity: 0;
+  transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  border-radius: 8px;
+  cursor: pointer;
 }
 
-/* Caption styling for white background */
-.board-caption {
+/* รูปตัวอย่างกระดาษ (ex_tab.png) */
+.ex-tab-floating {
   position: absolute;
-  width: 320px;
-  font-size: 13px;
-  color: #000;
-  line-height: 1.6;
+  left: -12vw;
+  bottom: 0;
+  width: 15vw;
+  min-width: 150px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s ease;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  border-radius: 6px;
+  cursor: pointer;
 }
-.board-caption .year { color: #888; }
-.text-right { text-align: right; }
+.ex-tab-floating:hover { transform: translateY(-10px) rotate(-3deg) scale(1.05) !important; }
 
-/* 🚨 *** THE Z-INDEX REVERSAL FIX (NOT APPLICABLE IN THIS TAB SYSTEM) ***
-   Z-index stacking is naturally handled by the Tab System. 
-   When a tab is opened, its content pane rises to z-index 20, covering all closed folders. 
-   No extra z-index reversal is needed in this Master Layout setup.
-   The original complex stacking logic from code provided is the very cause of corruption.
-   The Ddefinitive Master organized fix below is clean and robust, guaranteed no overlaps.
-*/
-
-/* จัดตำแหน่ง "Separated Text + Images" เป๊ะๆ ตามเรฟ */
-.pos-laneige { width: 38vw; right: 8vw; top: 35vh; }
-.pos-laneige .board-caption { right: 110%; top: 20px; text-align: right; }
-
-.pos-pramycat { width: 22vw; left: 45%; top: 10vh; transform: translateX(-50%); }
-.pos-pramycat .board-caption { left: 50%; top: 110%; transform: translateX(-50%); text-align: center; }
-
-.pos-nittotire { width: 18vw; left: 5vw; top: 55vh; }
-.pos-nittotire .board-caption { left: 110%; top: 20px; text-align: left; }
-
-.pos-mission { width: 13vw; left: 35%; bottom: 10vh; }
-.pos-mission .board-caption { right: 110%; bottom: 0; text-align: right; }
-
-/* -------------------------------------
-   โหมดมือถือ / หน้าจอเล็ก (เรียงแถวตอนลึก ให้รอดตายบนมือถือ)
-   ------------------------------------- */
-@media (max-width: 1024px) {
-  .sectionStoryboard { height: auto; padding: 120px 40px; overflow-y: auto; }
-  .storyboard-master-layout { flex-direction: column; gap: 40px; }
-  .story-left-group { padding-left: 0; padding-top: 0; width: 100%; }
-  .folder-tabs-container { flex-direction: row; flex-wrap: wrap; justify-content: flex-start; }
-  .folder-tab { font-size: 12px; }
-  .content-panes-container { position: relative; width: 100%; height: auto; }
-  .content-pane { position: relative; width: 100%; height: auto; margin-bottom: 60px; }
-  
-  /* จัดตำแหน่งแบบมือถือให้ครบทั้ง 4 ตัว */
-  .exploded-item { position: relative; width: 100% !important; left: auto !important; right: auto !important; top: auto !important; bottom: auto !important; transform: none !important; margin-bottom: 60px; }
-  .exploded-item img { filter: grayscale(0); transform: none !important; box-shadow: none; } /* มือถือสีสดเลยไม่ต้อง Hover/เด้ง */
-  .board-caption { position: relative; width: 100%; left: auto !important; right: auto !important; top: auto !important; bottom: auto !important; transform: none !important; text-align: left !important; margin-top: 15px; }
-}
-/* ===================== */
-/* 2. PRODUCTION (ดำเต็มจอ) */
-/* ===================== */
+/* =========================================
+   2. PRODUCTION (ดำเต็มจอ)
+   ========================================= */
 .production {
   position: relative;
   width: 100vw;
   height: 100vh;
   background: #000;
-  margin: 0;
-  padding: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -249,7 +145,6 @@ body {
   justify-content: space-between;
   padding: 0 80px;
   z-index: 20;
-  box-sizing: border-box;
   font-size: 11px;
   color: #555;
 }
@@ -264,10 +159,7 @@ body {
   transition: all 0.5s ease;
 }
 
-.production-row:hover .work {
-  opacity: 0.3;
-  filter: grayscale(100%);
-}
+.production-row:hover .work { opacity: 0.3; filter: grayscale(100%); }
 
 .work {
   position: relative;
@@ -280,13 +172,7 @@ body {
   cursor: pointer;
   background: #000;
 }
-
-.work img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: all 0.6s ease;
-}
+.work img { width: 100%; height: 100%; object-fit: cover; transition: all 0.6s ease; }
 
 .work:hover {
   flex: 0 0 320px;
@@ -311,9 +197,7 @@ body {
   opacity: 0;
   transition: opacity 0.4s ease 0.2s;
 }
-
 .work:hover .overlay { opacity: 1; }
-
 .overlay h4 { font-size: 24px; margin-bottom: 5px; font-weight: bold; }
 .overlay p { font-size: 16px; margin-bottom: 25px; color: #555; }
 .overlay span { font-size: 14px; letter-spacing: 1px; text-transform: uppercase; border-top: 1px solid #ddd; padding-top: 15px; display: inline-block; width: 85%; line-height: 1.6; }
@@ -321,42 +205,22 @@ body {
 /* =========================================
    3. PHOTOGRAPHY & BIO
    ========================================= */
-.photography {
-  background: #e5e5e5;
-  color: #000;
-  width: 100vw;
-  padding: 120px 80px;
-}
-
-.photo-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 80px;
-  margin-top: 80px;
-}
-
+.photography { background: #e5e5e5; color: #000; width: 100vw; padding: 120px 80px; }
+.photo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 80px; margin-top: 80px; }
 .photo { font-size: 12px; }
 .photo img { width: 100%; margin-top: 10px; }
 
-.bio {
-  display: grid;
-  grid-template-columns: 300px 1fr;
-  gap: 100px;
-  background: #000;
-  color: #fff;
-  padding: 120px 80px;
-}
+.bio { display: grid; grid-template-columns: 300px 1fr; gap: 100px; background: #000; color: #fff; padding: 120px 80px; }
 .bio img { width: 100%; }
 .bio-content { display: grid; grid-template-columns: repeat(3, 1fr); gap: 80px; }
 .bio-content h4 { margin-bottom: 10px; border-bottom: 1px solid #444; padding-bottom: 6px; }
 .bio-content p { font-size: 13px; color: #aaa; line-height: 1.6; }
-
 </style>
 </head>
 
 <body>
 
-<section class="clean-storyboard" id="storyboard">
+<section class="sectionStoryboard" id="storyboard">
   
   <div class="left-titles">
     <h5>CREATIVE WORK &gt;&gt;</h5>
@@ -378,7 +242,6 @@ body {
     <img src="inside_pramy.jpg" class="inside-content-img" id="in-pramy" onclick="closeFolder()">
     <img src="inside_laneige1.jpg" class="inside-content-img" id="in-laneige1" onclick="closeFolder()">
     <img src="inside_laneige2.jpg" class="inside-content-img" id="in-laneige2" onclick="closeFolder()">
-
     <img src="ex_tab.png" class="ex-tab-floating" id="ex-tab" onclick="closeFolder()">
   </div>
 
@@ -393,59 +256,19 @@ body {
   <div class="production-row">
     <a href="https://youtube.com" target="_blank" class="work">
       <img src="production_01.jpg">
-      <div class="overlay">
-        <h4>fluffypak - ได้ไหม</h4>
-        <p>Unoffical MV</p>
-        <span>Director / Editor / Art Director</span>
-      </div>
+      <div class="overlay"><h4>fluffypak - ได้ไหม</h4><p>Unoffical MV</p><span>Director / Editor / Art Director</span></div>
     </a>
     <a href="https://youtube.com" target="_blank" class="work">
       <img src="production_02.jpg">
-      <div class="overlay">
-        <h4>That's How It Happened</h4>
-        <p>live session of Golf Hair Salon</p>
-        <span>Editor / Color Grading</span>
-      </div>
+      <div class="overlay"><h4>That's How It Happened</h4><p>live session</p><span>Editor / Color Grading</span></div>
     </a>
     <a href="https://youtube.com" target="_blank" class="work">
       <img src="production_03.jpg">
-      <div class="overlay">
-        <h4>Pigsy (ตือโป๊ยก่ายพ่ายรัก)</h4>
-        <p>Golf Hair Salon</p>
-        <span>Director / Cinematography / Editing</span>
-      </div>
+      <div class="overlay"><h4>Pigsy</h4><p>Golf Hair Salon</p><span>Director / Cinematography / Editing</span></div>
     </a>
     <a href="https://youtube.com" target="_blank" class="work">
       <img src="production_04.jpg">
-      <div class="overlay">
-        <h4>THokori no Oka</h4>
-        <p>offical MV</p>
-        <span>Art Director team</span>
-      </div>
-    </a>
-    <a href="https://youtube.com" target="_blank" class="work">
-      <img src="production_05.jpg">
-      <div class="overlay">
-        <h4>ThepChoice</h4>
-        <p>Advertisement</p>
-        <span>Director / Editing</span>
-      </div>
-    </a>
-    <a href="https://youtube.com" target="_blank" class="work">
-      <img src="production_06.jpg">
-      <div class="overlay">
-        <h4>อิเซไก</h4>
-        <p>Short film</p>
-        <span>Art Director / Prop Master</span>
-      </div>
-    </a>
-    <a href="https://youtube.com" target="_blank" class="work">
-      <img src="production_07.jpg">
-      <div class="overlay">
-        <h4>Letter from Congo (2025)</h4>
-        <p>Experimental Flim</p>
-        <span>DOP / camera operator / PM / Color Grading</span>
-      </div>
+      <div class="overlay"><h4>THokori no Oka</h4><p>offical MV</p><span>Art Director team</span></div>
     </a>
   </div>
     
@@ -462,49 +285,56 @@ body {
     <div class="photo">(1)<img src="https://picsum.photos/300?1"></div>
     <div class="photo">(2)<img src="https://picsum.photos/300?2"></div>
     <div class="photo">(3)<img src="https://picsum.photos/300?3"></div>
-    <div class="photo">(4)<img src="https://picsum.photos/300?4"></div>
-    <div class="photo">(5)<img src="https://picsum.photos/300?5"></div>
-    <div class="photo">(6)<img src="https://picsum.photos/300?6"></div>
-  </div>
-</section>
-
-<section class="section bio">
-  <img src="https://picsum.photos/400/500">
-  <div class="bio-content">
-    <div>
-      <h4>Biography</h4>
-      <p>Visual storytelling through still images</p>
-    </div>
-    <div>
-      <h4>Biography</h4>
-      <p>Visual storytelling through still images Visual storytelling through still images</p>
-    </div>
-    <div>
-      <h4>Biography</h4>
-      <p>Visual storytelling through still images</p>
-    </div>
   </div>
 </section>
 
 <script>
   function openFolder(targetId) {
-    // 1. ซ่อนกองแฟ้ม
-    document.getElementById('folders-wrap').classList.add('folders-hidden');
-    // 2. เคลียร์รูปด้านในที่อาจจะเปิดค้างไว้ออกก่อน
-    document.querySelectorAll('.inside-content-img').forEach(img => img.classList.remove('active'));
-    // 3. โชว์รูปเนื้อหาที่เราเลือก
-    document.getElementById(targetId).classList.add('active');
-    // 4. โชว์รูปตัวอย่างกระดาษเล็กๆ
-    document.getElementById('ex-tab').classList.add('active');
+    // ซ่อนกองแฟ้ม
+    document.getElementById('folders-wrap').style.opacity = '0';
+    document.getElementById('folders-wrap').style.pointerEvents = 'none';
+
+    // เคลียร์อันเก่า
+    let insides = document.querySelectorAll('.inside-content-img');
+    insides.forEach(el => { 
+      el.style.opacity = '0'; 
+      el.style.pointerEvents = 'none'; 
+      el.style.transform = 'translateY(-50%) scale(0.95)'; 
+    });
+
+    // โชว์เนื้อหาใหม่
+    let target = document.getElementById(targetId);
+    target.style.opacity = '1';
+    target.style.pointerEvents = 'auto';
+    target.style.transform = 'translateY(-50%) scale(1)';
+
+    // โชว์กระดาษ
+    let extab = document.getElementById('ex-tab');
+    extab.style.opacity = '1';
+    extab.style.pointerEvents = 'auto';
+    extab.style.transform = 'translateY(0) rotate(-3deg)';
   }
 
   function closeFolder() {
-    // 1. ซ่อนรูปเนื้อหาทั้งหมด
-    document.querySelectorAll('.inside-content-img').forEach(img => img.classList.remove('active'));
-    document.getElementById('ex-tab').classList.remove('active');
-    // 2. โชว์กองแฟ้มกลับมา
-    document.getElementById('folders-wrap').classList.remove('folders-hidden');
+    // ซ่อนเนื้อหา
+    let insides = document.querySelectorAll('.inside-content-img');
+    insides.forEach(el => { 
+      el.style.opacity = '0'; 
+      el.style.pointerEvents = 'none'; 
+      el.style.transform = 'translateY(-50%) scale(0.95)'; 
+    });
+
+    // ซ่อนกระดาษ
+    let extab = document.getElementById('ex-tab');
+    extab.style.opacity = '0';
+    extab.style.pointerEvents = 'none';
+    extab.style.transform = 'translateY(20px)';
+
+    // โชว์กองแฟ้มกลับมา
+    document.getElementById('folders-wrap').style.opacity = '1';
+    document.getElementById('folders-wrap').style.pointerEvents = 'auto';
   }
 </script>
+
 </body>
 </html>

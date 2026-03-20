@@ -136,7 +136,35 @@ body {
   transform: translateY(-50%) scale(1); 
   pointer-events: auto; 
 }
+/* ปุ่มสำหรับกดย้อนกลับหน้ากองแฟ้ม */
+.btn-back-folder {
+  position: absolute;
+  top: -40px;      /* ให้อยู่เหนือแฟ้มขึ้นมานิดหน่อย */
+  right: 0;        /* ให้อยู่มุมขวาบนของพื้นที่แฟ้ม */
+  background: none;
+  border: none;
+  color: #000;     /* ใช้สีดำเพราะพื้นหลังเป็นสีเทา */
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  cursor: pointer;
+  z-index: 100;
+  opacity: 0;      /* ซ่อนไว้ก่อน จะโชว์ตอนแฟ้มเปิด */
+  pointer-events: none;
+  transition: all 0.4s ease;
+  font-family: Helvetica, Arial, sans-serif;
+  text-transform: uppercase;
+}
 
+.btn-back-folder:hover {
+  opacity: 0.5 !important;
+}
+
+/* คลาสที่เอาไว้สั่งโชว์ปุ่มตอนเปิดแฟ้ม */
+.btn-back-folder.active {
+  opacity: 1;
+  pointer-events: auto;
+}
 /* รูปตัวอย่างกระดาษเล็กๆ (ex_tab.png) */
 .ex-tab-floating {
   position: absolute;
@@ -378,14 +406,19 @@ body {
     <img src="laneige2_tab.png" class="folder-img" style="z-index: 4; top: 120px;" onclick="openFolder('in-laneige2')">
   </div>
 
-  <div class="inside-wrap" id="inside-wrap">
-    <img src="inside_nitto.png" class="inside-content-img" id="in-nitto" onclick="closeFolder()">
-    <img src="inside_pramy.png" class="inside-content-img" id="in-pramy" onclick="closeFolder()">
-    <img src="inside_laneige1.png" class="inside-content-img" id="in-laneige1" onclick="closeFolder()">
-    <img src="inside_laneige2.png" class="inside-content-img" id="in-laneige2" onclick="closeFolder()">
-    
-    <img src="ex_tab.png" class="ex-tab-floating" id="ex-tab" onclick="showSBDetails(event)">
-  </div>
+<div class="inside-wrap" id="inside-wrap">
+  
+  <button class="btn-back-folder" id="btn-back-folder" onclick="closeFolder()">
+    << BACK
+  </button>
+
+  <img src="inside_nitto.png" class="inside-content-img" id="in-nitto" onclick="closeFolder()">
+  <img src="inside_pramy.png" class="inside-content-img" id="in-pramy" onclick="closeFolder()">
+  <img src="inside_laneige1.png" class="inside-content-img" id="in-laneige1" onclick="closeFolder()">
+  <img src="inside_laneige2.png" class="inside-content-img" id="in-laneige2" onclick="closeFolder()">
+  
+  <img src="ex_tab.png" class="ex-tab-floating" id="ex-tab" onclick="showSBDetails(event)">
+</div>
 
 <div class="sb-detail-overlay" id="sb-popup">
   <button class="btn-closed-frame" onclick="closeSB()">

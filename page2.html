@@ -299,6 +299,27 @@ body {
 .sb-sheet:nth-child(3) { transition-delay: 0.3s; }
 .sb-sheet:nth-child(4) { transition-delay: 0.4s; }
 
+   /* สไตล์ปุ่มปิดแบบใหม่ (Minimal Text) */
+.close-sb-top {
+  position: absolute;
+  top: -50px; /* ดันขึ้นไปเหนือรูปนิดหน่อย */
+  right: 0;
+  background: none;
+  border: none;
+  color: #fff; /* สีขาวบนพื้นดำ */
+  font-size: 13px;
+  font-weight: bold;
+  cursor: pointer;
+  letter-spacing: 2px;
+  transition: opacity 0.3s;
+  font-family: Helvetica, Arial, sans-serif;
+  z-index: 10;
+}
+
+.close-sb-top:hover {
+  opacity: 0.5; /* เอฟเฟกต์ตอน Hover ให้ดูนวลๆ */
+}
+   
 .close-sb {
   margin-top: 40px;
   background: none;
@@ -367,6 +388,8 @@ body {
 
   <div class="sb-detail-overlay" id="sb-popup">
     <div class="sb-container">
+<button class="close-sb-top" onclick="closeSB()"><< CLOSED</button>
+      
       <div class="sb-grid">
         <img src="" id="sb-img-1" class="sb-sheet">
         <img src="" id="sb-img-2" class="sb-sheet">

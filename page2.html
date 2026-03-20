@@ -200,11 +200,69 @@ body{
     margin-bottom:20px;
   }
 }
-/* ===================== */
-/* โค้ดที่หายไป: สไตล์ของรูปและ Effect ขยายร่าง */
-/* ===================== */
+/* =========================================
+   SECTION: PRODUCTION (FULL SCREEN 100VH) - ซ่อม layout
+   ========================================= */
 
-/* ทำให้ตัวอื่นมืดตอน hover */
+.production {
+  position: relative;
+  width: 100vw;
+  height: 100vh; /* บังคับให้สูงเต็ม 1 หน้าจอเป๊ะๆ */
+  background: #000; /* ดำสนิท */
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center; /* จัดให้แถวรูปภาพ (.production-row) อยู่กึ่งกลางแนวตั้ง */
+  justify-content: center; /* จัดให้แถวรูปภาพ (.production-row) อยู่กึ่งกลางแนวนอน */
+  overflow: hidden; /* กันสิ่งที่ล้นออก */
+}
+
+/* เอาข้อความ Header ไปแปะติดมุมขวาบน (ตามเรฟ) */
+.production-head {
+  position: absolute;
+  top: 80px; /* ระยะห่างจากขอบจอด้านบน */
+  right: 80px; /* ระยะห่างจากขอบจอด้านขวา */
+  text-align: right;
+  z-index: 20; /* ให้อยู่บนสุดเสมอ */
+}
+.production-head h4 { font-size: 16px; border-bottom: 1px solid #fff; display: inline-block; padding-bottom: 5px; }
+
+/* เอาข้อความ Footer ไปแปะติดขอบจอด้านล่าง (ตามเรฟ) */
+.production-footer {
+  position: absolute;
+  bottom: 40px; /* ระยะห่างจากขอบจอด้านล่าง */
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 80px; /* เว้นซ้าย-ขวา ให้ตรงกับ Header */
+  z-index: 20;
+  box-sizing: border-box; /* ป้องกันไม่ให้ทะลุจอ */
+  font-size: 11px;
+  color: #555;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* ===================== */
+/* PRODUCTION ROW (แถวรูปภาพที่จัดกลาง) */
+/* ===================== */
+.production-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px; /* ระยะห่างปกติระหว่างรูป */
+  padding: 0; /* ลบ padding เดิมทิ้ง */
+  height: 400px; /* เผื่อความสูงไว้ให้รูปเวลาขยายร่าง */
+  z-index: 10;
+  transition: all 0.5s ease;
+}
+
+/* ================= */
+/* HOVER EFFECT (ตามเรฟรูปที่ 2: image_5.png) */
+/* ================= */
+
+/* ทำให้ตัวอื่นมืดลงเมื่อมีการ Hover ในแถว */
 .production-row:hover .work {
   opacity: 0.3;
   filter: grayscale(100%);
@@ -218,40 +276,43 @@ body{
   height: 250px;         /* ความสูงตอนปกติ */
   overflow: hidden;
   text-decoration: none;
+  /* นี่คือหัวใจสำคัญที่ทำให้ขยายสมูทเหมือนเว็บแอปเปิล */
   transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1); 
+  cursor: pointer;
+  background: #000;
 }
 
 .work img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: cover;     /* ให้รูปไม่เบี้ยว */
   transition: all 0.6s ease;
 }
 
-/* สไตล์ของกรอบข้อความ (ซ่อนไว้ก่อน) */
+/* เมื่อ Hover ที่รูปนั้นๆ (เอฟเฟกต์ขยายร่าง) */
+.work:hover {
+  flex: 0 0 320px;       /* ขยายกว้างตามเรฟ */
+  height: 420px;         /* ขยายสูงให้เด่น */
+  opacity: 1 !important; /* ดึงความสว่างกลับมา ไม่มืดตามเพื่อน */
+  filter: grayscale(0) !important; /* ให้สีสดเหมือนเดิม */
+  z-index: 10;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.6); /* เงาฟุ้ง ดูมีมิติ */
+}
+
+/* สไตล์ของกรอบข้อความ (OVERLAY) - ที่ซ่อนไว้ตอนแรก */
 .overlay {
   position: absolute;
-  inset: 0; 
-  background: rgba(255, 255, 255, 0.95); 
-  color: #000; 
-  opacity: 0;
+  inset: 0; /* คลุมเต็มพื้นที่รูป */
+  background: rgba(255, 255, 255, 0.95); /* พื้นหลังขาวนวลแบบเรฟ */
+  color: #000; /* ตัวหนังสือสีดำ */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
   padding: 20px;
-  transition: all 0.5s ease;
-}
-
-/* เมื่อ Hover ที่รูปนั้นๆ (เอฟเฟกต์ขยายร่าง) */
-.work:hover {
-  flex: 0 0 320px;       
-  height: 420px;         
-  opacity: 1 !important; 
-  filter: grayscale(0) !important; 
-  z-index: 10;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.6); 
+  opacity: 0; /* ซ่อนไว้ */
+  transition: opacity 0.4s ease 0.2s; /* ให้ค่อยๆ ปรากฏหลังจากขยาย */
 }
 
 /* ให้ข้อความโผล่ขึ้นมาตอน Hover */
@@ -259,29 +320,33 @@ body{
   opacity: 1;
 }
 
-/* ตกแต่ง Typography ข้างใน */
+/* ตกแต่ง Typography ข้างใน OVERLAY ให้ตรงเรฟ */
 .overlay h4 {
-  font-size: 22px;
+  font-size: 24px;
   margin-bottom: 5px;
   font-weight: bold;
 }
 
 .overlay p {
-  font-size: 14px;
+  font-size: 16px;
   margin-bottom: 25px;
   color: #555;
 }
 
+/* ส่วนของ Role (Director / Editor ฯลฯ) ที่ใช้แท็ก span */
 .overlay span {
-  font-size: 11px;
-  letter-spacing: 1.5px;
+  font-size: 14px;
+  letter-spacing: 1px;
   text-transform: uppercase;
-  border-top: 1px solid #000; 
+  border-top: 1px solid #ddd; /* เส้นขีดคั่นแบบเรฟ */
   padding-top: 15px;
   display: inline-block;
-  width: 80%;
+  width: 85%;
   line-height: 1.6;
 }
+/* =========================================
+      photography
+   ========================================= */
 
 .photography{
   background:#e5e5e5;
@@ -420,14 +485,14 @@ Let's explore the<br>LANEIGE planet.
   <!-- PRODUCTION -->
   <section class="section production">
 
-    <div class="production-head">
-  <div></div>
-  <div class="prod-text">
-    <h4>Production</h4>
-    <p>Collaborating across different roles<br>
-    in visual storytelling and production</p>
+  <div class="production-head">
+    <div></div>
+    <div class="prod-text">
+      <h4>Production</h4>
+      <p>Collaborating across different roles<br>
+      in visual storytelling and production</p>
+    </div>
   </div>
-</div>
     
 <div class="production-row">
 
@@ -500,10 +565,10 @@ Let's explore the<br>LANEIGE planet.
 </div>
     
 <div class="production-footer">
-  <div>SELECTED WORKS</div>
-  <div>FILM & VISUAL PRODUCTION</div>
-  <div>2022–2025<br>COLLABORATIVE PROJECTS</div>
-</div>
+    <div>SELECTED WORKS</div>
+    <div>FILM & VISUAL PRODUCTION</div>
+    <div>2022–2025<br>COLLABORATIVE PROJECTS</div>
+  </div>
   </section>
 
   <!-- PHOTOGRAPHY -->

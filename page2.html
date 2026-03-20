@@ -52,152 +52,147 @@ body{
 /* HERO / STORYBOARD */
 /* ===================== */
 
-/* CANVAS */
-.canvas{
+/* ===================== */
+/* SECTION: STORYBOARD (Hero Area) */
+/* ===================== */
+
+.storyboard {
   position: relative;
-  width: 100%;
-  height: 100vh;
-  padding: 0 0 0 0; /* เอา padding ออก */
+  width: 100vw;
+  min-height: 120vh; /* ให้พื้นที่สูงหน่อย รูปจะได้มีที่วาง */
+  background: #000;
+  overflow: hidden;
 }
 
-/* IMAGE BASE */
-.item{
+/* คอนเทนเนอร์สำหรับวาดรูป */
+.canvas {
   position: absolute;
-}
-
-.item img{
+  top: 0;
+  left: 0;
   width: 100%;
-  height: auto;
-  display: block;
+  height: 100%;
 }
 
-.story-text{
+/* กล่องหัวข้อ Storyboard */
+.story-text {
   position: absolute;
-  left: 180px;
-  top: 280px;
-  max-width: 240px; /* คุมความกว้างให้เหมือน ref */
+  top: 25%;         /* ดันลงมาจากข้างบน 25% */
+  left: 15%;        /* ดันจากขอบซ้าย 15% */
+  max-width: 260px;
+  z-index: 10;
 }
 
-.story-text h3{
+.story-text h3 {
   font-size: 16px;
   margin-bottom: 6px;
 }
 
-.story-text .line{
-  width: 100px;          /* เส้นสั้นแบบใน ref */
+.story-text .line {
+  width: 100px;
   height: 1px;
   background: #fff;
   opacity: 0.5;
   margin-bottom: 10px;
 }
 
-.story-text p{
+.story-text p {
   font-size: 14px;
   color: #aaa;
   line-height: 1.6;
 }
 
-/* CAPTION */
-.caption{
-  position: absolute;
-  color:#ffd5d5f0;
-  font-size: 16px;
-  line-height: 1.4;
-}
-.cap1{
-  top: 840px;
-  right: 840px;
-}
-
-.cap2{
-  top: 190px;
-  left: 75%;
-  transform: translateX(-50%);
-  text-align: right;
-}
-
-.cap3{
-  top: 548px;
-  left: 450px;
-  text-align: right;
-}
-
-.cap4{
-  bottom: 170px;
-  left: 11%;
-}
-/* TEXT */
-.story-text{
-  position: absolute;
-  left: 80px;
-  top: 200px;
-}
-
 /* ================= */
-/* LAYOUT POSITION */
+/* IMAGE & CAPTION POSITIONS (ตามเรฟเป๊ะๆ) */
 /* ================= */
 
-/* BIG RIGHT */
-.img1{
-  width: 38%;
-  right: 150px;
-  bottom: 135px;
+.item {
+  position: absolute;
+  z-index: 5;
 }
 
-/* TOP CENTER */
-.img2{
+.item img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.caption {
+  position: absolute;
+  color: #ffd5d5f0;
+  font-size: 14px;
+  line-height: 1.6;
+  z-index: 10;
+}
+
+/* 1. รูปขวาใหญ่ (LANEIGE) */
+.img1 {
+  width: 40%;
+  right: 5%;
+  top: 45%;
+}
+.cap1 {
+  top: 45%;
+  right: 48%; /* ขยับข้อความให้อยู่ข้างซ้ายของรูป */
+  text-align: right;
+  width: 300px;
+}
+
+/* 2. รูปบนกลาง (Pramycat) */
+.img2 {
+  width: 30%;
+  left: 50%;
+  top: -5%;
+  transform: translateX(-50%); /* ดึงให้ตรงกลางเป๊ะ */
+}
+.cap2 {
+  top: 25%;
+  left: 68%;
+  text-align: left;
+  width: 250px;
+}
+
+/* 3. รูปซ้าย (NittoTire) */
+.img3 {
   width: 25%;
-  left: 55%;
-  top: -140px;
-  transform: translateX(-50%);
+  left: 2%;
+  top: 55%;
+}
+.cap3 {
+  top: 60%;
+  left: 30%;
+  text-align: left;
+  width: 250px;
 }
 
-/* LEFT */
-.img3{
+/* 4. รูปล่างกลาง (NEW MISSION) */
+.img4 {
   width: 18%;
-  left: 0px;
-  top: 420px;
+  left: 35%;
+  top: 85%;
+}
+.cap4 {
+  top: 85%;
+  left: 15%;
+  text-align: right;
+  width: 200px;
 }
 
-/* SMALL BOTTOM */
-.img4{
-  width: 12%;
-  left: 20%;
-  bottom: 135px;
-}
-
-@media (max-width: 1200px){
-  .img1{ width:45%; }
-  .img2{ width:40%; }
-  .img3{ width:25%; }
-  .img4{ width:20%; }
-}
-
-@media (max-width: 768px){
-  .canvas{
-    height:auto;
-    padding:40px;
+/* ================= */
+/* RESPONSIVE (มือถือ / จอเล็ก) */
+/* ================= */
+@media (max-width: 1024px) {
+  .storyboard {
+    min-height: auto;
+    padding-bottom: 100px;
   }
-
-  .item{
+  .canvas { position: relative; height: auto; }
+  .item, .caption, .story-text {
     position: relative;
-    width:100%;
-    margin-bottom:20px;
-  }
-
-  .img2, .img3, .img4, .img1{
-    left:auto;
-    right:auto;
-    top:auto;
-    bottom:auto;
-    transform:none;
-  }
-
-  .story-text{
-    position: relative;
-    left:0;
-    top:0;
-    margin-bottom:20px;
+    top: auto !important; left: auto !important; right: auto !important; bottom: auto !important;
+    transform: none !important;
+    width: 90% !important;
+    margin: 40px auto;
+    text-align: left !important;
   }
 }
 /* =========================================

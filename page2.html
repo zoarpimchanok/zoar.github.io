@@ -22,6 +22,32 @@ body {
   overflow-x: hidden;
 }
 
+/* เมนูมุมขวาบน */
+.main-nav {
+  position: absolute;
+  top: 40px; /* ระยะห่างจากด้านบนตามเรฟ */
+  right: 80px; /* ระยะห่างจากด้านขวาตามเรฟ */
+  z-index: 100;
+}
+
+.nav-links {
+  display: flex;
+  gap: 30px; /* ระยะห่างระหว่างตัวอักษรแต่ละเมนู */
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #000; /* สีดำตามเรฟบนพื้นเทา */
+  font-size: 13px;
+  font-weight: 500;
+  transition: opacity 0.3s;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+.nav-links a:hover {
+  opacity: 0.5; /* เอฟเฟกต์ตอนเอาเมาส์ไปชี้ให้ดูนวลๆ */
+}
+
 /* =========================================
    CSS: STORYBOARD (CLEAN & PERFECT LAYERS)
    ========================================= */
@@ -306,6 +332,15 @@ body {
 </head>
 
 <body>
+
+   <nav class="main-nav">
+  <div class="nav-links">
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#work">Work</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
 
 <section class="sectionStoryboard" id="storyboard">
   

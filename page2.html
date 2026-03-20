@@ -48,36 +48,36 @@ body{
   margin-left:320px;
 }
 
-/* ===================== */
-/* STORYBOARD V2 (Monochrome to Motion) */
-/* ===================== */
+/* =========================================
+   SECTION: STORYBOARD REFINED (แก้ไขการซ้อนกัน)
+   ========================================= */
 
-.storyboard-v2 {
+.storyboard-refined {
   position: relative;
-  width: 100vw;
-  min-height: 120vh; /* ให้พื้นที่เยอะๆ รูปจะได้วางสวยๆ */
+  width: 100%; /* จะใช้ความกว้างของคอนเทนเนอร์หลัก เช่น .main */
+  min-height: 120vh; /* ให้พื้นที่สูงหน่อย รูปจะได้กระจายสวยๆ */
   background: #000;
   overflow: hidden;
+  color: #fff;
+  font-family: Helvetica, Arial, sans-serif;
 }
 
-.story-title {
-  position: absolute;
-  top: 25%;
-  left: 15%;
-  z-index: 20;
+/* คอนเทนเนอร์กลุ่มรูปภาพ (ต้องเป็น relative เสมอ) */
+.story-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
-.story-title h3 { font-size: 16px; margin-bottom: 6px; }
-.story-title .line { width: 100px; height: 1px; background: #fff; opacity: 0.5; margin-bottom: 10px; }
-.story-title p { font-size: 14px; color: #aaa; }
 
 /* --------------------------- */
-/* ITEM STYLING (หัวใจของความอาร์ต) */
+/* ITEM STYLING (ลูกเล่นอาร์ตๆ monochrome) */
 /* --------------------------- */
 .story-item {
-  position: absolute;
-  filter: grayscale(100%) opacity(0.4); /* ดาร์กๆ กลืนไปกับพื้นหลัง */
+  position: absolute; /* จำเป็นสำหรับการจัดวางแบบกระจาย */
+  filter: grayscale(100%) opacity(0.5); /* ดาร์กๆ กลืนไปกับพื้นหลัง */
   transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
   cursor: pointer;
+  z-index: 5; /* ให้อยู่เหนือพื้นหลัง */
 }
 
 .story-item img {
@@ -86,82 +86,131 @@ body{
   box-shadow: 0 10px 30px rgba(0,0,0,0.8);
 }
 
+/* กล่องข้อความ Caption (ซ่อนไว้ก่อน) */
 .story-caption {
   position: absolute;
-  opacity: 0; /* ซ่อนข้อความไว้ก่อน */
+  opacity: 0; /* ซ่อนไว้ */
   transform: translateY(10px);
-  transition: all 0.5s ease;
-  color: #ddd;
-  font-size: 12px;
+  transition: all 0.5s ease 0.1s; /* ให้หน่วงนิดนึงเวลาโผล่ */
+  color: #fff;
+  font-size: 13px;
   line-height: 1.6;
-  width: 250px;
+  width: 320px; /* ความกว้างกล่องข้อความตามที่คุณขอ */
   pointer-events: none;
 }
 
-/* เมื่อเอาเมาส์ชี้ (Desktop Only) */
+/* =========================================
+   HOVER EFFECTS (โหมด Desktop เท่านั้น)
+   ========================================= */
 .story-item:hover {
-  filter: grayscale(0%) opacity(1);
-  transform: scale(1.05);
-  z-index: 30;
+  filter: grayscale(0%) opacity(1); /* สว่างวาบเป็นสีจริง */
+  transform: scale(1.03) translateY(-10px); /* ขยายร่างนิดๆ ดันขึ้นนิดนึง */
+  z-index: 50; /* ดึงขึ้นมาอยู่หน้าสุด */
 }
+
+/* แสดงข้อความเมื่อเอาเมาส์ชี้ */
 .story-item:hover .story-caption {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* --------------------------- */
-/* POSITIONING (จัดวางตามเรฟ) */
-/* --------------------------- */
-.pos-1 { width: 35%; right: 10%; top: 40%; }
-.pos-1 .story-caption { right: 110%; top: 20px; text-align: right; }
+/* =========================================
+   --- THE POSITIONING FIX ---
+   ล็อกตำแหน่งรูปและ Text แบบกระจายตัวตามเรฟ
+   ========================================= */
 
-.pos-2 { width: 22%; left: 45%; top: 10%; }
-.pos-2 .story-caption { left: 110%; bottom: 0; text-align: left; }
+/* 1. LANEIGE (Big Right) */
+.pos-1 {
+  width: 38%; /* ใช้ความกว้างเดิมของคุณ */
+  right: 8%;  /* วางทางขวา */
+  top: 35%;   /* วางลงมาจากข้างบนหน่อย */
+}
+/* Caption อยู่ทางซ้ายของรูป */
+.pos-1 .story-caption {
+  right: 110%; /* ดันข้อความไปทางซ้ายของรูปหลัก */
+  top: 20px;
+  text-align: right;
+}
 
-.pos-3 { width: 18%; left: 8%; top: 60%; }
-.pos-3 .story-caption { left: 110%; top: 30%; text-align: left; }
+/* 2. PRAMYCAT (Top Center) */
+.pos-2 {
+  width: 25%;
+  left: 55%;  
+  top: 5%;    /* เกาะขอบบนตามเรฟ */
+  transform: translateX(-50%); /* จัดให้ตรงกลางเป๊ะๆ */
+}
+/* Caption อยู่ข้างล่างรูปกลาง */
+.pos-2 .story-caption {
+  left: 50%;
+  top: 110%; /* ดันลงมาข้างล่าง */
+  transform: translateX(-50%) translateY(10px); /* ค่าเริ่มต้นตอนซ่อน */
+  text-align: center;
+}
+.story-item.pos-2:hover .story-caption {
+   transform: translateX(-50%) translateY(0); /* ค่าตอนแสดงผล */
+}
 
-.pos-4 { width: 15%; left: 35%; bottom: 5%; }
-.pos-4 .story-caption { right: 110%; bottom: 0; text-align: right; }
+/* 3. NITTO TIRE (Left) */
+.pos-3 {
+  width: 18%;
+  left: 5%;   /* เกาะขอบซ้ายตามเรฟ */
+  top: 55%;   /* วางอยู่ช่วงกลางหน้าจอ */
+}
+/* Caption อยู่ทางขวาของรูป */
+.pos-3 .story-caption {
+  left: 110%; /* ดันข้อความไปทางขวา */
+  top: 20px;
+  text-align: left;
+}
 
-/* --------------------------- */
-/* RESPONSIVE (IPAD & MOBILE) */
-/* --------------------------- */
+/* 4. MISSION (Small Bottom) */
+.pos-4 {
+  width: 13%; /* ใหญ่กว่าเดิมนิดนึงให้อ่านง่าย */
+  left: 35%;  
+  bottom: 10%; /* วางอยู่ช่วงล่างของหน้าจอ */
+}
+/* Caption อยู่ข้างบนรูป */
+.pos-4 .story-caption {
+  left: 50%;
+  bottom: 110%; /* ดันขึ้นไปข้างบน */
+  transform: translateX(-50%) translateY(-10px); /* ค่าเริ่มต้นตอนซ่อน */
+  text-align: center;
+}
+.story-item.pos-4:hover .story-caption {
+   transform: translateX(-50%) translateY(0); /* ค่าตอนแสดงผล */
+}
+
+/* =========================================
+   RESPONSIVE (IPAD & MOBILE) FIX
+   จับเรียงแถวตอนลึก ให้รอดตายบนจอมือถือ
+   ========================================= */
 @media (max-width: 1024px) {
-  .storyboard-v2 {
+  .storyboard-refined {
     min-height: auto;
-    padding: 120px 40px 80px 40px; /* เพิ่มพื้นที่หายใจ */
+    padding: 100px 30px; /* เพิ่มพื้นที่หายใจ */
     overflow-y: auto;
-  }
-  .story-title {
-    position: relative;
-    top: 0; left: 0;
-    margin-bottom: 60px;
   }
   .story-container {
     display: flex;
     flex-direction: column; /* จับเรียงแถวตอนลึก */
-    gap: 80px;
+    gap: 60px; /* ระยะห่างระหว่างรูป */
   }
   .story-item {
-    position: relative;
+    position: relative; /* ยกเลิกการ absolute กระจัดกระจาย */
     width: 100% !important; /* เต็มหน้าจอมือถือ */
     top: auto !important; right: auto !important; left: auto !important; bottom: auto !important;
+    transform: none !important; /* ลบ transform จัดกลาง */
+    filter: grayscale(0%) opacity(1); /* เปิดสีเต็มที่ตลอดเวลาบนมือถือ */
   }
   .story-caption {
     position: relative;
     opacity: 1; /* แสดงข้อความตลอดเวลาบนมือถือ */
-    transform: none;
+    transform: none !important;
     width: 100%;
     top: auto !important; right: auto !important; left: auto !important; bottom: auto !important;
     text-align: left !important;
-    margin-top: 15px;
-  }
-  
-  /* Class พิเศษสำหรับโชว์ Effect เวลาเลื่อนจอ (ทำงานคู่กับ JS) */
-  .story-item.in-view {
-    filter: grayscale(0%) opacity(1);
-    transform: translateY(0);
+    margin-top: 20px;
+    color: #ccc; /* ปรับสีตัวอักษรให้อ่อนลงนิดนึง */
   }
 }
 /* =========================================
@@ -400,52 +449,9 @@ body{
 </div>
 
   <!-- IMAGE 1 (BIG RIGHT) -->
-<div class="story-container">
-    
-    <div class="story-item pos-1">
-      <img src="production-laneige.jpg" alt="Laneige">
-      <div class="story-caption">
-        <span style="color:#888;">2024</span><br><br>
-        <strong>Welcome Back "LANEIGE's Housemate"</strong><br>
-        กลับมาครั้งนี้เจอแต่ความเซอร์ไพรส์<br>
-        เมื่อเพื่อนๆเปลี่ยนไป ไม่สดใสอย่างที่เคย<br>
-        อะไรจะมาช่วยคืนความชุ่มชื้น
-      </div>
-    </div>
-
-    <div class="story-item pos-2">
-      <img src="production-pramyact.jpg" alt="Pramycat">
-      <div class="story-caption">
-        <span style="color:#888;">2023</span><br><br>
-        <strong>Pramycat x Jeff Satur [Full Song Video]</strong><br>
-        Producer, Composer, Lyrics [Jeff Satur]
-      </div>
-    </div>
-
-    <div class="story-item pos-3">
-      <img src="production-nitto.jpg" alt="Nitto">
-      <div class="story-caption">
-        <span style="color:#888;">2023</span><br><br>
-        <strong>NittoTireThailand</strong><br>
-        ทำเป็นเซียนเหมือนเรียนมา แบบนี้ต้องให้<br>
-        เซียนตัวจริงเขาสั่งสอน จะซื้อยางทั้งที<br>
-        ต้องเลือกยางคุณภาพดีที่เหล่าเซียน<br>
-        เขาแนะนำ จำชื่อให้แม่นต้อง "นิตโตะ" เท่านั้น<br>
-        "นิตโตะ" สุดในรุ่น เนื้อดี พิมพ์นิยม
-      </div>
-    </div>
-
-    <div class="story-item pos-4">
-      <img src="production-mission.jpg" alt="Mission">
-      <div class="story-caption">
-        <span style="color:#888;">2024</span><br><br>
-        <strong>NEW MISSION Alert !</strong><br>
-        Let's explore the<br>
-        LANEIGE planet.
-      </div>
-    </div>
-
-  </div><div class="story-container">
+<section class="storyboard-refined" id="storyboard">
+  
+  <div class="story-container">
     
     <div class="story-item pos-1">
       <img src="production-laneige.jpg" alt="Laneige">
@@ -491,6 +497,7 @@ body{
     </div>
 
   </div>
+</section>
 </section>
   <!-- PRODUCTION -->
   <section class="section production">

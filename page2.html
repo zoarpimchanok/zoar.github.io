@@ -320,18 +320,42 @@ body {
   opacity: 0.5; /* เอฟเฟกต์ตอน Hover ให้ดูนวลๆ */
 }
    
-.close-sb {
-  margin-top: 40px;
+/* =========================================
+   ปุ่ม CLOSED แบบใหม่ (วางทับของเดิมได้เลย)
+   ========================================= */
+.btn-closed-frame {
+  position: absolute;
+  top: 40px;      
+  right: 60px;    
   background: none;
-  border: 1px solid #fff;
+  border: 2px solid #fff; 
   color: #fff;
-  padding: 10px 30px;
+  padding: 12px 35px;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 4px; 
   cursor: pointer;
-  font-family: inherit;
-  letter-spacing: 2px;
-  transition: all 0.3s;
+  z-index: 2000; 
+  transition: all 0.3s ease;
+  font-family: Helvetica, Arial, sans-serif;
 }
-.close-sb:hover { background: #fff; color: #000; }
+
+.btn-closed-frame:hover {
+  background: #fff;
+  color: #000;
+  transform: scale(1.05);
+}
+
+/* ปรับ Container ให้กึ่งกลางและไม่ทับปุ่ม */
+.sb-container {
+  width: 90%;
+  max-width: 1300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 80px; /* เพิ่มระยะหลบปุ่มข้างบน */
+}
 
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
@@ -386,19 +410,20 @@ body {
     <img src="ex_tab.png" class="ex-tab-floating" id="ex-tab" onclick="showSBDetails(event)">
   </div>
 
-  <div class="sb-detail-overlay" id="sb-popup">
-    <div class="sb-container">
-<button class="close-sb-top" onclick="closeSB()"><< CLOSED</button>
-      
-      <div class="sb-grid">
-        <img src="" id="sb-img-1" class="sb-sheet">
-        <img src="" id="sb-img-2" class="sb-sheet">
-        <img src="" id="sb-img-3" class="sb-sheet">
-        <img src="" id="sb-img-4" class="sb-sheet">
-      </div>
-      <button class="close-sb" onclick="closeSB()"><< CLOSED</button>
+ <div class="sb-detail-overlay" id="sb-popup">
+  <button class="btn-closed-frame" onclick="closeSB()">
+    << CLOSED
+  </button>
+
+  <div class="sb-container">
+    <div class="sb-grid">
+      <img src="" id="sb-img-1" class="sb-sheet">
+      <img src="" id="sb-img-2" class="sb-sheet">
+      <img src="" id="sb-img-3" class="sb-sheet">
+      <img src="" id="sb-img-4" class="sb-sheet">
     </div>
   </div>
+</div>
 
 </section>
 <section class="production">

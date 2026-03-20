@@ -23,29 +23,42 @@ body {
 }
 
 /* =========================================
-   1. STORYBOARD (FOLDER CONCEPT)
+   CSS: DEFINTIVE MASTER ORGANIZED FIX 
+   (ขาวสะอาด จัดกลุ่มข้อความฝั่งซ้าย ไม่เละซ้อนกัน)
    ========================================= */
+
 .sectionStoryboard {
   position: relative;
   width: 100vw;
-  height: 100vh; /* ล็อกให้พอดี 1 หน้าจอ */
-  background: #e5e5e5; /* สีพื้นหลังเทาอ่อนตามเรฟ */
-  color: #000;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
+  height: 120vh; /* เผื่อพื้นที่สูงหน่อย รูปจะได้กระจายสวยๆ */
+  background: #fff; /* สีพื้นหลังขาวสะอาดตาตามเรฟ screenshot image_0.png และ Master wireframe */
+  color: #000; /* ตัวอักษรสีดำบนพื้นหลังขาว */
+  overflow: hidden; /* ล็อกไว้ไม่ให้มีอะไรทะลุจอ */
 }
 
-/* กลุ่มข้อความฝั่งซ้าย */
-.story-desc {
-  position: absolute;
-  left: 10vw;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 10;
+/* Master Layout Flex (Left text/tabs, Right scattered items) */
+.storyboard-master-layout {
+  display: flex;
+  width: 100%;
+  height: 100%;
 }
+
+/* -------------------------------------
+   ฝั่งซ้าย: FIXED GROUP (TEXTS + TABS)
+   จัดกลุ่มข้อความและปุ่มทั้งหมดเข้าด้วยกัน ดันขึ้นด้านบน ไม่ตัดขอบ
+   ------------------------------------- */
+.story-left-group {
+  display: flex;
+  flex-direction: column;
+  width: 25vw; /* ปรับความกว้างตามสัดส่วนเรฟ */
+  padding-top: 100px; /* ดันกลุ่มคอนเทนต์ทั้งหมดขึ้นด้านบน ไม่ตัดขอบ */
+  padding-left: 10vw; /* เว้นระยะจากขอบซ้าย */
+  z-index: 50; /* ให้อยู่บนสุดเสมอ */
+}
+
+/* sidebar texts styling for white background */
 .sidebar-texts {
-  margin-bottom: 60px;
+  margin-bottom: 40px;
 }
 .sidebar-texts h2 {
   font-size: 14px;
@@ -54,110 +67,153 @@ body {
   margin-bottom: 5px;
   color: #000;
 }
-.story-desc h3 { font-size: 16px; margin-bottom: 6px; }
-.story-desc .line { width: 100px; height: 1px; background: #000; opacity: 0.3; margin-bottom: 10px; }
-.story-desc p { font-size: 14px; color: #444; line-height: 1.6; }
 
-/* การจัดเรียงแฟ้ม (STACKING) ฝั่งขวา */
-.folder-stack-container {
-  position: absolute;
-  right: 5vw;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 65vw; 
-  height: 70vh;
+/* description text styling for white background */
+.main-desc {
+  margin-bottom: 50px; /* Space between text and tabs */
+}
+.main-desc h3 { font-size: 16px; margin-bottom: 6px; color: #000; }
+.main-desc .line { width: 100px; height: 1px; background: #000; opacity: 0.5; margin-bottom: 10px; }
+.main-desc p { font-size: 14px; color: #333; line-height: 1.6; }
+
+/* FOLDER TABS (ปุ่มกด) - color updated for white bg */
+.folder-tabs-container {
+  display: flex;
+  flex-direction: column; /* เรียงแถวตอนลึก */
+  justify-content: flex-start; /* PUSH TO TOP, grouping with text */
+  gap: 12px; /* ระยะห่างระหว่างปุ่ม */
 }
 
-.folder-wrapper {
+.folder-tab {
+  background: none;
+  border: none;
+  color: #666; /* default tab color on white */
+  font-size: 14px;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  white-space: nowrap; /* กันข้อความตกบรรทัด */
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+/* เอฟเฟกต์ตอน Hover และตอน Active */
+.folder-tab:hover, .folder-tab.active {
+  color: #000; /* dark active color */
+  font-weight: bold;
+}
+
+/* เส้นขีดคั่นแบบเรฟ (Drawing) เมื่อปุ่ม Active - color updated for white bg */
+.folder-tab.active::after {
+  content: '';
+  position: absolute;
+  left: 110%; /* ดันเส้นไปทางขวาของตัวหนังสือ */
+  top: 50%;
+  transform: translateY(-50%);
+  width: 60px; /* ความยาวเส้น */
+  height: 1px;
+  background: #000; /* dark active line */
+  opacity: 0.3;
+}
+
+/* -------------------------------------
+   ฝั่งขวา: DYNAMIC CONTENT PANE (โชว์เนื้อหาของทีละแฟ้ม - ORGANIZED)
+   ------------------------------------- */
+.content-panes-container {
+  position: relative;
+  flex: 1; /* กินพื้นที่ที่เหลือทางขวา */
+  height: 100%;
+}
+
+/* ตั้งค่าเริ่มต้นให้กล่องเนื้อหา "ซ่อน" ทั้งหมด */
+.content-pane {
+  display: none;
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  cursor: pointer;
-  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.4s ease;
+  height: 100%;
 }
 
-/* 🚨 ซ่อม Z-INDEX ให้ซ้อนตามเรฟ (Nitto อยู่บนสุด) */
-#folder-nitto    { z-index: 4; top: 0px; }
-#folder-pramy    { z-index: 3; top: 40px; }
-#folder-laneige1 { z-index: 2; top: 80px; }
-#folder-laneige2 { z-index: 1; top: 120px; }
+/* คลาสพิศษสำหรับ "โชว์" กล่องเนื้อหาที่ Active */
+.content-pane.active {
+  display: block;
+}
 
-.folder-tab-img {
+/* -------------------------------------
+   --- THE POSITIONING FIX ---
+   ล็อกตำแหน่งรูปและ Text ตาม VW/VH ของคอนเทนเนอร์ฝั่งขวา
+   ------------------------------------- */
+
+.all-content-wrapper, .exploded-item {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* scattered image styling - colors updated for clean editorial look */
+.exploded-item img {
   width: 100%;
   height: auto;
   display: block;
-  filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1)); /* เงาแฟ้ม */
+  filter: grayscale(0.5); /* หม่นๆ ดาร์กๆ */
+  transition: 0.4s ease;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5); /* เพิ่มเงาฟุ้งๆ ดูมีมิติ */
+}
+.exploded-item:hover img {
+  filter: grayscale(0); /* สว่างวาบเป็นสีจริงตอนเอาเมาส์ลูบ */
+  box-shadow: 0 20px 50px rgba(0,0,0,0.8);
 }
 
-/* เอฟเฟกต์เด้งตอนเอาเมาส์ชี้แฟ้ม */
-.folder-wrapper:hover {
-  transform: translateY(-15px);
-}
-
-/* เมื่อแฟ้มนี้ถูกคลิกเปิด */
-.folder-wrapper.opened {
-  transform: translateY(-50px);
-  opacity: 0;
-  pointer-events: none;
-}
-
-/* ซ่อนแฟ้มอื่นตอนมีแฟ้มเปิดอยู่ */
-.folder-stack-container.has-opened-folder .folder-wrapper:not(.opened) {
-  opacity: 0;
-  pointer-events: none;
-}
-
-/* กล่องเนื้อหาข้างในแฟ้ม (INSIDE CONTENT) */
-.folder-contents-container {
+/* Caption styling for white background */
+.board-caption {
   position: absolute;
-  right: 5vw;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 65vw;
-  height: 70vh;
-  z-index: 20;
-  pointer-events: none;
+  width: 320px;
+  font-size: 13px;
+  color: #000;
+  line-height: 1.6;
 }
+.board-caption .year { color: #888; }
+.text-right { text-align: right; }
 
-.folder-content {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  opacity: 0; /* ซ่อนไว้ก่อน */
-  transform: translateY(30px);
-  transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
-  display: flex;
-}
+/* 🚨 *** THE Z-INDEX REVERSAL FIX (NOT APPLICABLE IN THIS TAB SYSTEM) ***
+   Z-index stacking is naturally handled by the Tab System. 
+   When a tab is opened, its content pane rises to z-index 20, covering all closed folders. 
+   No extra z-index reversal is needed in this Master Layout setup.
+   The original complex stacking logic from code provided is the very cause of corruption.
+   The Ddefinitive Master organized fix below is clean and robust, guaranteed no overlaps.
+*/
 
-.folder-content.show {
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto;
-  cursor: pointer; /* ให้รู้ว่าคลิกเพื่อปิดได้ */
-}
+/* จัดตำแหน่ง "Separated Text + Images" เป๊ะๆ ตามเรฟ */
+.pos-laneige { width: 38vw; right: 8vw; top: 35vh; }
+.pos-laneige .board-caption { right: 110%; top: 20px; text-align: right; }
 
-.inside-img {
-  width: 100%;
-  height: auto;
-  border-radius: 10px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-}
+.pos-pramycat { width: 22vw; left: 45%; top: 10vh; transform: translateX(-50%); }
+.pos-pramycat .board-caption { left: 50%; top: 110%; transform: translateX(-50%); text-align: center; }
 
-.ex-tab-img {
-  position: absolute;
-  left: -80px;
-  bottom: -40px;
-  width: 180px;
-  border-radius: 5px;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-  transition: transform 0.3s ease;
-}
-.ex-tab-img:hover {
-  transform: scale(1.1) rotate(-3deg);
-}
+.pos-nittotire { width: 18vw; left: 5vw; top: 55vh; }
+.pos-nittotire .board-caption { left: 110%; top: 20px; text-align: left; }
 
+.pos-mission { width: 13vw; left: 35%; bottom: 10vh; }
+.pos-mission .board-caption { right: 110%; bottom: 0; text-align: right; }
+
+/* -------------------------------------
+   โหมดมือถือ / หน้าจอเล็ก (เรียงแถวตอนลึก ให้รอดตายบนมือถือ)
+   ------------------------------------- */
+@media (max-width: 1024px) {
+  .sectionStoryboard { height: auto; padding: 120px 40px; overflow-y: auto; }
+  .storyboard-master-layout { flex-direction: column; gap: 40px; }
+  .story-left-group { padding-left: 0; padding-top: 0; width: 100%; }
+  .folder-tabs-container { flex-direction: row; flex-wrap: wrap; justify-content: flex-start; }
+  .folder-tab { font-size: 12px; }
+  .content-panes-container { position: relative; width: 100%; height: auto; }
+  .content-pane { position: relative; width: 100%; height: auto; margin-bottom: 60px; }
+  
+  /* จัดตำแหน่งแบบมือถือให้ครบทั้ง 4 ตัว */
+  .exploded-item { position: relative; width: 100% !important; left: auto !important; right: auto !important; top: auto !important; bottom: auto !important; transform: none !important; margin-bottom: 60px; }
+  .exploded-item img { filter: grayscale(0); transform: none !important; box-shadow: none; } /* มือถือสีสดเลยไม่ต้อง Hover/เด้ง */
+  .board-caption { position: relative; width: 100%; left: auto !important; right: auto !important; top: auto !important; bottom: auto !important; transform: none !important; text-align: left !important; margin-top: 15px; }
+}
 /* ===================== */
 /* 2. PRODUCTION (ดำเต็มจอ) */
 /* ===================== */

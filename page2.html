@@ -326,7 +326,7 @@ body {
     <img src="ex_tab.png" class="ex-tab-floating" id="ex-tab" onclick="closeFolder()">
   </div>
 
-   <img src="ex_tab.png" class="ex-tab-floating" id="ex-tab" onclick="showSBDetails()">
+<img src="ex_tab.png" class="ex-tab-floating" id="ex-tab" onclick="showSBDetails(event)">
 
 <div class="sb-detail-overlay" id="sb-popup">
   <div class="sb-container">
@@ -423,12 +423,14 @@ body {
     if(extab) extab.classList.add('active');
   }
 
-  function showSBDetails(event) {
-    // 🚨 ป้องกันหน้าเว็บรีเฟรชกลับหน้าแรก
+ function showSBDetails(event) {
+    // 🚨 บรรทัดนี้สำคัญที่สุด กันหน้าเว็บเด้งกลับหน้าแรก 🚨
     if (event) {
       event.preventDefault();
       event.stopPropagation();
     }
+
+    console.log("Opening SB for:", currentActiveFolder);
 
     const photos = sbInventory[currentActiveFolder];
     
@@ -439,6 +441,7 @@ body {
           imgSlot.src = photos[i-1];
         }
       }
+      // สั่งเปิด Popup
       document.getElementById('sb-popup').classList.add('active');
     }
   }

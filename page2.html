@@ -117,7 +117,7 @@ body {
 .ex-tab-floating {
   position: absolute;
   left: 100px;
-  bottom: -250px;
+  bottom: 50px;
   width: 180px;
   opacity: 0;
   transition: all 0.6s ease;
@@ -323,25 +323,23 @@ body {
     <img src="inside_pramy.png" class="inside-content-img" id="in-pramy" onclick="closeFolder()">
     <img src="inside_laneige1.png" class="inside-content-img" id="in-laneige1" onclick="closeFolder()">
     <img src="inside_laneige2.png" class="inside-content-img" id="in-laneige2" onclick="closeFolder()">
-    <img src="ex_tab.png" class="ex-tab-floating" id="ex-tab" onclick="closeFolder()">
+    
+    <img src="ex_tab.png" class="ex-tab-floating" id="ex-tab" onclick="showSBDetails(event)">
   </div>
 
-<img src="ex_tab.png" class="ex-tab-floating" id="ex-tab" onclick="showSBDetails(event)">
-
-<div class="sb-detail-overlay" id="sb-popup">
-  <div class="sb-container">
-    <div class="sb-grid">
-      <img src="" id="sb-img-1" class="sb-sheet">
-      <img src="" id="sb-img-2" class="sb-sheet">
-      <img src="" id="sb-img-3" class="sb-sheet">
-      <img src="" id="sb-img-4" class="sb-sheet">
+  <div class="sb-detail-overlay" id="sb-popup">
+    <div class="sb-container">
+      <div class="sb-grid">
+        <img src="" id="sb-img-1" class="sb-sheet">
+        <img src="" id="sb-img-2" class="sb-sheet">
+        <img src="" id="sb-img-3" class="sb-sheet">
+        <img src="" id="sb-img-4" class="sb-sheet">
+      </div>
+      <button class="close-sb" onclick="closeSB()"><< CLOSED</button>
     </div>
-    <button class="close-sb" onclick="closeSB()"><< CLOSED</button>
   </div>
-</div>
 
 </section>
-
 <section class="production">
   <div class="production-head">
     <h4>Production</h4>

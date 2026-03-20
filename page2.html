@@ -201,113 +201,54 @@ body{
   }
 }
 /* ===================== */
-/* PRODUCTION (อัปเกรด Hover Effect) */
+/* PRODUCTION (FULL SCREEN 100VH) */
 /* ===================== */
 
-/* คุมแถวของโปรเจกต์ให้อยู่ตรงกลางและยืดหยุ่น */
+.production {
+  position: relative;
+  width: 100vw;
+  height: 100vh; /* หัวใจสำคัญ: บังคับให้สูงเต็ม 1 หน้าจอเป๊ะๆ */
+  background: #000;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center; /* จัดให้แถวรูปภาพ (.production-row) อยู่กึ่งกลางแนวตั้ง */
+  justify-content: center; /* จัดให้อยู่กึ่งกลางแนวนอน */
+  overflow: hidden;
+}
+
+/* เอาข้อความ Header ไปแปะติดมุมขวาบน */
+.production-head {
+  position: absolute;
+  top: 80px; /* ระยะห่างจากขอบจอด้านบน */
+  right: 80px; /* ระยะห่างจากขอบจอด้านขวา */
+  text-align: right;
+  z-index: 20;
+}
+
+/* เอาข้อความ Footer ไปแปะติดขอบจอด้านล่าง */
+.production-footer {
+  position: absolute;
+  bottom: 40px; /* ระยะห่างจากขอบจอด้านล่าง */
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 80px; /* เว้นซ้าย-ขวา ให้ตรงกับ Header */
+  z-index: 20;
+  box-sizing: border-box; /* ป้องกันไม่ให้ทะลุจอ */
+}
+
+/* อัปเดต .production-row เล็กน้อยให้เข้ากับกล่องแบบใหม่ */
 .production-row {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 15px;             /* ระยะห่างระหว่างรูปตอนปกติ */
-  padding: 100px 80px;   /* ดันระยะบนล่างให้มีพื้นที่ขยาย */
-  height: 500px;         /* ล็อกความสูงโซนนี้ไว้ รูปจะได้ขยายเนียนๆ */
-}
-
-/* 1. เมื่อเอาเมาส์เข้าในโซนแถว ให้รูป "ทั้งหมด" มืดลงและจางลง */
-.production-row:hover .work {
-  opacity: 0.3;
-  filter: grayscale(100%);
-}
-
-/* 2. สไตล์ตอนปกติของแต่ละโปรเจกต์ */
-.work {
-  position: relative;
-  display: block;
-  flex: 0 0 120px;       /* ความกว้างตอนปกติ */
-  height: 250px;         /* ความสูงตอนปกติ */
-  overflow: hidden;
-  text-decoration: none;
-  /* นี่คือหัวใจสำคัญที่ทำให้ขยายสมูทเหมือนเว็บแอปเปิล */
-  transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1); 
-}
-
-.work img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;     /* ให้รูปไม่เบี้ยว */
-  transition: all 0.6s ease;
-}
-
-/* 3. สไตล์ของกรอบข้อความ (ซ่อนไว้ก่อน) */
-.overlay {
-  position: absolute;
-  inset: 0; /* คลุมเต็มพื้นที่รูป */
-  background: rgba(255, 255, 255, 0.95); /* พื้นหลังสีขาวนวลแบบเรฟ */
-  color: #000; /* ตัวหนังสือสีดำให้ตัดกัน */
-  opacity: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 20px;
-  transition: all 0.5s ease;
-}
-
-/* 4. เมื่อ Hover ที่รูปนั้นๆ (เอฟเฟกต์ขยายร่าง) */
-.work:hover {
-  flex: 0 0 320px;       /* ขยายความกว้างแบบก้าวกระโดด */
-  height: 420px;         /* ขยายความสูงให้เด่นขึ้นมา */
-  opacity: 1 !important; /* ดึงความสว่างกลับมา ไม่มืดตามเพื่อน */
-  filter: grayscale(0) !important; /* ให้สีสดเหมือนเดิม */
+  gap: 15px;
+  height: 350px; /* เผื่อความสูงไว้ให้รูปเวลาขยายร่าง */
+  padding: 0; /* ลบ padding เดิมทิ้งไปเลย */
   z-index: 10;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.6); /* เงาฟุ้งๆ ดูมีมิติ */
 }
-
-/* ให้ข้อความโผล่ขึ้นมาตอน Hover */
-.work:hover .overlay {
-  opacity: 1;
-}
-
-/* 5. ตกแต่ง Typography ข้างในให้ดูแพง */
-.overlay h4 {
-  font-size: 22px;
-  margin-bottom: 5px;
-  font-weight: bold;
-}
-
-.overlay p {
-  font-size: 14px;
-  margin-bottom: 25px;
-  color: #555;
-}
-
-/* ส่วนของ Role (Director / Editor ฯลฯ) ที่คุณใช้แท็ก span */
-.overlay span {
-  font-size: 11px;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  border-top: 1px solid #000; /* เส้นขีดคั่นแบบเรฟ */
-  padding-top: 15px;
-  display: inline-block;
-  width: 80%;
-  line-height: 1.6;
-}
-
-/* จัด Layout ให้ Production Footer */
-.production-footer {
-  display: flex;
-  justify-content: space-between;
-  padding: 0 80px 60px 80px;
-  font-size: 12px;
-  color: #888;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-}
-/* ===================== */
-/* PHOTOGRAPHY */
-/* ===================== */
 
 .photography{
   background:#e5e5e5;

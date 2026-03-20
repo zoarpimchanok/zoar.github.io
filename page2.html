@@ -23,40 +23,42 @@ body {
 }
 
 /* =========================================
-   1. STORYBOARD (CLEAN FOLDER SYSTEM)
+   CSS: STORYBOARD (CLEAN & PERFECT LAYERS)
    ========================================= */
-.sectionStoryboard {
+.clean-storyboard {
   position: relative;
   width: 100vw;
   height: 100vh;
-  background: #e2e2e2; /* สีเทาอ่อนตามเรฟ */
+  background: #e2e2e2; 
   overflow: hidden;
   color: #000;
+  font-family: Helvetica, Arial, sans-serif;
 }
 
-/* กลุ่มข้อความฝั่งซ้าย */
+/* ข้อความฝั่งซ้าย (คงที่) */
 .left-titles {
   position: absolute;
-  left: 8vw;
-  top: 50%;
-  transform: translateY(-50%);
+  left: 8%;
+  top: 35%;
   z-index: 50;
 }
 .left-titles h5 { margin: 0 0 5px 0; font-size: 13px; font-weight: 800; letter-spacing: 1px; }
-.left-titles h3 { margin: 40px 0 5px 0; font-size: 16px; font-weight: bold; }
+.left-titles h3 { margin: 30px 0 5px 0; font-size: 16px; font-weight: bold; }
 .left-titles .line { width: 40px; height: 1px; background: #000; margin-bottom: 10px; }
 .left-titles p { font-size: 13px; color: #444; line-height: 1.5; margin: 0; }
 
-/* กองแฟ้มฝั่งขวา */
+/* -------------------------------------
+   กองแฟ้มโฟลเดอร์ฝั่งขวา
+   ------------------------------------- */
 .folders-wrap {
   position: absolute;
-  right: 5vw;
+  right: 5%;
   top: 50%;
   transform: translateY(-50%);
-  width: 55vw;
+  width: 60vw;
+  max-width: 900px; 
   height: 70vh;
-  transition: opacity 0.4s ease;
-  z-index: 10;
+  transition: all 0.5s ease;
 }
 
 .folder-img {
@@ -66,20 +68,34 @@ body {
   height: auto;
   cursor: pointer;
   transition: transform 0.3s ease;
+  /* เงาตกกระทบลงด้านล่าง เพื่อให้ดูทับกันเนียนๆ */
   filter: drop-shadow(0 15px 25px rgba(0,0,0,0.15));
 }
-.folder-img:hover { transform: translateY(-15px); }
+.folder-img:hover {
+  transform: translateY(-15px); 
+}
 
-/* รูปเนื้อหาด้านใน (inside_...jpg) */
+/* 🚨 แก้เลเยอร์การซ้อนทับ (Z-Index) ให้ตรงเรฟรูปที่ 2 เป๊ะๆ 🚨 
+   แฟ้มอันบนสุด (Nitto) ต้องอยู่หน้าสุด (Z-index: 4) แล้วทับไล่ลงไปข้างล่าง
+*/
+#tab-nitto    { z-index: 4; top: 0px; }
+#tab-pramy    { z-index: 3; top: 45px; }
+#tab-laneige1 { z-index: 2; top: 90px; }
+#tab-laneige2 { z-index: 1; top: 135px; }
+
+/* -------------------------------------
+   รูปเนื้อหาด้านใน (inside_...jpg)
+   ------------------------------------- */
 .inside-wrap {
   position: absolute;
-  right: 5vw;
+  right: 5%;
   top: 50%;
   transform: translateY(-50%);
-  width: 60vw;
-  height: 70vh;
+  width: 65vw;
+  max-width: 1000px;
+  height: auto;
+  pointer-events: none; 
   z-index: 20;
-  pointer-events: none; /* ตอนซ่อนให้คลิกทะลุได้ */
 }
 
 .inside-content-img {
@@ -92,26 +108,45 @@ body {
   opacity: 0;
   transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
   box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-  border-radius: 8px;
-  cursor: pointer;
+  border-radius: 10px;
+  cursor: pointer; 
 }
 
-/* รูปตัวอย่างกระดาษ (ex_tab.png) */
+.inside-content-img.active {
+  opacity: 1;
+  transform: translateY(-50%) scale(1); 
+  pointer-events: auto; 
+}
+
+/* รูปตัวอย่างกระดาษเล็กๆ (ex_tab.png) */
 .ex-tab-floating {
   position: absolute;
-  left: -12vw;
-  bottom: 0;
-  width: 15vw;
-  min-width: 150px;
+  left: -80px;
+  bottom: -80px;
+  width: 180px;
   opacity: 0;
-  transform: translateY(20px);
   transition: all 0.6s ease;
   box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  transform: translateY(20px);
+  pointer-events: none;
   border-radius: 6px;
+}
+.ex-tab-floating.active {
+  opacity: 1;
+  transform: translateY(0) rotate(-3deg);
+  pointer-events: auto;
   cursor: pointer;
 }
-.ex-tab-floating:hover { transform: translateY(-10px) rotate(-3deg) scale(1.05) !important; }
+.ex-tab-floating:hover {
+  transform: translateY(-10px) rotate(-3deg) scale(1.05);
+}
 
+/* State ตอนแฟ้มถูกซ่อน */
+.folders-hidden {
+  opacity: 0;
+  transform: translateY(-30%) scale(0.95);
+  pointer-events: none;
+}
 /* =========================================
    2. PRODUCTION (ดำเต็มจอ)
    ========================================= */
@@ -238,10 +273,10 @@ body {
   </div>
 
   <div class="inside-wrap" id="inside-wrap">
-    <img src="inside_nitto.jpg" class="inside-content-img" id="in-nitto" onclick="closeFolder()">
-    <img src="inside_pramy.jpg" class="inside-content-img" id="in-pramy" onclick="closeFolder()">
-    <img src="inside_laneige1.jpg" class="inside-content-img" id="in-laneige1" onclick="closeFolder()">
-    <img src="inside_laneige2.jpg" class="inside-content-img" id="in-laneige2" onclick="closeFolder()">
+    <img src="inside_nitto.png" class="inside-content-img" id="in-nitto" onclick="closeFolder()">
+    <img src="inside_pramy.png" class="inside-content-img" id="in-pramy" onclick="closeFolder()">
+    <img src="inside_laneige1.png" class="inside-content-img" id="in-laneige1" onclick="closeFolder()">
+    <img src="inside_laneige2.png" class="inside-content-img" id="in-laneige2" onclick="closeFolder()">
     <img src="ex_tab.png" class="ex-tab-floating" id="ex-tab" onclick="closeFolder()">
   </div>
 
@@ -270,6 +305,19 @@ body {
       <img src="production_04.jpg">
       <div class="overlay"><h4>THokori no Oka</h4><p>offical MV</p><span>Art Director team</span></div>
     </a>
+       <a href="https://youtube.com" target="_blank" class="work">
+      <img src="production_05.jpg">
+      <div class="overlay"><h4>เทพใช้ (ThepChoice)</h4><p>Advertisement</p><span>Director / Editing / Prop Master</span></div>
+    </a>
+       <a href="https://youtube.com" target="_blank" class="work">
+      <img src="production_06.jpg">
+      <div class="overlay"><h4>อิเซไก</h4><p>Short film</p><span>Art Director / Prop Master</span></div>
+    </a>
+           <a href="https://youtube.com" target="_blank" class="work">
+      <img src="production_07.jpg">
+      <div class="overlay"><h4>Letter from Congo (2025)</h4><p>Experimental Film</p><span>DOP / camera operator / PM / Color Grading</span></div>
+    </a>
+     
   </div>
     
   <div class="production-footer">

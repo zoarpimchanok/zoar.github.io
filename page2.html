@@ -397,75 +397,64 @@ body {
 </section>
 
 <script>
-  // 1. คลังรูปภาพสตอรี่บอร์ด (เช็กชื่อไฟล์และนามสกุลให้ตรงกับในเครื่องคุณเป๊ะๆ นะครับ)
+  // 1. คลังรูปภาพ (อัปเดตเป็น .jpg ตามที่คุณแก้ไขล่าสุดแล้วครับ)
   const sbInventory = {
     'in-laneige1': ['laneige1_sb1.png', 'laneige1_sb2.png', 'laneige1_sb3.png', 'laneige1_sb4.png'],
-    'in-laneige2': ['laneige2_sb1.pdf', 'laneige2_sb2.pdf', 'laneige2_sb3.pdf', 'laneige2_sb4.pdf'],
+    'in-laneige2': ['laneige2_sb1.jpg', 'laneige2_sb2.jpg', 'laneige2_sb3.jpg', 'laneige2_sb4.jpg'],
     'in-nitto':    ['niito_sb1.JPG', 'niito_sb2.JPG', 'niito_sb3.JPG', 'niito_sb4.JPG'],
-    'in-pramy':    ['pramy_sb1.pdf', 'pramy_sb2.pdf', 'pramy_sb3.pdf', 'pramy_sb4.pdf']
+    'in-pramy':    ['pramy_sb1.jpg', 'pramy_sb2.jpg', 'pramy_sb3.jpg', 'pramy_sb4.jpg']
   };
 
-  // ตัวแปรส่วนกลางสำหรับจดจำว่า "ตอนนี้เรากำลังเปิดดูแฟ้มไหนอยู่"
   let currentActiveFolder = ''; 
 
   function openFolder(targetId) {
-    // จดชื่อแฟ้มไว้ก่อนเลย (สำคัญมาก!)
+    // ล็อกชื่อ ID ไว้ทันทีที่เปิดแฟ้ม
     currentActiveFolder = targetId; 
 
-    // ซ่อนกองแฟ้ม
     document.getElementById('folders-wrap').classList.add('folders-hidden');
 
-    // เคลียร์เนื้อหาอันเก่าออก
     let insides = document.querySelectorAll('.inside-content-img');
-    insides.forEach(el => { 
-      el.classList.remove('active');
-    });
+    insides.forEach(el => el.classList.remove('active'));
 
-    // โชว์เนื้อหา (Inside) ของแฟ้มที่เลือก
     let target = document.getElementById(targetId);
     if(target) target.classList.add('active');
 
-    // โชว์กระดาษ WATCH >> (Ex Tab)
     let extab = document.getElementById('ex-tab');
     if(extab) extab.classList.add('active');
   }
 
-  // ฟังก์ชันสำหรับ "แผ่" สตอรี่บอร์ด 4 แผ่น (กดจาก ex-tab)
-  function showSBDetails() {
-    // ไปหยิบชุดรูปจากคลังตามชื่อแฟ้มที่เราจดไว้
+  function showSBDetails(event) {
+    // 🚨 ป้องกันหน้าเว็บรีเฟรชกลับหน้าแรก
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
     const photos = sbInventory[currentActiveFolder];
     
     if (photos) {
-      // เอาชื่อรูปไปใส่ในช่อง img ทั้ง 4 ช่องใน Popup
       for (let i = 1; i <= 4; i++) {
         let imgSlot = document.getElementById(`sb-img-${i}`);
-        if(imgSlot) imgSlot.src = photos[i-1];
+        if(imgSlot) {
+          imgSlot.src = photos[i-1];
+        }
       }
-      // สั่งให้ Popup เด้งขึ้นมา
       document.getElementById('sb-popup').classList.add('active');
     }
   }
 
   function closeSB() {
-    // ปิด Popup สตอรี่บอร์ด
     document.getElementById('sb-popup').classList.remove('active');
   }
 
   function closeFolder() {
-    // ซ่อนเนื้อหาและกระดาษ
     let insides = document.querySelectorAll('.inside-content-img');
-    insides.forEach(el => { 
-      el.classList.remove('active');
-    });
+    insides.forEach(el => el.classList.remove('active'));
 
     let extab = document.getElementById('ex-tab');
     if(extab) extab.classList.remove('active');
 
-    // เอากองแฟ้มกลับคืนมา
     document.getElementById('folders-wrap').classList.remove('folders-hidden');
-    
-    // ล้างค่าแฟ้มที่จดไว้
-    currentActiveFolder = '';
   }
 </script>
 

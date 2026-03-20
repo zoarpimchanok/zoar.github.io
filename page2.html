@@ -25,7 +25,8 @@ body {
 /* =========================================
    CSS: STORYBOARD (CLEAN & PERFECT LAYERS)
    ========================================= */
-.clean-storyboard {
+/* 🚨 แก้ไขชื่อ Class ตรงนี้ให้ตรงกับ HTML แล้วครับ 🚨 */
+.sectionStoryboard {
   position: relative;
   width: 100vw;
   height: 100vh;
@@ -68,20 +69,11 @@ body {
   height: auto;
   cursor: pointer;
   transition: transform 0.3s ease;
-  /* เงาตกกระทบลงด้านล่าง เพื่อให้ดูทับกันเนียนๆ */
   filter: drop-shadow(0 15px 25px rgba(0,0,0,0.15));
 }
 .folder-img:hover {
   transform: translateY(-15px); 
 }
-
-/* 🚨 แก้เลเยอร์การซ้อนทับ (Z-Index) ให้ตรงเรฟรูปที่ 2 เป๊ะๆ 🚨 
-   แฟ้มอันบนสุด (Nitto) ต้องอยู่หน้าสุด (Z-index: 4) แล้วทับไล่ลงไปข้างล่าง
-*/
-#tab-nitto    { z-index: 4; top: 0px; }
-#tab-pramy    { z-index: 3; top: 45px; }
-#tab-laneige1 { z-index: 2; top: 90px; }
-#tab-laneige2 { z-index: 1; top: 135px; }
 
 /* -------------------------------------
    รูปเนื้อหาด้านใน (inside_...jpg)
@@ -339,48 +331,36 @@ body {
 <script>
   function openFolder(targetId) {
     // ซ่อนกองแฟ้ม
-    document.getElementById('folders-wrap').style.opacity = '0';
-    document.getElementById('folders-wrap').style.pointerEvents = 'none';
+    document.getElementById('folders-wrap').classList.add('folders-hidden');
 
     // เคลียร์อันเก่า
     let insides = document.querySelectorAll('.inside-content-img');
     insides.forEach(el => { 
-      el.style.opacity = '0'; 
-      el.style.pointerEvents = 'none'; 
-      el.style.transform = 'translateY(-50%) scale(0.95)'; 
+      el.classList.remove('active');
     });
 
     // โชว์เนื้อหาใหม่
     let target = document.getElementById(targetId);
-    target.style.opacity = '1';
-    target.style.pointerEvents = 'auto';
-    target.style.transform = 'translateY(-50%) scale(1)';
+    target.classList.add('active');
 
     // โชว์กระดาษ
     let extab = document.getElementById('ex-tab');
-    extab.style.opacity = '1';
-    extab.style.pointerEvents = 'auto';
-    extab.style.transform = 'translateY(0) rotate(-3deg)';
+    extab.classList.add('active');
   }
 
   function closeFolder() {
     // ซ่อนเนื้อหา
     let insides = document.querySelectorAll('.inside-content-img');
     insides.forEach(el => { 
-      el.style.opacity = '0'; 
-      el.style.pointerEvents = 'none'; 
-      el.style.transform = 'translateY(-50%) scale(0.95)'; 
+      el.classList.remove('active');
     });
 
     // ซ่อนกระดาษ
     let extab = document.getElementById('ex-tab');
-    extab.style.opacity = '0';
-    extab.style.pointerEvents = 'none';
-    extab.style.transform = 'translateY(20px)';
+    extab.classList.remove('active');
 
     // โชว์กองแฟ้มกลับมา
-    document.getElementById('folders-wrap').style.opacity = '1';
-    document.getElementById('folders-wrap').style.pointerEvents = 'auto';
+    document.getElementById('folders-wrap').classList.remove('folders-hidden');
   }
 </script>
 

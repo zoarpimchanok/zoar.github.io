@@ -5,12 +5,13 @@
 <title>Work</title>
 
 <style>
-
-/* RESET */
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
+/* ===================== */
+/* RESET & BASE */
+/* ===================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
@@ -18,51 +19,24 @@ body {
   color: #fff;
   font-family: Helvetica, Arial, sans-serif;
   position: relative;
-  height: 100vh;
-  /* padding-top: 80px;  <-- *** ลบหรือคอมเมนต์บรรทัดนี้ทิ้งเพื่อเอาแถบดำข้างบนออก *** */
-}
-
-/* LEFT FIXED */
-.sidebar{
-  position:fixed;
-  left:60px;
-  top:60px;
-  width:200px;
-}
-
-.sidebar h2{
-  font-size:16px;
-  margin-bottom:10px;
-}
-
-.sidebar a{
-  display:block;
-  font-size:12px;
-  color:#777;
-  margin-top:6px;
-  text-decoration:none;
-}
-
-/* MAIN */
-.main{
-  margin-left:320px;
+  /* padding-top: 80px; ลบทิ้งแล้ว แถบดำข้างบนจะหายไป */
 }
 
 /* =========================================
-   CSS: STORYBOARD (FOLDER CONCEPT) - ฉบับซ่อมแซม Z-INDEX
+   1. STORYBOARD (FOLDER CONCEPT)
    ========================================= */
-
 .sectionStoryboard {
   position: relative;
   width: 100vw;
-  height: 100vh;
-  background: #d4d4d4; /* สีพื้นหลังเทาอ่อนตามเรฟ */
+  height: 100vh; /* ล็อกให้พอดี 1 หน้าจอ */
+  background: #e5e5e5; /* สีพื้นหลังเทาอ่อนตามเรฟ */
   color: #000;
   overflow: hidden;
   display: flex;
   align-items: center;
 }
 
+/* กลุ่มข้อความฝั่งซ้าย */
 .story-desc {
   position: absolute;
   left: 10vw;
@@ -70,20 +44,28 @@ body {
   transform: translateY(-50%);
   z-index: 10;
 }
+.sidebar-texts {
+  margin-bottom: 60px;
+}
+.sidebar-texts h2 {
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  margin-bottom: 5px;
+  color: #000;
+}
 .story-desc h3 { font-size: 16px; margin-bottom: 6px; }
 .story-desc .line { width: 100px; height: 1px; background: #000; opacity: 0.3; margin-bottom: 10px; }
 .story-desc p { font-size: 14px; color: #444; line-height: 1.6; }
 
-/* -------------------------------------
-   การจัดเรียงแฟ้ม (STACKING) - ซ่อมแซม z-index ให้กลับด้านตามเรฟ
-   ------------------------------------- */
+/* การจัดเรียงแฟ้ม (STACKING) ฝั่งขวา */
 .folder-stack-container {
   position: absolute;
-  right: 10vw; /* วางแฟ้มไว้ทางขวา */
+  right: 5vw;
   top: 50%;
   transform: translateY(-50%);
-  width: 60vw; /* ความกว้างของแฟ้ม */
-  height: 60vh;
+  width: 65vw; 
+  height: 70vh;
 }
 
 .folder-wrapper {
@@ -95,23 +77,17 @@ body {
   transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.4s ease;
 }
 
-/* 🚨 *** THE Z-INDEX REVERSAL FIX *** 🚨
-   ซ่อมการซ้อนทับ: เพื่อให้อ่านหัวแฟ้ม Nitto, Pramy, Laneige ออกทั้งหมด
-   เราต้องกลับด้าน z-index ครับ:
-   - แฟ้มที่อยู่ล่างสุดบนหน้าจอ (top: 90px) จะต้องอยู่บนสุดใน z-stack (z-index สูงสุด)
-*/
-
-#folder-laneige2 { z-index: 1; top: 0px; }  /* Welcome Back... - อยู่ล่างสุดของ z-stack */
-#folder-laneige1 { z-index: 2; top: 30px; }
-#folder-pramy { z-index: 3; top: 60px; }    /* Pramy... - ทับ Laneige */
-#folder-nitto { z-index: 4; top: 90px; }    /* Nitto... - อยู่บนสุดของ z-stack */
+/* 🚨 ซ่อม Z-INDEX ให้ซ้อนตามเรฟ (Nitto อยู่บนสุด) */
+#folder-nitto    { z-index: 4; top: 0px; }
+#folder-pramy    { z-index: 3; top: 40px; }
+#folder-laneige1 { z-index: 2; top: 80px; }
+#folder-laneige2 { z-index: 1; top: 120px; }
 
 .folder-tab-img {
   width: 100%;
   height: auto;
   display: block;
-  /* ใส่เงาบางๆ ให้ดูเป็นแผ่นๆ ซ้อนกัน */
-  filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1));
+  filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1)); /* เงาแฟ้ม */
 }
 
 /* เอฟเฟกต์เด้งตอนเอาเมาส์ชี้แฟ้ม */
@@ -119,31 +95,29 @@ body {
   transform: translateY(-15px);
 }
 
-/* เมื่อแฟ้มนี้ถูกคลิก (ดึงแฟ้มออกมา) */
+/* เมื่อแฟ้มนี้ถูกคลิกเปิด */
 .folder-wrapper.opened {
-  transform: translateY(-50px); /* ดึงขึ้นมาสูงกว่าปกติ */
-  opacity: 0; /* ทำให้โปร่งใสเพื่อโชว์เนื้อหาข้างใน */
-  pointer-events: none; /* คลิกซ้ำไม่ได้ */
+  transform: translateY(-50px);
+  opacity: 0;
+  pointer-events: none;
 }
 
-/* ทำให้แฟ้มอื่นๆ หายไปเมื่อมีแฟ้มใดแฟ้มหนึ่งถูกเปิด */
+/* ซ่อนแฟ้มอื่นตอนมีแฟ้มเปิดอยู่ */
 .folder-stack-container.has-opened-folder .folder-wrapper:not(.opened) {
   opacity: 0;
   pointer-events: none;
 }
 
-/* -------------------------------------
-   กล่องเนื้อหาข้างในแฟ้ม (INSIDE CONTENT)
-   ------------------------------------- */
+/* กล่องเนื้อหาข้างในแฟ้ม (INSIDE CONTENT) */
 .folder-contents-container {
   position: absolute;
-  right: 10vw;
+  right: 5vw;
   top: 50%;
   transform: translateY(-50%);
-  width: 60vw;
-  height: 60vh;
-  z-index: 20; /* ให้อยู่เหนือแฟ้มที่ปิดอยู่ */
-  pointer-events: none; /* ตอนแรกให้ทะลุการคลิกได้ */
+  width: 65vw;
+  height: 70vh;
+  z-index: 20;
+  pointer-events: none;
 }
 
 .folder-content {
@@ -152,42 +126,40 @@ body {
   left: 0;
   width: 100%;
   opacity: 0; /* ซ่อนไว้ก่อน */
-  transform: translateY(30px); /* เลื่อนลงมานิดนึงเพื่อเตรียมเด้งขึ้น */
+  transform: translateY(30px);
   transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
   display: flex;
 }
 
-/* เมื่อแฟ้มถูกเปิด */
 .folder-content.show {
   opacity: 1;
-  transform: translateY(0); /* เด้งเข้าที่ */
-  pointer-events: auto; /* รับการคลิกได้แล้ว */
+  transform: translateY(0);
+  pointer-events: auto;
+  cursor: pointer; /* ให้รู้ว่าคลิกเพื่อปิดได้ */
 }
 
 .inside-img {
   width: 100%;
   height: auto;
-  border-radius: 10px; /* ขอบมนนิดนึง */
+  border-radius: 10px;
   box-shadow: 0 20px 40px rgba(0,0,0,0.2);
 }
 
-/* รูปตัวอย่าง Storyboard (ex_tab.png) */
 .ex-tab-img {
   position: absolute;
-  left: -80px; /* วางไว้ทางซ้ายของเนื้อหาหลัก */
-  bottom: -40px; /* ห้อยลงมาข้างล่างนิดนึงตามเรฟ */
+  left: -80px;
+  bottom: -40px;
   width: 180px;
   border-radius: 5px;
   box-shadow: 0 10px 20px rgba(0,0,0,0.15);
   transition: transform 0.3s ease;
 }
-
 .ex-tab-img:hover {
-  transform: scale(1.1) rotate(-3deg); /* เอฟเฟกต์เฟี้ยวๆ ตอนชี้ที่ตัวอย่าง */
-  cursor: pointer;
+  transform: scale(1.1) rotate(-3deg);
 }
-  /* ===================== */
-/* PRODUCTION (FULL SCREEN 100VH) */
+
+/* ===================== */
+/* 2. PRODUCTION (ดำเต็มจอ) */
 /* ===================== */
 .production {
   position: relative;
@@ -210,6 +182,7 @@ body {
   z-index: 20;
 }
 .production-head h4 { font-size: 16px; border-bottom: 1px solid #fff; display: inline-block; padding-bottom: 5px; }
+.production-head p { font-size: 12px; color: #777; margin-top: 10px; }
 
 .production-footer {
   position: absolute;
@@ -224,39 +197,29 @@ body {
   font-size: 11px;
   color: #555;
 }
-/* ===================== */
-/* PRODUCTION ROW (แถวรูปภาพที่จัดกลาง) */
-/* ===================== */
+
 .production-row {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 15px; /* ระยะห่างปกติระหว่างรูป */
-  padding: 0; /* ลบ padding เดิมทิ้ง */
-  height: 400px; /* เผื่อความสูงไว้ให้รูปเวลาขยายร่าง */
+  gap: 15px;
+  height: 400px;
   z-index: 10;
   transition: all 0.5s ease;
 }
 
-/* ================= */
-/* HOVER EFFECT (ตามเรฟรูปที่ 2: image_5.png) */
-/* ================= */
-
-/* ทำให้ตัวอื่นมืดลงเมื่อมีการ Hover ในแถว */
 .production-row:hover .work {
   opacity: 0.3;
   filter: grayscale(100%);
 }
 
-/* สไตล์ตอนปกติของแต่ละโปรเจกต์ */
 .work {
   position: relative;
   display: block;
-  flex: 0 0 120px;       /* ความกว้างตอนปกติ */
-  height: 250px;         /* ความสูงตอนปกติ */
+  flex: 0 0 120px;
+  height: 250px;
   overflow: hidden;
   text-decoration: none;
-  /* นี่คือหัวใจสำคัญที่ทำให้ขยายสมูทเหมือนเว็บแอปเปิล */
   transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1); 
   cursor: pointer;
   background: #000;
@@ -265,125 +228,72 @@ body {
 .work img {
   width: 100%;
   height: 100%;
-  object-fit: cover;     /* ให้รูปไม่เบี้ยว */
+  object-fit: cover;
   transition: all 0.6s ease;
 }
 
-/* เมื่อ Hover ที่รูปนั้นๆ (เอฟเฟกต์ขยายร่าง) */
 .work:hover {
-  flex: 0 0 320px;       /* ขยายกว้างตามเรฟ */
-  height: 420px;         /* ขยายสูงให้เด่น */
-  opacity: 1 !important; /* ดึงความสว่างกลับมา ไม่มืดตามเพื่อน */
-  filter: grayscale(0) !important; /* ให้สีสดเหมือนเดิม */
+  flex: 0 0 320px;
+  height: 420px;
+  opacity: 1 !important;
+  filter: grayscale(0) !important;
   z-index: 10;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.6); /* เงาฟุ้ง ดูมีมิติ */
+  box-shadow: 0 20px 40px rgba(0,0,0,0.6);
 }
 
-/* สไตล์ของกรอบข้อความ (OVERLAY) - ที่ซ่อนไว้ตอนแรก */
 .overlay {
   position: absolute;
-  inset: 0; /* คลุมเต็มพื้นที่รูป */
-  background: rgba(255, 255, 255, 0.95); /* พื้นหลังขาวนวลแบบเรฟ */
-  color: #000; /* ตัวหนังสือสีดำ */
+  inset: 0;
+  background: rgba(255, 255, 255, 0.95);
+  color: #000;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
   padding: 20px;
-  opacity: 0; /* ซ่อนไว้ */
-  transition: opacity 0.4s ease 0.2s; /* ให้ค่อยๆ ปรากฏหลังจากขยาย */
+  opacity: 0;
+  transition: opacity 0.4s ease 0.2s;
 }
 
-/* ให้ข้อความโผล่ขึ้นมาตอน Hover */
-.work:hover .overlay {
-  opacity: 1;
-}
+.work:hover .overlay { opacity: 1; }
 
-/* ตกแต่ง Typography ข้างใน OVERLAY ให้ตรงเรฟ */
-.overlay h4 {
-  font-size: 24px;
-  margin-bottom: 5px;
-  font-weight: bold;
-}
+.overlay h4 { font-size: 24px; margin-bottom: 5px; font-weight: bold; }
+.overlay p { font-size: 16px; margin-bottom: 25px; color: #555; }
+.overlay span { font-size: 14px; letter-spacing: 1px; text-transform: uppercase; border-top: 1px solid #ddd; padding-top: 15px; display: inline-block; width: 85%; line-height: 1.6; }
 
-.overlay p {
-  font-size: 16px;
-  margin-bottom: 25px;
-  color: #555;
-}
-
-/* ส่วนของ Role (Director / Editor ฯลฯ) ที่ใช้แท็ก span */
-.overlay span {
-  font-size: 14px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  border-top: 1px solid #ddd; /* เส้นขีดคั่นแบบเรฟ */
-  padding-top: 15px;
-  display: inline-block;
-  width: 85%;
-  line-height: 1.6;
-}
 /* =========================================
-      photography
+   3. PHOTOGRAPHY & BIO
    ========================================= */
-
-.photography{
-  background:#e5e5e5;
-  color:#000;
-
-  width:100vw;
-  margin-left:calc(-50vw + 50%);
-  padding:120px 80px;
+.photography {
+  background: #e5e5e5;
+  color: #000;
+  width: 100vw;
+  padding: 120px 80px;
 }
 
-.photo-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:80px;
-  margin-top:80px;
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 80px;
+  margin-top: 80px;
 }
 
-.photo{
-  font-size:12px;
-}
+.photo { font-size: 12px; }
+.photo img { width: 100%; margin-top: 10px; }
 
-.photo img{
-  width:100%;
-  margin-top:10px;
-}
-
-/* ===================== */
-/* BIO */
-/* ===================== */
-
-.bio{
-  display:grid;
+.bio {
+  display: grid;
   grid-template-columns: 300px 1fr;
-  gap:100px;
+  gap: 100px;
+  background: #000;
+  color: #fff;
+  padding: 120px 80px;
 }
-
-.bio img{
-  width:100%;
-}
-
-.bio-content{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:80px;
-}
-
-.bio-content h4{
-  margin-bottom:10px;
-  border-bottom:1px solid #444;
-  padding-bottom:6px;
-}
-
-.bio-content p{
-  font-size:13px;
-  color:#aaa;
-  line-height:1.6;
-}
+.bio img { width: 100%; }
+.bio-content { display: grid; grid-template-columns: repeat(3, 1fr); gap: 80px; }
+.bio-content h4 { margin-bottom: 10px; border-bottom: 1px solid #444; padding-bottom: 6px; }
+.bio-content p { font-size: 13px; color: #aaa; line-height: 1.6; }
 
 </style>
 </head>
@@ -393,192 +303,154 @@ body {
 <section class="sectionStoryboard" id="storyboard">
   
   <div class="story-desc">
+    <div class="sidebar-texts">
+      <h2>CREATIVE WORK >></h2>
+      <h2>EXPERIENCE >></h2>
+    </div>
     <h3>Storyboard</h3>
     <div class="line"></div>
     <p>Pre-visualizing narrative structure<br>and shot composition for commercial films.</p>
   </div>
 
   <div class="folder-stack-container">
-    
     <div class="folder-wrapper" id="folder-nitto" data-target="inside-nitto">
       <img src="nitto_tab.png" class="folder-tab-img" alt="Nitto Tab">
     </div>
-
     <div class="folder-wrapper" id="folder-pramy" data-target="inside-pramy">
       <img src="pramy_tab.png" class="folder-tab-img" alt="Pramy Tab">
     </div>
-
     <div class="folder-wrapper" id="folder-laneige1" data-target="inside-laneige1">
       <img src="laneige1_tab.png" class="folder-tab-img" alt="Laneige 1 Tab">
     </div>
-
     <div class="folder-wrapper" id="folder-laneige2" data-target="inside-laneige2">
       <img src="laneige2_tab.png" class="folder-tab-img" alt="Laneige 2 Tab">
     </div>
-
   </div>
 
   <div class="folder-contents-container">
-    
     <div class="folder-content" id="inside-nitto">
       <img src="inside_nitto.png" class="inside-img" alt="Inside Nitto">
       <img src="ex_tab.png" class="ex-tab-img" alt="Storyboard Example">
     </div>
-
     <div class="folder-content" id="inside-pramy">
       <img src="inside_pramy.png" class="inside-img" alt="Inside Pramy">
       <img src="ex_tab.png" class="ex-tab-img" alt="Storyboard Example">
     </div>
-
     <div class="folder-content" id="inside-laneige1">
       <img src="inside_laneige1.png" class="inside-img" alt="Inside Laneige 1">
       <img src="ex_tab.png" class="ex-tab-img" alt="Storyboard Example">
     </div>
-
     <div class="folder-content" id="inside-laneige2">
       <img src="inside_laneige2.png" class="inside-img" alt="Inside Laneige 2">
       <img src="ex_tab.png" class="ex-tab-img" alt="Storyboard Example">
     </div>
-
   </div>
 
 </section>
-  <!-- PRODUCTION -->
-  <section class="section production">
 
+<section class="production">
   <div class="production-head">
-    <div></div>
-    <div class="prod-text">
-      <h4>Production</h4>
-      <p>Collaborating across different roles<br>
-      in visual storytelling and production</p>
-    </div>
+    <h4>Production</h4>
+    <p>Collaborating across different roles<br>in visual storytelling and production</p>
   </div>
     
-<div class="production-row">
-
-  <a href="https://youtube.com" target="_blank" class="work">
-    <img src="production_01.jpg">
-    <div class="overlay">
-      <h4>fluffypak - ได้ไหม</h4>
-      <p>Unoffical MV</p>
-      <span>Director / Editor / Art Director</span>
-    </div>
-  </a>
-
-  <a href="https://youtube.com" target="_blank" class="work">
-    <img src="production_02.jpg">
-    <div class="overlay">
-      <h4>That's How It Happened</h4>
-      <p>live session of Golf Hair Salon</p>
-      <span>Editor / Color Grading</span>
-    </div>
-  </a>
-  
-  <a href="https://youtube.com" target="_blank" class="work">
-    <img src="production_03.jpg">
-    <div class="overlay">
-      <h4>Pigsy (ตือโป๊ยก่ายพ่ายรัก )</h4>
-      <p>Golf Hair Salon</p>
-      <span>Director / Cinematography / Editing</span>
-    </div>
-  </a>
-
+  <div class="production-row">
     <a href="https://youtube.com" target="_blank" class="work">
-    <img src="production_04.jpg">
-    <div class="overlay">
-      <h4>THokori no Oka</h4>
-      <p>offical MV</p>
-      <span>Art Director team</span>
-    </div>
-  </a>
-
+      <img src="production_01.jpg">
+      <div class="overlay">
+        <h4>fluffypak - ได้ไหม</h4>
+        <p>Unoffical MV</p>
+        <span>Director / Editor / Art Director</span>
+      </div>
+    </a>
     <a href="https://youtube.com" target="_blank" class="work">
-    <img src="production_05.jpg">
-    <div class="overlay">
-      <h4>ThepChoice</h4>
-      <p>Advertisement</p>
-      <span>Director / Editing</span>
-    </div>
-  </a>
-
+      <img src="production_02.jpg">
+      <div class="overlay">
+        <h4>That's How It Happened</h4>
+        <p>live session of Golf Hair Salon</p>
+        <span>Editor / Color Grading</span>
+      </div>
+    </a>
     <a href="https://youtube.com" target="_blank" class="work">
-    <img src="production_06.jpg">
-    <div class="overlay">
-      <h4>อิเซไก</h4>
-      <p>Short film</p>
-      <span>Art Director / Prop Master</span>
-    </div>
-  </a>
-
+      <img src="production_03.jpg">
+      <div class="overlay">
+        <h4>Pigsy (ตือโป๊ยก่ายพ่ายรัก)</h4>
+        <p>Golf Hair Salon</p>
+        <span>Director / Cinematography / Editing</span>
+      </div>
+    </a>
     <a href="https://youtube.com" target="_blank" class="work">
-    <img src="production_07.jpg">
-    <div class="overlay">
-      <h4>Letter from Congo (2025)</h4>
-      <p>Experimental Flim</p>
-      <span>DOP / camera operator / PM / Color Grading</span>
-    </div>
-  </a>
-
-  
-  <!-- เพิ่มต่อได้เรื่อยๆ -->
-
-</div>
+      <img src="production_04.jpg">
+      <div class="overlay">
+        <h4>THokori no Oka</h4>
+        <p>offical MV</p>
+        <span>Art Director team</span>
+      </div>
+    </a>
+    <a href="https://youtube.com" target="_blank" class="work">
+      <img src="production_05.jpg">
+      <div class="overlay">
+        <h4>ThepChoice</h4>
+        <p>Advertisement</p>
+        <span>Director / Editing</span>
+      </div>
+    </a>
+    <a href="https://youtube.com" target="_blank" class="work">
+      <img src="production_06.jpg">
+      <div class="overlay">
+        <h4>อิเซไก</h4>
+        <p>Short film</p>
+        <span>Art Director / Prop Master</span>
+      </div>
+    </a>
+    <a href="https://youtube.com" target="_blank" class="work">
+      <img src="production_07.jpg">
+      <div class="overlay">
+        <h4>Letter from Congo (2025)</h4>
+        <p>Experimental Flim</p>
+        <span>DOP / camera operator / PM / Color Grading</span>
+      </div>
+    </a>
+  </div>
     
-<div class="production-footer">
+  <div class="production-footer">
     <div>SELECTED WORKS</div>
     <div>FILM & VISUAL PRODUCTION</div>
     <div>2022–2025<br>COLLABORATIVE PROJECTS</div>
   </div>
-  </section>
+</section>
 
-  <!-- PHOTOGRAPHY -->
-  <section class="section photography">
+<section class="section photography">
+  <h3>Photography</h3>
+  <div class="photo-grid">
+    <div class="photo">(1)<img src="https://picsum.photos/300?1"></div>
+    <div class="photo">(2)<img src="https://picsum.photos/300?2"></div>
+    <div class="photo">(3)<img src="https://picsum.photos/300?3"></div>
+    <div class="photo">(4)<img src="https://picsum.photos/300?4"></div>
+    <div class="photo">(5)<img src="https://picsum.photos/300?5"></div>
+    <div class="photo">(6)<img src="https://picsum.photos/300?6"></div>
+  </div>
+</section>
 
-    <h3>Photography</h3>
-
-    <div class="photo-grid">
-
-      <div class="photo">(1)<img src="https://picsum.photos/300?1"></div>
-      <div class="photo">(2)<img src="https://picsum.photos/300?2"></div>
-      <div class="photo">(3)<img src="https://picsum.photos/300?3"></div>
-      <div class="photo">(4)<img src="https://picsum.photos/300?4"></div>
-      <div class="photo">(5)<img src="https://picsum.photos/300?5"></div>
-      <div class="photo">(6)<img src="https://picsum.photos/300?6"></div>
-
+<section class="section bio">
+  <img src="https://picsum.photos/400/500">
+  <div class="bio-content">
+    <div>
+      <h4>Biography</h4>
+      <p>Visual storytelling through still images</p>
     </div>
-
-  </section>
-
-  <!-- BIO -->
-  <section class="section bio">
-
-    <img src="https://picsum.photos/400/500">
-
-    <div class="bio-content">
-
-      <div>
-        <h4>Biography</h4>
-        <p>Visual storytelling through still images</p>
-      </div>
-
-      <div>
-        <h4>Biography</h4>
-        <p>Visual storytelling through still images Visual storytelling through still images</p>
-      </div>
-
-      <div>
-        <h4>Biography</h4>
-        <p>Visual storytelling through still images</p>
-      </div>
-
+    <div>
+      <h4>Biography</h4>
+      <p>Visual storytelling through still images Visual storytelling through still images</p>
     </div>
+    <div>
+      <h4>Biography</h4>
+      <p>Visual storytelling through still images</p>
+    </div>
+  </div>
+</section>
 
-  </section>
-
-</div>
-
-  <script>
+<script>
   document.addEventListener("DOMContentLoaded", function() {
     const folders = document.querySelectorAll('.folder-wrapper');
     const contents = document.querySelectorAll('.folder-content');
@@ -604,10 +476,8 @@ body {
     // ฟังก์ชันสำหรับปิดแฟ้ม (คลิกที่เนื้อหาเพื่อย่อกลับไปเป็นแฟ้มเหมือนเดิม)
     contents.forEach(content => {
       content.addEventListener('click', function() {
-        
         // 1. ซ่อนเนื้อหา
         this.classList.remove('show');
-
         // 2. เอาแฟ้มกลับมาโชว์เหมือนเดิม
         stackContainer.classList.remove('has-opened-folder');
         folders.forEach(f => f.classList.remove('opened'));

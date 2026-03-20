@@ -13,13 +13,13 @@
   box-sizing:border-box;
 }
 
-body{
-  background:#000;
-  color:#fff;
+body {
+  background: #000;
+  color: #fff;
   font-family: Helvetica, Arial, sans-serif;
   position: relative;
   height: 100vh;
-  padding-top: 80px; /* ปรับตามความสูง header จริง */
+  /* padding-top: 80px;  <-- *** ลบหรือคอมเมนต์บรรทัดนี้ทิ้งเพื่อเอาแถบดำข้างบนออก *** */
 }
 
 /* LEFT FIXED */
@@ -49,7 +49,7 @@ body{
 }
 
 /* =========================================
-   CSS: STORYBOARD (FOLDER CONCEPT)
+   CSS: STORYBOARD (FOLDER CONCEPT) - ฉบับซ่อมแซม Z-INDEX
    ========================================= */
 
 .sectionStoryboard {
@@ -75,7 +75,7 @@ body{
 .story-desc p { font-size: 14px; color: #444; line-height: 1.6; }
 
 /* -------------------------------------
-   การจัดเรียงแฟ้ม (STACKING)
+   การจัดเรียงแฟ้ม (STACKING) - ซ่อมแซม z-index ให้กลับด้านตามเรฟ
    ------------------------------------- */
 .folder-stack-container {
   position: absolute;
@@ -95,11 +95,16 @@ body{
   transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.4s ease;
 }
 
-/* ล็อกตำแหน่งซ้อนกันแบบขั้นบันได (Offset) */
-#folder-laneige2 { z-index: 4; top: 0px; }
-#folder-laneige1 { z-index: 3; top: 30px; }
-#folder-pramy { z-index: 2; top: 60px; }
-#folder-nitto { z-index: 1; top: 90px; }
+/* 🚨 *** THE Z-INDEX REVERSAL FIX *** 🚨
+   ซ่อมการซ้อนทับ: เพื่อให้อ่านหัวแฟ้ม Nitto, Pramy, Laneige ออกทั้งหมด
+   เราต้องกลับด้าน z-index ครับ:
+   - แฟ้มที่อยู่ล่างสุดบนหน้าจอ (top: 90px) จะต้องอยู่บนสุดใน z-stack (z-index สูงสุด)
+*/
+
+#folder-laneige2 { z-index: 1; top: 0px; }  /* Welcome Back... - อยู่ล่างสุดของ z-stack */
+#folder-laneige1 { z-index: 2; top: 30px; }
+#folder-pramy { z-index: 3; top: 60px; }    /* Pramy... - ทับ Laneige */
+#folder-nitto { z-index: 4; top: 90px; }    /* Nitto... - อยู่บนสุดของ z-stack */
 
 .folder-tab-img {
   width: 100%;

@@ -25,7 +25,6 @@ body {
 /* =========================================
    CSS: STORYBOARD (CLEAN & PERFECT LAYERS)
    ========================================= */
-/* 🚨 แก้ไขชื่อ Class ตรงนี้ให้ตรงกับ HTML แล้วครับ 🚨 */
 .sectionStoryboard {
   position: relative;
   width: 100vw;
@@ -74,6 +73,12 @@ body {
 .folder-img:hover {
   transform: translateY(-15px); 
 }
+
+/* 🚨 ซ้อนเลเยอร์แฟ้มให้ถูกต้องตามเรฟ 🚨 */
+#tab-nitto    { z-index: 1; top: 0px; }
+#tab-pramy    { z-index: 2; top: 40px; }
+#tab-laneige1 { z-index: 3; top: 80px; }
+#tab-laneige2 { z-index: 4; top: 120px; }
 
 /* -------------------------------------
    รูปเนื้อหาด้านใน (inside_...jpg)
@@ -250,8 +255,6 @@ body {
 <section class="sectionStoryboard" id="storyboard">
   
   <div class="left-titles">
-    <h5>CREATIVE WORK &gt;&gt;</h5>
-    <h5>EXPERIENCE &gt;&gt;</h5>
     <h3>Storyboard</h3>
     <div class="line"></div>
     <p>Pre-visualizing narrative structure<br>and shot composition for commercial films.</p>

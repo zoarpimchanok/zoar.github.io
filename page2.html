@@ -181,6 +181,44 @@ body{
   transform: scale(1.1) rotate(-3deg); /* เอฟเฟกต์เฟี้ยวๆ ตอนชี้ที่ตัวอย่าง */
   cursor: pointer;
 }
+  /* ===================== */
+/* PRODUCTION (FULL SCREEN 100VH) */
+/* ===================== */
+.production {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background: #000;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.production-head {
+  position: absolute;
+  top: 80px;
+  right: 80px;
+  text-align: right;
+  z-index: 20;
+}
+.production-head h4 { font-size: 16px; border-bottom: 1px solid #fff; display: inline-block; padding-bottom: 5px; }
+
+.production-footer {
+  position: absolute;
+  bottom: 40px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 80px;
+  z-index: 20;
+  box-sizing: border-box;
+  font-size: 11px;
+  color: #555;
+}
 /* ===================== */
 /* PRODUCTION ROW (แถวรูปภาพที่จัดกลาง) */
 /* ===================== */
@@ -534,31 +572,7 @@ body{
   </section>
 
 </div>
-  
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-    // เลือกรูปทั้งหมดใน Storyboard
-    const items = document.querySelectorAll('.story-item');
-    
-    // ตั้งค่าเซ็นเซอร์จับการเลื่อนจอ
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        // ถ้ารูปเลื่อนเข้ามาในจอเกิน 30% ให้เพิ่มคลาส in-view
-        if (entry.isIntersecting) {
-          entry.target.classList.add('in-view');
-        } else {
-          // ถ้าเลื่อนผ่านไปแล้ว ให้กลับไปดาร์กเหมือนเดิม (เอาออกได้ถ้าอยากให้สว่างค้างไว้)
-          entry.target.classList.remove('in-view'); 
-        }
-      });
-    }, { threshold: 0.3 }); 
 
-    // สั่งให้เซ็นเซอร์เริ่มทำงานกับทุกรูป
-    items.forEach(item => {
-      observer.observe(item);
-    });
-  });
-</script>
   <script>
   document.addEventListener("DOMContentLoaded", function() {
     const folders = document.querySelectorAll('.folder-wrapper');

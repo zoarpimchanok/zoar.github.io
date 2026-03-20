@@ -19,7 +19,7 @@ body{
   font-family: Helvetica, Arial, sans-serif;
   position: relative;
   height: 100vh;
-      padding-top: 80px; /* ปรับตามความสูง header จริง */
+  padding-top: 80px; /* ปรับตามความสูง header จริง */
 }
 
 /* LEFT FIXED */
@@ -203,22 +203,27 @@ body{
 /* ===================== */
 /* PRODUCTION */
 /* ===================== */
-  .production{
+.production{
   overflow:hidden;
   margin-top:160px;
 
   width:100vw;
   margin-left:calc(-50vw + 50%);
 
-  padding:120px 0; /* ❗ เอา 80px ซ้ายขวาออก */
+  padding:120px 0;
 }
+
+/* ❗ แก้ตรงนี้ */
 .production-row{
   display:flex;
   gap:20px;
-  width:100vw;            /* ❗ เต็มหน้าจอ */
-  margin-left:calc(-50vw + 50%); /* ❗ ดึงให้สุดซ้าย */
-  padding:0 60px;         /* เผื่อ margin ซ้ายขวาแบบเรฟ */
-  overflow:visible;
+  padding:0;
+
+  /* ❌ ลบ 2 ตัวนี้ออก */
+  /* width:100vw; */
+  /* margin-left:calc(-50vw + 50%); */
+
+  padding:0 60px; /* ใช้ตัวนี้คุมระยะพอ */
 }
 
 .work{

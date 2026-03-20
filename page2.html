@@ -356,89 +356,33 @@ body {
 
 <body>
 
-<section class="sectionStoryboard" id="storyboard">
+<section class="clean-storyboard" id="storyboard">
   
-  <div class="storyboard-master-layout">
-    
-    <div class="story-left-group">
-      
-      <div class="sidebar-texts">
-        <h2>CREATIVE WORK >></h2>
-        <h2>EXPERIENCE >></h2>
-      </div>
+  <div class="left-titles">
+    <h5>CREATIVE WORK &gt;&gt;</h5>
+    <h5>EXPERIENCE &gt;&gt;</h5>
+    <h3>Storyboard</h3>
+    <div class="line"></div>
+    <p>Pre-visualizing narrative structure<br>and shot composition for commercial films.</p>
+  </div>
 
-      <div class="main-desc">
-        <h3>Storyboard</h3>
-        <div class="line"></div>
-        <p>Pre-visualizing narrative structure<br>and shot composition for commercial films.</p>
-      </div>
-      
-      <div class="folder-tabs-container">
-        <button class="folder-tab active" data-tab="tab-all">(All)</button>
-        <button class="folder-tab" data-tab="tab-laneige">(1) Laneige</button>
-        <button class="folder-tab" data-tab="tab-pramycat">(2) Pramycat</button>
-        <button class="folder-tab" data-tab="tab-nittotire">(3) Nitto Tire</button>
-        <button class="folder-tab" data-tab="tab-mission">(4) New Mission</button>
-      </div>
+  <div class="folders-wrap" id="folders-wrap">
+    <img src="nitto_tab.png" class="folder-img" style="z-index: 4; top: 0;" onclick="openFolder('in-nitto')">
+    <img src="pramy_tab.png" class="folder-img" style="z-index: 3; top: 40px;" onclick="openFolder('in-pramy')">
+    <img src="laneige1_tab.png" class="folder-img" style="z-index: 2; top: 80px;" onclick="openFolder('in-laneige1')">
+    <img src="laneige2_tab.png" class="folder-img" style="z-index: 1; top: 120px;" onclick="openFolder('in-laneige2')">
+  </div>
 
-    </div>
+  <div class="inside-wrap" id="inside-wrap">
+    <img src="inside_nitto.jpg" class="inside-content-img" id="in-nitto" onclick="closeFolder()">
+    <img src="inside_pramy.jpg" class="inside-content-img" id="in-pramy" onclick="closeFolder()">
+    <img src="inside_laneige1.jpg" class="inside-content-img" id="in-laneige1" onclick="closeFolder()">
+    <img src="inside_laneige2.jpg" class="inside-content-img" id="in-laneige2" onclick="closeFolder()">
 
-    <div class="content-panes-container">
-      
-      <div class="content-pane active" id="tab-all">
-        <div class="all-content-wrapper">
-          </div>
-      </div>
+    <img src="ex_tab.png" class="ex-tab-floating" id="ex-tab" onclick="closeFolder()">
+  </div>
 
-      <div class="content-pane" id="tab-laneige">
-        <div class="exploded-item pos-laneige">
-          <img src="drawing_Page 8.png" alt="Laneige Grids"> <div class="board-caption">
-             <span class="year">2024</span><br><br>
-             <strong>Welcome Back "LANEIGE's Housemate"</strong><br>
-             กลับมาครั้งนี้เจอแต่ความเซอร์ไพรส์<br>
-             เมื่อเพื่อนๆเปลี่ยนไป ไม่สดใสอย่างที่เคย<br>
-             อะไรจะมาช่วยคืนความชุ่มชื้น
-          </div>
-        </div>
-      </div>
-
-      <div class="content-pane" id="tab-pramycat">
-        <div class="exploded-item pos-pramycat">
-          <img src="drawing_Page 9.png" alt="Pramycat Grids"> <div class="board-caption">
-             <span class="year">2023</span><br><br>
-             <strong>Pramycat x Jeff Satur [Full Song Video]</strong><br>
-             Producer, Composer, Lyrics [Jeff Satur]
-          </div>
-        </div>
-      </div>
-
-      <div class="content-pane" id="tab-nittotire">
-        <div class="exploded-item pos-nittotire">
-          <img src="drawing_Page 10.png" alt="Nitto Tire Grids"> <div class="board-caption">
-            <span class="year">2023</span><br><br>
-            <strong>NittoTireThailand</strong><br>
-            ทำเป็นเซียนเหมือนเรียนมา แบบนี้ต้องให้<br>
-            เซียนตัวจริงเขาสั่งสอน จะซื้อยางทั้งที<br>
-            ต้องเลือกยางคุณภาพดีที่เหล่าเซียน<br>
-            เขาแนะนำ จำชื่อให้แม่นต้อง "นิตโตะ" เท่านั้น<br>
-            "นิตโตะ" สุดในรุ่น เนื้อดี พิมพ์นิยม
-          </div>
-        </div>
-      </div>
-
-      <div class="content-pane" id="tab-mission">
-        <div class="exploded-item pos-mission">
-          <img src="drawing_Page 11.png" alt="Mission Grids">
-          <div class="board-caption text-right">
-             <span class="year">2024</span><br><br>
-             <strong>NEW MISSION Alert !</strong><br>
-             Let's explore the<br>
-             LANEIGE planet.
-          </div>
-        </div>
-      </div>
-
-    </div></div></section>
+</section>
 
 <section class="production">
   <div class="production-head">
@@ -543,39 +487,24 @@ body {
 </section>
 
 <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    const folders = document.querySelectorAll('.folder-wrapper');
-    const contents = document.querySelectorAll('.folder-content');
-    const stackContainer = document.querySelector('.folder-stack-container');
+  function openFolder(targetId) {
+    // 1. ซ่อนกองแฟ้ม
+    document.getElementById('folders-wrap').classList.add('folders-hidden');
+    // 2. เคลียร์รูปด้านในที่อาจจะเปิดค้างไว้ออกก่อน
+    document.querySelectorAll('.inside-content-img').forEach(img => img.classList.remove('active'));
+    // 3. โชว์รูปเนื้อหาที่เราเลือก
+    document.getElementById(targetId).classList.add('active');
+    // 4. โชว์รูปตัวอย่างกระดาษเล็กๆ
+    document.getElementById('ex-tab').classList.add('active');
+  }
 
-    // ฟังก์ชันสำหรับเปิดแฟ้ม
-    folders.forEach(folder => {
-      folder.addEventListener('click', function() {
-        const targetId = this.getAttribute('data-target');
-        const targetContent = document.getElementById(targetId);
-
-        // 1. ซ่อนแฟ้มอื่นๆ ทั้งหมด
-        stackContainer.classList.add('has-opened-folder');
-        this.classList.add('opened');
-
-        // 2. โชว์เนื้อหาข้างในแฟ้มที่เลือก
-        if(targetContent) {
-          targetContent.classList.add('show');
-        }
-      });
-    });
-
-    // ฟังก์ชันสำหรับปิดแฟ้ม (คลิกที่เนื้อหาเพื่อย่อกลับไปเป็นแฟ้มเหมือนเดิม)
-    contents.forEach(content => {
-      content.addEventListener('click', function() {
-        // 1. ซ่อนเนื้อหา
-        this.classList.remove('show');
-        // 2. เอาแฟ้มกลับมาโชว์เหมือนเดิม
-        stackContainer.classList.remove('has-opened-folder');
-        folders.forEach(f => f.classList.remove('opened'));
-      });
-    });
-  });
+  function closeFolder() {
+    // 1. ซ่อนรูปเนื้อหาทั้งหมด
+    document.querySelectorAll('.inside-content-img').forEach(img => img.classList.remove('active'));
+    document.getElementById('ex-tab').classList.remove('active');
+    // 2. โชว์กองแฟ้มกลับมา
+    document.getElementById('folders-wrap').classList.remove('folders-hidden');
+  }
 </script>
 </body>
 </html>

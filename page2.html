@@ -49,214 +49,104 @@ body{
 }
 
 /* =========================================
-   SECTION: STORYBOARD REFINED (แก้ไขการซ้อนกัน)
+   CSS: STORYBOARD FIXED (Viewport Scale)
    ========================================= */
 
-.storyboard-refined {
-  position: relative;
-  width: 100%; /* จะใช้ความกว้างของคอนเทนเนอร์หลัก เช่น .main */
-  min-height: 120vh; /* ให้พื้นที่สูงหน่อย รูปจะได้กระจายสวยๆ */
-  background: #000;
-  overflow: hidden;
-  color: #fff;
-  font-family: Helvetica, Arial, sans-serif;
-}
-
-/* คอนเทนเนอร์กลุ่มรูปภาพ (ต้องเป็น relative เสมอ) */
-.story-container {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-
-/* --------------------------- */
-/* ITEM STYLING (ลูกเล่นอาร์ตๆ monochrome) */
-/* --------------------------- */
-.story-item {
-  position: absolute; /* จำเป็นสำหรับการจัดวางแบบกระจาย */
-  filter: grayscale(100%) opacity(0.5); /* ดาร์กๆ กลืนไปกับพื้นหลัง */
-  transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-  cursor: pointer;
-  z-index: 5; /* ให้อยู่เหนือพื้นหลัง */
-}
-
-.story-item img {
-  width: 100%;
-  display: block;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-}
-
-/* กล่องข้อความ Caption (ซ่อนไว้ก่อน) */
-.story-caption {
-  position: absolute;
-  opacity: 0; /* ซ่อนไว้ */
-  transform: translateY(10px);
-  transition: all 0.5s ease 0.1s; /* ให้หน่วงนิดนึงเวลาโผล่ */
-  color: #fff;
-  font-size: 13px;
-  line-height: 1.6;
-  width: 320px; /* ความกว้างกล่องข้อความตามที่คุณขอ */
-  pointer-events: none;
-}
-
-/* =========================================
-   HOVER EFFECTS (โหมด Desktop เท่านั้น)
-   ========================================= */
-.story-item:hover {
-  filter: grayscale(0%) opacity(1); /* สว่างวาบเป็นสีจริง */
-  transform: scale(1.03) translateY(-10px); /* ขยายร่างนิดๆ ดันขึ้นนิดนึง */
-  z-index: 50; /* ดึงขึ้นมาอยู่หน้าสุด */
-}
-
-/* แสดงข้อความเมื่อเอาเมาส์ชี้ */
-.story-item:hover .story-caption {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* =========================================
-   --- THE POSITIONING FIX ---
-   ล็อกตำแหน่งรูปและ Text แบบกระจายตัวตามเรฟ
-   ========================================= */
-
-/* 1. LANEIGE (Big Right) */
-.pos-1 {
-  width: 38%; /* ใช้ความกว้างเดิมของคุณ */
-  right: 8%;  /* วางทางขวา */
-  top: 35%;   /* วางลงมาจากข้างบนหน่อย */
-}
-/* Caption อยู่ทางซ้ายของรูป */
-.pos-1 .story-caption {
-  right: 110%; /* ดันข้อความไปทางซ้ายของรูปหลัก */
-  top: 20px;
-  text-align: right;
-}
-
-/* 2. PRAMYCAT (Top Center) */
-.pos-2 {
-  width: 25%;
-  left: 55%;  
-  top: 5%;    /* เกาะขอบบนตามเรฟ */
-  transform: translateX(-50%); /* จัดให้ตรงกลางเป๊ะๆ */
-}
-/* Caption อยู่ข้างล่างรูปกลาง */
-.pos-2 .story-caption {
-  left: 50%;
-  top: 110%; /* ดันลงมาข้างล่าง */
-  transform: translateX(-50%) translateY(10px); /* ค่าเริ่มต้นตอนซ่อน */
-  text-align: center;
-}
-.story-item.pos-2:hover .story-caption {
-   transform: translateX(-50%) translateY(0); /* ค่าตอนแสดงผล */
-}
-
-/* 3. NITTO TIRE (Left) */
-.pos-3 {
-  width: 18%;
-  left: 5%;   /* เกาะขอบซ้ายตามเรฟ */
-  top: 55%;   /* วางอยู่ช่วงกลางหน้าจอ */
-}
-/* Caption อยู่ทางขวาของรูป */
-.pos-3 .story-caption {
-  left: 110%; /* ดันข้อความไปทางขวา */
-  top: 20px;
-  text-align: left;
-}
-
-/* 4. MISSION (Small Bottom) */
-.pos-4 {
-  width: 13%; /* ใหญ่กว่าเดิมนิดนึงให้อ่านง่าย */
-  left: 35%;  
-  bottom: 10%; /* วางอยู่ช่วงล่างของหน้าจอ */
-}
-/* Caption อยู่ข้างบนรูป */
-.pos-4 .story-caption {
-  left: 50%;
-  bottom: 110%; /* ดันขึ้นไปข้างบน */
-  transform: translateX(-50%) translateY(-10px); /* ค่าเริ่มต้นตอนซ่อน */
-  text-align: center;
-}
-.story-item.pos-4:hover .story-caption {
-   transform: translateX(-50%) translateY(0); /* ค่าตอนแสดงผล */
-}
-
-/* =========================================
-   RESPONSIVE (IPAD & MOBILE) FIX
-   จับเรียงแถวตอนลึก ให้รอดตายบนจอมือถือ
-   ========================================= */
-@media (max-width: 1024px) {
-  .storyboard-refined {
-    min-height: auto;
-    padding: 100px 30px; /* เพิ่มพื้นที่หายใจ */
-    overflow-y: auto;
-  }
-  .story-container {
-    display: flex;
-    flex-direction: column; /* จับเรียงแถวตอนลึก */
-    gap: 60px; /* ระยะห่างระหว่างรูป */
-  }
-  .story-item {
-    position: relative; /* ยกเลิกการ absolute กระจัดกระจาย */
-    width: 100% !important; /* เต็มหน้าจอมือถือ */
-    top: auto !important; right: auto !important; left: auto !important; bottom: auto !important;
-    transform: none !important; /* ลบ transform จัดกลาง */
-    filter: grayscale(0%) opacity(1); /* เปิดสีเต็มที่ตลอดเวลาบนมือถือ */
-  }
-  .story-caption {
-    position: relative;
-    opacity: 1; /* แสดงข้อความตลอดเวลาบนมือถือ */
-    transform: none !important;
-    width: 100%;
-    top: auto !important; right: auto !important; left: auto !important; bottom: auto !important;
-    text-align: left !important;
-    margin-top: 20px;
-    color: #ccc; /* ปรับสีตัวอักษรให้อ่อนลงนิดนึง */
-  }
-}
-/* =========================================
-   SECTION: PRODUCTION (FULL SCREEN 100VH) - ซ่อม layout
-   ========================================= */
-
-.production {
+.storyboard-fixed {
   position: relative;
   width: 100vw;
-  height: 100vh; /* บังคับให้สูงเต็ม 1 หน้าจอเป๊ะๆ */
-  background: #000; /* ดำสนิท */
-  margin: 0;
-  padding: 0;
-  display: flex;
-  align-items: center; /* จัดให้แถวรูปภาพ (.production-row) อยู่กึ่งกลางแนวตั้ง */
-  justify-content: center; /* จัดให้แถวรูปภาพ (.production-row) อยู่กึ่งกลางแนวนอน */
-  overflow: hidden; /* กันสิ่งที่ล้นออก */
+  height: 120vh; /* เผื่อพื้นที่ให้วางกระจายได้สวยๆ */
+  background: #000;
+  color: #fff;
+  overflow: hidden; /* ล็อกไว้ไม่ให้มีอะไรทะลุจอ */
 }
 
-/* เอาข้อความ Header ไปแปะติดมุมขวาบน (ตามเรฟ) */
-.production-head {
+/* ข้อความ Storyboard หลัก */
+.story-header {
   position: absolute;
-  top: 80px; /* ระยะห่างจากขอบจอด้านบน */
-  right: 80px; /* ระยะห่างจากขอบจอด้านขวา */
-  text-align: right;
-  z-index: 20; /* ให้อยู่บนสุดเสมอ */
+  left: 15vw;
+  top: 25vh;
+  max-width: 250px;
+  z-index: 10;
 }
-.production-head h4 { font-size: 16px; border-bottom: 1px solid #fff; display: inline-block; padding-bottom: 5px; }
+.story-header h3 { font-size: 16px; margin-bottom: 6px; }
+.story-header .line { width: 100px; height: 1px; background: #fff; opacity: 0.5; margin-bottom: 10px; }
+.story-header p { font-size: 14px; color: #aaa; line-height: 1.6; }
 
-/* เอาข้อความ Footer ไปแปะติดขอบจอด้านล่าง (ตามเรฟ) */
-.production-footer {
+/* -------------------------------------
+   ตั้งค่าเริ่มต้นให้รูปภาพและข้อความ
+   ------------------------------------- */
+.board-item {
   position: absolute;
-  bottom: 40px; /* ระยะห่างจากขอบจอด้านล่าง */
-  left: 0;
+  z-index: 5;
+}
+.board-item img {
   width: 100%;
-  display: flex;
-  justify-content: space-between;
-  padding: 0 80px; /* เว้นซ้าย-ขวา ให้ตรงกับ Header */
-  z-index: 20;
-  box-sizing: border-box; /* ป้องกันไม่ให้ทะลุจอ */
-  font-size: 11px;
-  color: #555;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+  height: auto;
+  display: block;
+  filter: grayscale(0.7); /* ทำสีดรอปลงนิดนึงให้อาร์ตๆ */
+  transition: 0.4s ease;
 }
+.board-item:hover img {
+  filter: grayscale(0); /* เอาเมาส์ชี้แล้วสีสด */
+  transform: scale(1.03); /* ขยายขึ้นนิดนึงแบบพองาม */
+  box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+}
+.board-item:hover { z-index: 20; } /* ดันขึ้นมาหน้าสุดตอนชี้ */
 
+.board-caption {
+  position: absolute;
+  width: 320px;
+  font-size: 13px;
+  color: #ccc;
+  line-height: 1.6;
+}
+.board-caption .year { color: #888; }
+.text-right { text-align: right; }
+
+/* -------------------------------------
+   จัดตำแหน่งแต่ละรูป (ใช้ VW / VH ล็อกสัดส่วน)
+   ------------------------------------- */
+
+/* 1. Pramycat (บน) */
+.pramycat { width: 22vw; right: 25vw; top: 10vh; }
+.pramycat .board-caption { right: -300px; top: 30%; text-align: left; }
+
+/* 2. Nitto (ซ้ายกลาง) */
+.nitto { width: 18vw; left: 5vw; top: 55vh; }
+.nitto .board-caption { left: 110%; top: 20px; text-align: left; }
+
+/* 3. Laneige (ขวาล่าง รูปใหญ่สุด) */
+.laneige { width: 35vw; right: 8vw; bottom: 8vh; }
+.laneige .board-caption { right: 110%; bottom: 20px; }
+
+/* 4. Mission (ล่างซ้ายกึ่งกลาง) */
+.mission { width: 15vw; left: 35vw; bottom: 8vh; }
+.mission .board-caption { right: 110%; bottom: 0; text-align: right; }
+
+/* -------------------------------------
+   โหมดมือถือ / หน้าจอเล็ก (เรียงแถวลงมาสวยๆ)
+   ------------------------------------- */
+@media (max-width: 1024px) {
+  .storyboard-fixed { height: auto; padding: 120px 40px; overflow-y: auto; }
+  .story-header { position: relative; left: 0; top: 0; margin-bottom: 60px; }
+  
+  .board-item { 
+    position: relative; 
+    width: 100% !important; 
+    left: auto !important; right: auto !important; top: auto !important; bottom: auto !important; 
+    margin-bottom: 60px; 
+  }
+  .board-item img { filter: grayscale(0); } /* มือถือสีสดเลยไม่ต้อง Hover */
+  
+  .board-caption { 
+    position: relative; 
+    width: 100%; 
+    left: auto !important; right: auto !important; top: auto !important; bottom: auto !important; 
+    text-align: left !important; 
+    margin-top: 15px; 
+  }
+}
 /* ===================== */
 /* PRODUCTION ROW (แถวรูปภาพที่จัดกลาง) */
 /* ===================== */

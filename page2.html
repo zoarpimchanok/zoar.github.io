@@ -48,11 +48,6 @@ body{
   margin-left:320px;
 }
 
-/* SECTION BASE */
-.section{
-  padding:120px 80px;
-}
-
 /* ===================== */
 /* HERO / STORYBOARD */
 /* ===================== */
@@ -211,7 +206,10 @@ body{
 .production-row{
   display:flex;
   gap:20px;
-  position:relative;
+  width:100vw;            /* ❗ เต็มหน้าจอ */
+  margin-left:calc(-50vw + 50%); /* ❗ ดึงให้สุดซ้าย */
+  padding:0 60px;         /* เผื่อ margin ซ้ายขวาแบบเรฟ */
+  overflow:visible;
 }
 
 .work{
@@ -236,11 +234,11 @@ body{
 .overlay{
   position:absolute;
   inset:0;
-background: linear-gradient(
+  background: linear-gradient(
   to top,
   rgba(0,0,0,0.8),
   rgba(0,0,0,0.2)
-);
+  );
   color:#fff;
   opacity:0;
   display:flex;
@@ -273,8 +271,13 @@ background: linear-gradient(
   opacity:1;
 }
 
-  .production{
+.production{
   overflow:hidden;
+  margin-top:160px;
+  padding:0;
+
+  width:100vw;                      /* เต็มจอจริง */
+  margin-left:calc(-50vw + 50%);    /* ดึงออกจาก layout */
 }
 
 /* ===================== */

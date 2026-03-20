@@ -358,51 +358,87 @@ body {
 
 <section class="sectionStoryboard" id="storyboard">
   
-  <div class="story-desc">
-    <div class="sidebar-texts">
-      <h2>CREATIVE WORK >></h2>
-      <h2>EXPERIENCE >></h2>
-    </div>
-    <h3>Storyboard</h3>
-    <div class="line"></div>
-    <p>Pre-visualizing narrative structure<br>and shot composition for commercial films.</p>
-  </div>
+  <div class="storyboard-master-layout">
+    
+    <div class="story-left-group">
+      
+      <div class="sidebar-texts">
+        <h2>CREATIVE WORK >></h2>
+        <h2>EXPERIENCE >></h2>
+      </div>
 
-  <div class="folder-stack-container">
-    <div class="folder-wrapper" id="folder-nitto" data-target="inside-nitto">
-      <img src="nitto_tab.png" class="folder-tab-img" alt="Nitto Tab">
-    </div>
-    <div class="folder-wrapper" id="folder-pramy" data-target="inside-pramy">
-      <img src="pramy_tab.png" class="folder-tab-img" alt="Pramy Tab">
-    </div>
-    <div class="folder-wrapper" id="folder-laneige1" data-target="inside-laneige1">
-      <img src="laneige1_tab.png" class="folder-tab-img" alt="Laneige 1 Tab">
-    </div>
-    <div class="folder-wrapper" id="folder-laneige2" data-target="inside-laneige2">
-      <img src="laneige2_tab.png" class="folder-tab-img" alt="Laneige 2 Tab">
-    </div>
-  </div>
+      <div class="main-desc">
+        <h3>Storyboard</h3>
+        <div class="line"></div>
+        <p>Pre-visualizing narrative structure<br>and shot composition for commercial films.</p>
+      </div>
+      
+      <div class="folder-tabs-container">
+        <button class="folder-tab active" data-tab="tab-all">(All)</button>
+        <button class="folder-tab" data-tab="tab-laneige">(1) Laneige</button>
+        <button class="folder-tab" data-tab="tab-pramycat">(2) Pramycat</button>
+        <button class="folder-tab" data-tab="tab-nittotire">(3) Nitto Tire</button>
+        <button class="folder-tab" data-tab="tab-mission">(4) New Mission</button>
+      </div>
 
-  <div class="folder-contents-container">
-    <div class="folder-content" id="inside-nitto">
-      <img src="inside_nitto.png" class="inside-img" alt="Inside Nitto">
-      <img src="ex_tab.png" class="ex-tab-img" alt="Storyboard Example">
     </div>
-    <div class="folder-content" id="inside-pramy">
-      <img src="inside_pramy.png" class="inside-img" alt="Inside Pramy">
-      <img src="ex_tab.png" class="ex-tab-img" alt="Storyboard Example">
-    </div>
-    <div class="folder-content" id="inside-laneige1">
-      <img src="inside_laneige1.png" class="inside-img" alt="Inside Laneige 1">
-      <img src="ex_tab.png" class="ex-tab-img" alt="Storyboard Example">
-    </div>
-    <div class="folder-content" id="inside-laneige2">
-      <img src="inside_laneige2.png" class="inside-img" alt="Inside Laneige 2">
-      <img src="ex_tab.png" class="ex-tab-img" alt="Storyboard Example">
-    </div>
-  </div>
 
-</section>
+    <div class="content-panes-container">
+      
+      <div class="content-pane active" id="tab-all">
+        <div class="all-content-wrapper">
+          </div>
+      </div>
+
+      <div class="content-pane" id="tab-laneige">
+        <div class="exploded-item pos-laneige">
+          <img src="drawing_Page 8.png" alt="Laneige Grids"> <div class="board-caption">
+             <span class="year">2024</span><br><br>
+             <strong>Welcome Back "LANEIGE's Housemate"</strong><br>
+             กลับมาครั้งนี้เจอแต่ความเซอร์ไพรส์<br>
+             เมื่อเพื่อนๆเปลี่ยนไป ไม่สดใสอย่างที่เคย<br>
+             อะไรจะมาช่วยคืนความชุ่มชื้น
+          </div>
+        </div>
+      </div>
+
+      <div class="content-pane" id="tab-pramycat">
+        <div class="exploded-item pos-pramycat">
+          <img src="drawing_Page 9.png" alt="Pramycat Grids"> <div class="board-caption">
+             <span class="year">2023</span><br><br>
+             <strong>Pramycat x Jeff Satur [Full Song Video]</strong><br>
+             Producer, Composer, Lyrics [Jeff Satur]
+          </div>
+        </div>
+      </div>
+
+      <div class="content-pane" id="tab-nittotire">
+        <div class="exploded-item pos-nittotire">
+          <img src="drawing_Page 10.png" alt="Nitto Tire Grids"> <div class="board-caption">
+            <span class="year">2023</span><br><br>
+            <strong>NittoTireThailand</strong><br>
+            ทำเป็นเซียนเหมือนเรียนมา แบบนี้ต้องให้<br>
+            เซียนตัวจริงเขาสั่งสอน จะซื้อยางทั้งที<br>
+            ต้องเลือกยางคุณภาพดีที่เหล่าเซียน<br>
+            เขาแนะนำ จำชื่อให้แม่นต้อง "นิตโตะ" เท่านั้น<br>
+            "นิตโตะ" สุดในรุ่น เนื้อดี พิมพ์นิยม
+          </div>
+        </div>
+      </div>
+
+      <div class="content-pane" id="tab-mission">
+        <div class="exploded-item pos-mission">
+          <img src="drawing_Page 11.png" alt="Mission Grids">
+          <div class="board-caption text-right">
+             <span class="year">2024</span><br><br>
+             <strong>NEW MISSION Alert !</strong><br>
+             Let's explore the<br>
+             LANEIGE planet.
+          </div>
+        </div>
+      </div>
+
+    </div></div></section>
 
 <section class="production">
   <div class="production-head">

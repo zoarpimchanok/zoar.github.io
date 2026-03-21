@@ -367,45 +367,57 @@ body {
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
 /* =========================================
-   CSS: PHOTOGRAPHY (GRID LAYOUT)
+   CSS: PHOTOGRAPHY (FIXED LAYOUT)
    ========================================= */
 .section-photography {
   position: relative;
   width: 100vw;
   min-height: 100vh;
-  background: #e2e2e2; /* สีเทาตามเรฟ */
+  background: #e2e2e2;
   color: #000;
-  padding: 120px 10%;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end; /* ดันตารางไปทางขวา */
   font-family: Helvetica, Arial, sans-serif;
+  padding: 120px 0; /* เว้นระยะบนล่าง */
+  
+  /* 🚨 ใช้ CSS Grid แบ่งพื้นที่หน้าจอเป็น 2 ฝั่ง 🚨 */
+  display: grid;
+  grid-template-columns: 35% 65%; /* ฝั่งซ้าย 35% ฝั่งขวา 65% */
+  align-items: flex-start; /* ให้เนื้อหาเริ่มจากด้านบน */
 }
 
-/* ข้อความเมนูใหญ่ฝั่งซ้าย (CREATIVE WORK / EXPERIENCE) */
-.left-main-titles {
-  position: absolute;
-  left: 8%;
-  top: 25%;
+/* คอลัมน์ซ้าย: จัดวางหัวข้อให้ลอยอยู่กับที่ */
+.photo-left-col {
+  position: sticky; /* 🚨 ให้หัวข้อยังคงอยู่ตอนเลื่อนหน้าจอ 🚨 */
+  top: 150px;
+  padding-left: 10%; /* ระยะห่างจากขอบซ้าย */
+  display: flex;
+  justify-content: flex-start;
 }
-.left-main-titles h2 {
+.left-titles-wrap h2 {
   font-size: 18px;
   font-weight: bold;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   letter-spacing: 1px;
+  white-space: nowrap; /* 🚨 กันตัวอักษรตกบรรทัด 🚨 */
 }
-.left-main-titles span {
+.left-titles-wrap span {
   font-weight: normal;
   font-size: 16px;
+}
+
+/* คอลัมน์ขวา: พื้นที่สำหรับตารางรูป */
+.photo-right-col {
+  padding-right: 10%; /* ระยะห่างจากขอบขวา */
+  display: flex;
+  justify-content: center;
 }
 
 /* ตารางรูปภาพ 3x3 */
 .photo-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 60px 80px; /* ระยะห่าง บน-ล่าง ซ้าย-ขวา */
-  width: 65%; /* ให้พื้นที่รูปภาพ 65% ของหน้าจอ */
-  max-width: 1000px;
+  gap: 60px 50px; /* ระยะห่าง บน-ล่าง ซ้าย-ขวา */
+  width: 100%;
+  max-width: 900px;
 }
 
 .photo-item {
@@ -419,23 +431,23 @@ body {
 }
 .photo-item img {
   width: 100%;
-  height: auto; /* ปล่อยความสูงอิสระตามสัดส่วนรูปจริง ให้ดูเป็นธรรมชาติ */
+  height: auto; 
   display: block;
   transition: all 0.4s ease;
   cursor: pointer;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1); /* เงาบางๆ ให้รูปดูเด้งขึ้นมา */
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 .photo-item img:hover {
-  transform: scale(1.05); /* ขยายรูปตอนเอาเมาส์ชี้ */
+  transform: scale(1.05);
   box-shadow: 0 15px 30px rgba(0,0,0,0.2);
 }
 
-/* กล่องข้อความที่แทรกใน Grid */
+/* กล่องข้อความ Photography ที่แทรกใน Grid */
 .photo-text-block {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-right: 20px;
+  padding-right: 15px;
 }
 .photo-text-block h4 {
   font-size: 15px;
@@ -453,6 +465,8 @@ body {
   color: #444;
   line-height: 1.6;
 }
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 </style>
 </head>
 
@@ -552,50 +566,54 @@ body {
     
 <section class="section-photography" id="photography">
   
-  <div class="left-main-titles">
-    <h2>CREATIVE WORK &nbsp;&nbsp;&nbsp;<span>>></span></h2>
-    <h2>EXPERIENCE &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>>></span></h2>
+  <div class="photo-left-col">
+    <div class="left-titles-wrap">
+      <h2>CREATIVE WORK &nbsp;&nbsp;<span>>></span></h2>
+      <h2>EXPERIENCE &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>>></span></h2>
+    </div>
   </div>
 
-  <div class="photo-grid">
-    <div class="photo-item">
-      <span class="num">(1)</span>
-      <img src="https://picsum.photos/400/500?random=1" alt="photo1">
-    </div>
-    <div class="photo-item">
-      <span class="num">(2)</span>
-      <img src="https://picsum.photos/400/600?random=2" alt="photo2">
-    </div>
-    <div class="photo-item">
-      <span class="num">(3)</span>
-      <img src="https://picsum.photos/400/450?random=3" alt="photo3">
-    </div>
+  <div class="photo-right-col">
+    <div class="photo-grid">
+      <div class="photo-item">
+        <span class="num">(1)</span>
+        <img src="https://picsum.photos/400/500?random=1" alt="photo1">
+      </div>
+      <div class="photo-item">
+        <span class="num">(2)</span>
+        <img src="https://picsum.photos/400/600?random=2" alt="photo2">
+      </div>
+      <div class="photo-item">
+        <span class="num">(3)</span>
+        <img src="https://picsum.photos/400/450?random=3" alt="photo3">
+      </div>
 
-    <div class="photo-text-block">
-      <h4>Photography</h4>
-      <div class="line"></div>
-      <p>Visual storytelling<br>through still images</p>
-    </div>
-    <div class="photo-item">
-      <span class="num">(4)</span>
-      <img src="https://picsum.photos/400/400?random=4" alt="photo4">
-    </div>
-    <div class="photo-item">
-      <span class="num">(5)</span>
-      <img src="https://picsum.photos/400/550?random=5" alt="photo5">
-    </div>
+      <div class="photo-text-block">
+        <h4>Photography</h4>
+        <div class="line"></div>
+        <p>Visual storytelling<br>through still images</p>
+      </div>
+      <div class="photo-item">
+        <span class="num">(4)</span>
+        <img src="https://picsum.photos/400/400?random=4" alt="photo4">
+      </div>
+      <div class="photo-item">
+        <span class="num">(5)</span>
+        <img src="https://picsum.photos/400/550?random=5" alt="photo5">
+      </div>
 
-    <div class="photo-item">
-      <span class="num">(6)</span>
-      <img src="https://picsum.photos/400/400?random=6" alt="photo6">
-    </div>
-    <div class="photo-item">
-      <span class="num">(7)</span>
-      <img src="https://picsum.photos/400/600?random=7" alt="photo7">
-    </div>
-    <div class="photo-item">
-      <span class="num">(8)</span>
-      <img src="https://picsum.photos/400/450?random=8" alt="photo8">
+      <div class="photo-item">
+        <span class="num">(6)</span>
+        <img src="https://picsum.photos/400/400?random=6" alt="photo6">
+      </div>
+      <div class="photo-item">
+        <span class="num">(7)</span>
+        <img src="https://picsum.photos/400/600?random=7" alt="photo7">
+      </div>
+      <div class="photo-item">
+        <span class="num">(8)</span>
+        <img src="https://picsum.photos/400/450?random=8" alt="photo8">
+      </div>
     </div>
   </div>
 

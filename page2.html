@@ -22,7 +22,7 @@ body {
   overflow-x: hidden;
 }
 
-/* เมนูมุมขวาบน (สำหรับหน้าแรก) */
+/* เมนูมุมขวาบน */
 .main-nav {
   position: absolute;
   top: 40px;      
@@ -48,51 +48,7 @@ body {
 }
 
 /* =========================================
-   REUSABLE CLASSES (ใช้ร่วมกันหลายหน้า)
-   ========================================= */
-.title-row {
-  display: flex;
-  justify-content: space-between;
-  width: 250px; 
-  align-items: center;
-  margin-bottom: 12px;
-}
-
-.title-row h2 {
-  font-size: 18px; 
-  font-weight: bold;
-  margin: 0;
-  letter-spacing: 0.5px;
-}
-
-.title-row span {
-  font-size: 16px;
-  font-weight: bold;
-}
-
-/* เมนูแนวตั้ง (ด้านซ้าย) */
-.side-nav {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.side-nav a {
-  color: inherit; 
-  text-decoration: none;
-  font-size: 11px;
-  font-family: Helvetica, Arial, sans-serif;
-  opacity: 0.7;
-  transition: opacity 0.3s;
-  letter-spacing: 0.5px;
-}
-
-.side-nav a:hover {
-  opacity: 1;
-}
-
-/* =========================================
-   CSS: STORYBOARD
+   CSS: STORYBOARD (PERFECT FIT WITH EXTRA MENU)
    ========================================= */
 .sectionStoryboard {
   position: relative;
@@ -104,10 +60,11 @@ body {
   font-family: Helvetica, Arial, sans-serif;
 }
 
+/* ข้อความฝั่งซ้าย (คงที่) */
 .left-titles {
   position: absolute;
   left: 15%;
-  top: 40%;
+  top: 35%; /* ขยับขึ้นเล็กน้อยเพื่อให้มีที่ว่างด้านล่างสำหรับเมนูใหม่ */
   z-index: 50;
 }
 .left-titles h5 { margin: 0 0 5px 0; font-size: 13px; font-weight: 800; letter-spacing: 1px; }
@@ -115,6 +72,42 @@ body {
 .left-titles .line { width: 40px; height: 1px; background: #000; margin-bottom: 10px; }
 .left-titles p { font-size: 13px; color: #444; line-height: 1.5; margin: 0; }
 
+/* 🚨 โค้ดใหม่: จัดสไตล์เมนูพิเศษฝั่งซ้ายตามเรฟ 🚨 */
+.sb-left-menu-extra {
+  margin-top: 40px; /* ระยะห่างจาก p ด้านบน */
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* ระยะห่างระหว่าง Creative Work กับ Experience */
+}
+
+.sb-left-menu-extra .menu-item-row {
+  display: flex;
+  justify-content: space-between; /* จัดข้อความอยู่ซ้ายสุด, >> อยู่ขวาสุด */
+  width: 220px; /* บังคับความกว้างเพื่อให้ลูกศร >> ตรงกันเป๊ะ */
+  align-items: center;
+  cursor: pointer;
+}
+
+.sb-left-menu-extra .menu-item-row h4 {
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0;
+}
+
+.sb-left-menu-extra .menu-item-row span {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.sb-left-menu-extra .menu-item-row:hover {
+  opacity: 0.5;
+}
+
+/* -------------------------------------
+   กองแฟ้มโฟลเดอร์ฝั่งขวา
+   ------------------------------------- */
 .folders-wrap {
   position: absolute;
   right: 18%;     
@@ -135,13 +128,19 @@ body {
   transition: transform 0.3s ease;
   filter: drop-shadow(0 15px 25px rgba(0,0,0,0.15));
 }
-.folder-img:hover { transform: translateY(-15px); }
+.folder-img:hover {
+  transform: translateY(-15px); 
+}
 
+/* เรียงให้ "หัวแท็บ" ซ้อนทับกันจากบนลงล่าง */
 #tab-nitto    { z-index: 1; top: 0px; }
 #tab-pramy    { z-index: 2; top: 40px; }
 #tab-laneige1 { z-index: 3; top: 80px; }
 #tab-laneige2 { z-index: 4; top: 120px; }
 
+/* -------------------------------------
+   รูปเนื้อหาด้านใน (inside_...jpg)
+   ------------------------------------- */
 .inside-wrap {
   position: absolute;
   right: 18%;     
@@ -172,6 +171,7 @@ body {
   pointer-events: auto; 
 }
 
+/* ปุ่มสำหรับกดย้อนกลับหน้ากองแฟ้ม (ในกรอบแฟ้ม) */
 .btn-back-folder {
   position: absolute;
   top: 30px;        
@@ -193,9 +193,18 @@ body {
   backdrop-filter: blur(4px);      
 }
 
-.btn-back-folder:hover { background: #fff; color: #000; opacity: 1 !important; }
-.btn-back-folder.active { opacity: 1; pointer-events: auto; }
+.btn-back-folder:hover {
+  background: #fff;
+  color: #000;
+  opacity: 1 !important;
+}
 
+.btn-back-folder.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* รูปตัวอย่างกระดาษเล็กๆ (ex_tab.png) */
 .ex-tab-floating {
   position: absolute;
   left: 105px;
@@ -207,9 +216,22 @@ body {
   pointer-events: none;
   border-radius: 6px;
 }
-.ex-tab-floating.active { opacity: 1; transform: translateY(0) rotate(0deg); pointer-events: auto; cursor: pointer; }
-.ex-tab-floating:hover { transform: translateY(-10px) rotate(0deg) scale(1.05); }
-.folders-hidden { opacity: 0; transform: translateY(-30%) scale(0.95); pointer-events: none; }
+.ex-tab-floating.active {
+  opacity: 1;
+  transform: translateY(0) rotate(0deg);
+  pointer-events: auto;
+  cursor: pointer;
+}
+.ex-tab-floating:hover {
+  transform: translateY(-10px) rotate(0deg) scale(1.05);
+}
+
+/* State ตอนแฟ้มถูกซ่อน */
+.folders-hidden {
+  opacity: 0;
+  transform: translateY(-30%) scale(0.95);
+  pointer-events: none;
+}
 
 /* =========================================
    2. PRODUCTION (ดำเต็มจอ)
@@ -223,19 +245,6 @@ body {
   align-items: center;
   justify-content: center;
   overflow: hidden;
-}
-
-/* คอลัมน์ด้านซ้ายสำหรับหน้า Production */
-.prod-left-col {
-  position: absolute;
-  left: 80px; 
-  top: 25%;
-  color: #fff;
-  z-index: 20;
-}
-
-.prod-left-col .side-nav {
-  margin-top: 30px; 
 }
 
 .production-head {
@@ -285,7 +294,15 @@ body {
   background: #000;
 }
 .work img { width: 100%; height: 100%; object-fit: cover; transition: all 0.6s ease; }
-.work:hover { flex: 0 0 320px; height: 420px; opacity: 1 !important; filter: grayscale(0) !important; z-index: 10; box-shadow: 0 20px 40px rgba(0,0,0,0.6); }
+
+.work:hover {
+  flex: 0 0 320px;
+  height: 420px;
+  opacity: 1 !important;
+  filter: grayscale(0) !important;
+  z-index: 10;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+}
 
 .overlay {
   position: absolute;
@@ -340,7 +357,7 @@ body {
 
 .photo-left-col {
   padding-left: 10%; 
-  display: none; /* ซ่อนเนื้อหาฝั่งซ้ายไว้ก่อน ตามเรฟ */
+  display: none; 
 }
 
 .photo-right-col {
@@ -428,6 +445,17 @@ body {
     <h3>Storyboard</h3>
     <div class="line"></div>
     <p>Pre-visualizing narrative structure<br>and shot composition for commercial films.</p>
+    
+    <div class="sb-left-menu-extra">
+      <div class="menu-item-row">
+        <h4>CREATIVE WORK</h4>
+        <span>>></span>
+      </div>
+      <div class="menu-item-row">
+        <h4>EXPERIENCE</h4>
+        <span>>></span>
+      </div>
+    </div>
   </div>
 
   <div class="folders-wrap" id="folders-wrap">
@@ -465,27 +493,6 @@ body {
 </section>
 
 <section class="production" id="production">
-  
-  <div class="prod-left-col">
-    <div class="left-titles-wrap">
-      <div class="title-row">
-        <h2>CREATIVE WORK</h2>
-        <span>>></span>
-      </div>
-      <div class="title-row">
-        <h2>EXPERIENCE</h2>
-        <span>>></span>
-      </div>
-    </div>
-    
-    <div class="side-nav">
-      <a href="index.html#home">Home</a>
-      <a href="index.html#about">About</a>
-      <a href="index.html#storyboard">Work</a>
-      <a href="index.html#contact">Contact</a>
-    </div>
-  </div>
-
   <div class="production-head">
     <h4>Production</h4>
     <p>Collaborating across different roles<br>in visual storytelling and production</p>
@@ -522,7 +529,7 @@ body {
     </a>
      
   </div>
-  
+    
   <div class="production-footer">
     <div>SELECTED WORKS</div>
     <div>FILM & VISUAL PRODUCTION</div>

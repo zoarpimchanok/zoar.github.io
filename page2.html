@@ -28,7 +28,7 @@ body {
   top: 40px;      
   right: 50px;    
   z-index: 100;
-} /* 🚨 แอบเติมวงเล็บปีกกาที่หายไปให้ตรงนี้ครับ 🚨 */
+} 
 
 .nav-links {
   display: flex;
@@ -136,7 +136,8 @@ body {
   transform: translateY(-50%) scale(1); 
   pointer-events: auto; 
 }
-/* ปุ่มสำหรับกดย้อนกลับหน้ากองแฟ้ม */
+
+/* 🚨 ปุ่มใหม่: สำหรับปิดโฟลเดอร์กลับไปหน้าแรก 🚨 */
 .btn-back-folder {
   position: absolute;
   top: -40px;      /* ให้อยู่เหนือแฟ้มขึ้นมานิดหน่อย */
@@ -160,11 +161,11 @@ body {
   opacity: 0.5 !important;
 }
 
-/* คลาสที่เอาไว้สั่งโชว์ปุ่มตอนเปิดแฟ้ม */
 .btn-back-folder.active {
   opacity: 1;
   pointer-events: auto;
 }
+
 /* รูปตัวอย่างกระดาษเล็กๆ (ex_tab.png) */
 .ex-tab-floating {
   position: absolute;
@@ -515,6 +516,10 @@ body {
 
     let extab = document.getElementById('ex-tab');
     if(extab) extab.classList.add('active');
+
+    // 🚨 สั่งให้ปุ่ม BACK โชว์ตอนเปิดแฟ้ม 🚨
+    let btnBack = document.getElementById('btn-back-folder');
+    if(btnBack) btnBack.classList.add('active');
   }
 
  function showSBDetails(event) {
@@ -550,6 +555,10 @@ body {
     if(extab) extab.classList.remove('active');
 
     document.getElementById('folders-wrap').classList.remove('folders-hidden');
+
+    // 🚨 สั่งให้ปุ่ม BACK ซ่อนไปตอนปิดแฟ้ม 🚨
+    let btnBack = document.getElementById('btn-back-folder');
+    if(btnBack) btnBack.classList.remove('active');
   }
 </script>
 

@@ -118,6 +118,7 @@ body {
   z-index: 20;
   pointer-events: none;
 }
+
 .inside-content-img {
   position: absolute;
   top: 50%;
@@ -137,30 +138,37 @@ body {
   pointer-events: auto; 
 }
 
-/* 🚨 ปุ่มใหม่: สำหรับปิดโฟลเดอร์กลับไปหน้าแรก 🚨 */
+/* 🚨 ปุ่มสำหรับกดย้อนกลับหน้ากองแฟ้ม (อัปเดตให้อยู่ในบล็อกและสวยขึ้น) 🚨 */
 .btn-back-folder {
   position: absolute;
-  top: -40px;      /* ให้อยู่เหนือแฟ้มขึ้นมานิดหน่อย */
-  right: 0;        /* ให้อยู่มุมขวาบนของพื้นที่แฟ้ม */
-  background: none;
-  border: none;
-  color: #000;     /* ใช้สีดำเพราะพื้นหลังเป็นสีเทา */
-  font-size: 13px;
+  top: 30px;       /* ดันลงมาให้อยู่ 'ข้างใน' กรอบรูป */
+  right: 40px;     /* ดันซ้ายเข้ามาให้อยู่ 'ข้างใน' กรอบรูป */
+  
+  background: rgba(0, 0, 0, 0.4); /* ใส่พื้นหลังดำโปร่งแสงนิดๆ เผื่อแฟ้มบางอันสีสว่าง */
+  border: 1px solid #fff;         /* กรอบสีขาวให้ดูเข้ากับปุ่ม CLOSED */
+  color: #fff;                    /* ตัวอักษรสีขาวตามที่ต้องการ */
+  
+  padding: 10px 25px;
+  font-size: 12px;
   font-weight: bold;
   letter-spacing: 2px;
   cursor: pointer;
   z-index: 100;
-  opacity: 0;      /* ซ่อนไว้ก่อน จะโชว์ตอนแฟ้มเปิด */
+  opacity: 0;      
   pointer-events: none;
   transition: all 0.4s ease;
   font-family: Helvetica, Arial, sans-serif;
   text-transform: uppercase;
+  backdrop-filter: blur(4px);     /* เบลอพื้นหลังนิดๆ ให้ดูหรูขึ้น */
 }
 
 .btn-back-folder:hover {
-  opacity: 0.5 !important;
+  background: #fff;
+  color: #000;
+  opacity: 1 !important;
 }
 
+/* คลาสที่เอาไว้สั่งโชว์ปุ่มตอนเปิดแฟ้ม */
 .btn-back-folder.active {
   opacity: 1;
   pointer-events: auto;

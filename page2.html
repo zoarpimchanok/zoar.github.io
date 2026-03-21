@@ -141,8 +141,8 @@ body {
 /* ปุ่มสำหรับกดย้อนกลับหน้ากองแฟ้ม (ในกรอบแฟ้ม) */
 .btn-back-folder {
   position: absolute;
-  top: -30px;        
-  right: 80px;      
+  top: 30px;        
+  right: 40px;      
   background: rgba(0, 0, 0, 0.4); 
   border: 1px solid #fff;          
   color: #fff;                     
@@ -342,7 +342,7 @@ body {
 
 /* ปุ่ม CLOSED แบบมีกรอบเรียงต่อลงมาใต้รูป */
 .btn-closed-frame {
-  margin-top: 40px; /* ระยะห่างจากรูปด้านบน */
+  margin-top: 40px; 
   background: none;
   border: 2px solid #fff; 
   color: #fff;
@@ -367,7 +367,7 @@ body {
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
 /* =========================================
-   CSS: PHOTOGRAPHY (FIXED LAYOUT)
+   3. CSS: PHOTOGRAPHY (PERFECT GRID LAYOUT)
    ========================================= */
 .section-photography {
   position: relative;
@@ -376,46 +376,51 @@ body {
   background: #e2e2e2;
   color: #000;
   font-family: Helvetica, Arial, sans-serif;
-  padding: 120px 0; /* เว้นระยะบนล่าง */
-  
-  /* ใช้ CSS Grid แบ่งพื้นที่หน้าจอเป็น 2 ฝั่ง */
+  padding: 150px 0; 
   display: grid;
-  grid-template-columns: 35% 65%; /* ฝั่งซ้าย 35% ฝั่งขวา 65% */
-  align-items: flex-start; /* ให้เนื้อหาเริ่มจากด้านบน */
+  grid-template-columns: 35% 65%; /* แบ่งสัดส่วน ซ้าย-ขวา */
+  align-items: flex-start;
 }
 
-/* คอลัมน์ซ้าย: จัดวางหัวข้อให้ลอยอยู่กับที่ */
+/* คอลัมน์ซ้าย: จัดเรียง Title ให้ตรงเป๊ะ */
 .photo-left-col {
   position: sticky; 
   top: 150px;
-  padding-left: 10%; /* ระยะห่างจากขอบซ้าย */
-  display: flex;
-  justify-content: flex-start;
+  padding-left: 15%; 
 }
-.left-titles-wrap h2 {
+
+.title-row {
+  display: flex;
+  justify-content: space-between;
+  width: 260px; /* บังคับความกว้างเพื่อให้ลูกศร >> ตรงกัน */
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.title-row h2 {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0;
+  letter-spacing: 0.5px;
+}
+
+.title-row span {
   font-size: 18px;
   font-weight: bold;
-  margin-bottom: 25px;
-  letter-spacing: 1px;
-  white-space: nowrap; 
-}
-.left-titles-wrap span {
-  font-weight: normal;
-  font-size: 16px;
 }
 
 /* คอลัมน์ขวา: พื้นที่สำหรับตารางรูป */
 .photo-right-col {
-  padding-right: 10%; /* ระยะห่างจากขอบขวา */
+  padding-right: 15%; 
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 /* ตารางรูปภาพ 3x3 */
 .photo-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 60px 50px; /* ระยะห่าง บน-ล่าง ซ้าย-ขวา */
+  gap: 80px 70px; /* ระยะห่าง บนล่าง 80px, ซ้ายขวา 70px */
   width: 100%;
   max-width: 900px;
 }
@@ -423,23 +428,25 @@ body {
 .photo-item {
   display: flex;
   flex-direction: column;
+  align-items: flex-start; /* จัดตัวเลขและรูปให้ชิดซ้ายของคอลัมน์ตัวเอง */
 }
+
 .photo-item .num {
-  font-size: 13px;
+  font-size: 14px;
   margin-bottom: 20px;
-  font-weight: bold;
+  font-weight: normal; /* ตัวเลขแบบบาง ตามเรฟ */
+  color: #000;
 }
+
 .photo-item img {
   width: 100%;
   height: auto; 
   display: block;
-  transition: all 0.4s ease;
-  cursor: pointer;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  transition: opacity 0.3s ease; /* เอฟเฟกต์เฟดแบบมินิมอล (ลบเงาและการซูมออก) */
 }
+
 .photo-item img:hover {
-  transform: scale(1.05);
-  box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+  opacity: 0.8; /* ดูคลีนและแพงกว่าการเด้งซูม */
 }
 
 /* กล่องข้อความ Photography ที่แทรกใน Grid */
@@ -447,19 +454,22 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-right: 15px;
+  padding-right: 20px;
 }
+
 .photo-text-block h4 {
-  font-size: 15px;
+  font-size: 16px;
   font-weight: bold;
   margin-bottom: 15px;
 }
+
 .photo-text-block .line {
-  width: 100%;
+  width: 100%; /* เส้นยาวเต็มกรอบของมัน */
   height: 1px;
   background: #000;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
 }
+
 .photo-text-block p {
   font-size: 13px;
   color: #444;
@@ -574,8 +584,14 @@ body {
   
   <div class="photo-left-col">
     <div class="left-titles-wrap">
-      <h2>CREATIVE WORK &nbsp;&nbsp;<span>>></span></h2>
-      <h2>EXPERIENCE &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>>></span></h2>
+      <div class="title-row">
+        <h2>CREATIVE WORK</h2>
+        <span>>></span>
+      </div>
+      <div class="title-row">
+        <h2>EXPERIENCE</h2>
+        <span>>></span>
+      </div>
     </div>
   </div>
 

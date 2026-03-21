@@ -367,18 +367,92 @@ body {
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
 /* =========================================
-   3. PHOTOGRAPHY & BIO
+   CSS: PHOTOGRAPHY (GRID LAYOUT)
    ========================================= */
-.photography { background: #e5e5e5; color: #000; width: 100vw; padding: 120px 80px; }
-.photo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 80px; margin-top: 80px; }
-.photo { font-size: 12px; }
-.photo img { width: 100%; margin-top: 10px; }
+.section-photography {
+  position: relative;
+  width: 100vw;
+  min-height: 100vh;
+  background: #e2e2e2; /* สีเทาตามเรฟ */
+  color: #000;
+  padding: 120px 10%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; /* ดันตารางไปทางขวา */
+  font-family: Helvetica, Arial, sans-serif;
+}
 
-.bio { display: grid; grid-template-columns: 300px 1fr; gap: 100px; background: #000; color: #fff; padding: 120px 80px; }
-.bio img { width: 100%; }
-.bio-content { display: grid; grid-template-columns: repeat(3, 1fr); gap: 80px; }
-.bio-content h4 { margin-bottom: 10px; border-bottom: 1px solid #444; padding-bottom: 6px; }
-.bio-content p { font-size: 13px; color: #aaa; line-height: 1.6; }
+/* ข้อความเมนูใหญ่ฝั่งซ้าย (CREATIVE WORK / EXPERIENCE) */
+.left-main-titles {
+  position: absolute;
+  left: 8%;
+  top: 25%;
+}
+.left-main-titles h2 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+}
+.left-main-titles span {
+  font-weight: normal;
+  font-size: 16px;
+}
+
+/* ตารางรูปภาพ 3x3 */
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 60px 80px; /* ระยะห่าง บน-ล่าง ซ้าย-ขวา */
+  width: 65%; /* ให้พื้นที่รูปภาพ 65% ของหน้าจอ */
+  max-width: 1000px;
+}
+
+.photo-item {
+  display: flex;
+  flex-direction: column;
+}
+.photo-item .num {
+  font-size: 13px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+.photo-item img {
+  width: 100%;
+  height: auto; /* ปล่อยความสูงอิสระตามสัดส่วนรูปจริง ให้ดูเป็นธรรมชาติ */
+  display: block;
+  transition: all 0.4s ease;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1); /* เงาบางๆ ให้รูปดูเด้งขึ้นมา */
+}
+.photo-item img:hover {
+  transform: scale(1.05); /* ขยายรูปตอนเอาเมาส์ชี้ */
+  box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}
+
+/* กล่องข้อความที่แทรกใน Grid */
+.photo-text-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-right: 20px;
+}
+.photo-text-block h4 {
+  font-size: 15px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+.photo-text-block .line {
+  width: 100%;
+  height: 1px;
+  background: #000;
+  margin-bottom: 20px;
+}
+.photo-text-block p {
+  font-size: 13px;
+  color: #444;
+  line-height: 1.6;
+}
 </style>
 </head>
 
@@ -476,22 +550,56 @@ body {
      
   </div>
     
-  <div class="production-footer">
-    <div>SELECTED WORKS</div>
-    <div>FILM & VISUAL PRODUCTION</div>
-    <div>2022–2025<br>COLLABORATIVE PROJECTS</div>
+<section class="section-photography" id="photography">
+  
+  <div class="left-main-titles">
+    <h2>CREATIVE WORK &nbsp;&nbsp;&nbsp;<span>>></span></h2>
+    <h2>EXPERIENCE &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>>></span></h2>
   </div>
-</section>
 
-<section class="section photography">
-  <h3>Photography</h3>
   <div class="photo-grid">
-    <div class="photo">(1)<img src="https://picsum.photos/300?1"></div>
-    <div class="photo">(2)<img src="https://picsum.photos/300?2"></div>
-    <div class="photo">(3)<img src="https://picsum.photos/300?3"></div>
-  </div>
-</section>
+    <div class="photo-item">
+      <span class="num">(1)</span>
+      <img src="https://picsum.photos/400/500?random=1" alt="photo1">
+    </div>
+    <div class="photo-item">
+      <span class="num">(2)</span>
+      <img src="https://picsum.photos/400/600?random=2" alt="photo2">
+    </div>
+    <div class="photo-item">
+      <span class="num">(3)</span>
+      <img src="https://picsum.photos/400/450?random=3" alt="photo3">
+    </div>
 
+    <div class="photo-text-block">
+      <h4>Photography</h4>
+      <div class="line"></div>
+      <p>Visual storytelling<br>through still images</p>
+    </div>
+    <div class="photo-item">
+      <span class="num">(4)</span>
+      <img src="https://picsum.photos/400/400?random=4" alt="photo4">
+    </div>
+    <div class="photo-item">
+      <span class="num">(5)</span>
+      <img src="https://picsum.photos/400/550?random=5" alt="photo5">
+    </div>
+
+    <div class="photo-item">
+      <span class="num">(6)</span>
+      <img src="https://picsum.photos/400/400?random=6" alt="photo6">
+    </div>
+    <div class="photo-item">
+      <span class="num">(7)</span>
+      <img src="https://picsum.photos/400/600?random=7" alt="photo7">
+    </div>
+    <div class="photo-item">
+      <span class="num">(8)</span>
+      <img src="https://picsum.photos/400/450?random=8" alt="photo8">
+    </div>
+  </div>
+
+</section>
 <script>
   // 1. คลังรูปภาพ 
   const sbInventory = {

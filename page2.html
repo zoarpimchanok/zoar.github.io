@@ -138,16 +138,14 @@ body {
   pointer-events: auto; 
 }
 
-/* 🚨 ปุ่มสำหรับกดย้อนกลับหน้ากองแฟ้ม (อัปเดตให้อยู่ในบล็อกและสวยขึ้น) 🚨 */
+/* ปุ่มสำหรับกดย้อนกลับหน้ากองแฟ้ม (ในกรอบแฟ้ม) */
 .btn-back-folder {
   position: absolute;
-  top: 30px;       /* ดันลงมาให้อยู่ 'ข้างใน' กรอบรูป */
-  right: 40px;     /* ดันซ้ายเข้ามาให้อยู่ 'ข้างใน' กรอบรูป */
-  
-  background: rgba(0, 0, 0, 0.4); /* ใส่พื้นหลังดำโปร่งแสงนิดๆ เผื่อแฟ้มบางอันสีสว่าง */
-  border: 1px solid #fff;         /* กรอบสีขาวให้ดูเข้ากับปุ่ม CLOSED */
-  color: #fff;                    /* ตัวอักษรสีขาวตามที่ต้องการ */
-  
+  top: 30px;       
+  right: 40px;     
+  background: rgba(0, 0, 0, 0.4); 
+  border: 1px solid #fff;         
+  color: #fff;                    
   padding: 10px 25px;
   font-size: 12px;
   font-weight: bold;
@@ -159,7 +157,7 @@ body {
   transition: all 0.4s ease;
   font-family: Helvetica, Arial, sans-serif;
   text-transform: uppercase;
-  backdrop-filter: blur(4px);     /* เบลอพื้นหลังนิดๆ ให้ดูหรูขึ้น */
+  backdrop-filter: blur(4px);     
 }
 
 .btn-back-folder:hover {
@@ -168,7 +166,6 @@ body {
   opacity: 1 !important;
 }
 
-/* คลาสที่เอาไว้สั่งโชว์ปุ่มตอนเปิดแฟ้ม */
 .btn-back-folder.active {
   opacity: 1;
   pointer-events: auto;
@@ -310,6 +307,17 @@ body {
 
 .sb-detail-overlay.active { display: flex; animation: fadeIn 0.4s ease; }
 
+/* Container ของสตอรี่บอร์ดจัดกลางและเรียงบนลงล่าง */
+.sb-container {
+  width: 95%;
+  max-width: 1400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 0; 
+}
+
 .sb-grid {
   display: flex;
   gap: 15px;
@@ -332,13 +340,9 @@ body {
 .sb-sheet:nth-child(3) { transition-delay: 0.3s; }
 .sb-sheet:nth-child(4) { transition-delay: 0.4s; }
 
-/* ปุ่ม CLOSED แบบมีกรอบอยู่ตรงกลางล่าง */
+/* ปุ่ม CLOSED แบบมีกรอบเรียงต่อลงมาใต้รูป */
 .btn-closed-frame {
-  position: absolute;
-  bottom: 50px;   
-  left: 50%;
-  transform: translateX(-50%); 
-  
+  margin-top: 40px; /* ระยะห่างจากรูปด้านบน */
   background: none;
   border: 2px solid #fff; 
   color: #fff;
@@ -357,18 +361,7 @@ body {
 .btn-closed-frame:hover {
   background: #fff;
   color: #000;
-  transform: translateX(-50%) scale(1.05); 
-}
-
-/* Container ของสตอรี่บอร์ดจัดกลางและเว้นที่ให้ปุ่ม */
-.sb-container {
-  width: 95%;
-  max-width: 1400px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding-bottom: 120px; 
+  transform: scale(1.05); 
 }
 
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
@@ -430,10 +423,6 @@ body {
 </div>
 
 <div class="sb-detail-overlay" id="sb-popup">
-  <button class="btn-closed-frame" onclick="closeSB()">
-    << CLOSED
-  </button>
-
   <div class="sb-container">
     <div class="sb-grid">
       <img src="" id="sb-img-1" class="sb-sheet">
@@ -441,6 +430,10 @@ body {
       <img src="" id="sb-img-3" class="sb-sheet">
       <img src="" id="sb-img-4" class="sb-sheet">
     </div>
+    
+    <button class="btn-closed-frame" onclick="closeSB()">
+      << CLOSED
+    </button>
   </div>
 </div>
 
@@ -525,7 +518,6 @@ body {
     let extab = document.getElementById('ex-tab');
     if(extab) extab.classList.add('active');
 
-    // 🚨 สั่งให้ปุ่ม BACK โชว์ตอนเปิดแฟ้ม 🚨
     let btnBack = document.getElementById('btn-back-folder');
     if(btnBack) btnBack.classList.add('active');
   }
@@ -564,7 +556,6 @@ body {
 
     document.getElementById('folders-wrap').classList.remove('folders-hidden');
 
-    // 🚨 สั่งให้ปุ่ม BACK ซ่อนไปตอนปิดแฟ้ม 🚨
     let btnBack = document.getElementById('btn-back-folder');
     if(btnBack) btnBack.classList.remove('active');
   }

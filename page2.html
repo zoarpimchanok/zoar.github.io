@@ -141,11 +141,11 @@ body {
 /* ปุ่มสำหรับกดย้อนกลับหน้ากองแฟ้ม (ในกรอบแฟ้ม) */
 .btn-back-folder {
   position: absolute;
-  top: -30px;       
-  right: 80px;     
+  top: -30px;        
+  right: 80px;      
   background: rgba(0, 0, 0, 0.4); 
-  border: 1px solid #fff;         
-  color: #fff;                    
+  border: 1px solid #fff;          
+  color: #fff;                     
   padding: 10px 25px;
   font-size: 12px;
   font-weight: bold;
@@ -157,7 +157,7 @@ body {
   transition: all 0.4s ease;
   font-family: Helvetica, Arial, sans-serif;
   text-transform: uppercase;
-  backdrop-filter: blur(4px);     
+  backdrop-filter: blur(4px);      
 }
 
 .btn-back-folder:hover {
@@ -378,7 +378,7 @@ body {
   font-family: Helvetica, Arial, sans-serif;
   padding: 120px 0; /* เว้นระยะบนล่าง */
   
-  /* 🚨 ใช้ CSS Grid แบ่งพื้นที่หน้าจอเป็น 2 ฝั่ง 🚨 */
+  /* ใช้ CSS Grid แบ่งพื้นที่หน้าจอเป็น 2 ฝั่ง */
   display: grid;
   grid-template-columns: 35% 65%; /* ฝั่งซ้าย 35% ฝั่งขวา 65% */
   align-items: flex-start; /* ให้เนื้อหาเริ่มจากด้านบน */
@@ -386,7 +386,7 @@ body {
 
 /* คอลัมน์ซ้าย: จัดวางหัวข้อให้ลอยอยู่กับที่ */
 .photo-left-col {
-  position: sticky; /* 🚨 ให้หัวข้อยังคงอยู่ตอนเลื่อนหน้าจอ 🚨 */
+  position: sticky; 
   top: 150px;
   padding-left: 10%; /* ระยะห่างจากขอบซ้าย */
   display: flex;
@@ -397,7 +397,7 @@ body {
   font-weight: bold;
   margin-bottom: 25px;
   letter-spacing: 1px;
-  white-space: nowrap; /* 🚨 กันตัวอักษรตกบรรทัด 🚨 */
+  white-space: nowrap; 
 }
 .left-titles-wrap span {
   font-weight: normal;
@@ -465,8 +465,6 @@ body {
   color: #444;
   line-height: 1.6;
 }
-
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 </style>
 </head>
 
@@ -526,7 +524,8 @@ body {
 </div>
 
 </section>
-<section class="production">
+
+<section class="production" id="production">
   <div class="production-head">
     <h4>Production</h4>
     <p>Collaborating across different roles<br>in visual storytelling and production</p>
@@ -563,7 +562,14 @@ body {
     </a>
      
   </div>
-    
+  
+  <div class="production-footer">
+    <div>SELECTED WORKS</div>
+    <div>FILM & VISUAL PRODUCTION</div>
+    <div>2022–2025<br>COLLABORATIVE PROJECTS</div>
+  </div>
+</section>
+
 <section class="section-photography" id="photography">
   
   <div class="photo-left-col">
@@ -618,6 +624,7 @@ body {
   </div>
 
 </section>
+
 <script>
   // 1. คลังรูปภาพ 
   const sbInventory = {

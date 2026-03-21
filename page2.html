@@ -22,11 +22,11 @@ body {
   overflow-x: hidden;
 }
 
-/* เมนูมุมขวาบน */
+/* เมนูมุมขวาบน (สำหรับหน้าแรก) */
 .main-nav {
   position: absolute;
-  top: 80px;      
-  right: 100px;    
+  top: 40px;      
+  right: 50px;    
   z-index: 100;
 } 
 
@@ -48,7 +48,51 @@ body {
 }
 
 /* =========================================
-   CSS: STORYBOARD (CLEAN & PERFECT LAYERS)
+   REUSABLE CLASSES (ใช้ร่วมกันหลายหน้า)
+   ========================================= */
+.title-row {
+  display: flex;
+  justify-content: space-between;
+  width: 250px; 
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.title-row h2 {
+  font-size: 18px; 
+  font-weight: bold;
+  margin: 0;
+  letter-spacing: 0.5px;
+}
+
+.title-row span {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* เมนูแนวตั้ง (ด้านซ้าย) */
+.side-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.side-nav a {
+  color: inherit; /* ดึงสีจากพื้นหลังมาใช้ (ดำ/ขาว อัตโนมัติ) */
+  text-decoration: none;
+  font-size: 11px;
+  font-family: Helvetica, Arial, sans-serif;
+  opacity: 0.7;
+  transition: opacity 0.3s;
+  letter-spacing: 0.5px;
+}
+
+.side-nav a:hover {
+  opacity: 1;
+}
+
+/* =========================================
+   CSS: STORYBOARD
    ========================================= */
 .sectionStoryboard {
   position: relative;
@@ -60,7 +104,6 @@ body {
   font-family: Helvetica, Arial, sans-serif;
 }
 
-/* ข้อความฝั่งซ้าย (คงที่) */
 .left-titles {
   position: absolute;
   left: 15%;
@@ -72,9 +115,6 @@ body {
 .left-titles .line { width: 40px; height: 1px; background: #000; margin-bottom: 10px; }
 .left-titles p { font-size: 13px; color: #444; line-height: 1.5; margin: 0; }
 
-/* -------------------------------------
-   กองแฟ้มโฟลเดอร์ฝั่งขวา
-   ------------------------------------- */
 .folders-wrap {
   position: absolute;
   right: 18%;     
@@ -95,19 +135,13 @@ body {
   transition: transform 0.3s ease;
   filter: drop-shadow(0 15px 25px rgba(0,0,0,0.15));
 }
-.folder-img:hover {
-  transform: translateY(-15px); 
-}
+.folder-img:hover { transform: translateY(-15px); }
 
-/* เรียงให้ "หัวแท็บ" ซ้อนทับกันจากบนลงล่าง */
 #tab-nitto    { z-index: 1; top: 0px; }
 #tab-pramy    { z-index: 2; top: 40px; }
 #tab-laneige1 { z-index: 3; top: 80px; }
 #tab-laneige2 { z-index: 4; top: 120px; }
 
-/* -------------------------------------
-   รูปเนื้อหาด้านใน (inside_...jpg)
-   ------------------------------------- */
 .inside-wrap {
   position: absolute;
   right: 18%;     
@@ -138,7 +172,6 @@ body {
   pointer-events: auto; 
 }
 
-/* ปุ่มสำหรับกดย้อนกลับหน้ากองแฟ้ม (ในกรอบแฟ้ม) */
 .btn-back-folder {
   position: absolute;
   top: 30px;        
@@ -160,18 +193,9 @@ body {
   backdrop-filter: blur(4px);      
 }
 
-.btn-back-folder:hover {
-  background: #fff;
-  color: #000;
-  opacity: 1 !important;
-}
+.btn-back-folder:hover { background: #fff; color: #000; opacity: 1 !important; }
+.btn-back-folder.active { opacity: 1; pointer-events: auto; }
 
-.btn-back-folder.active {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-/* รูปตัวอย่างกระดาษเล็กๆ (ex_tab.png) */
 .ex-tab-floating {
   position: absolute;
   left: 105px;
@@ -183,22 +207,9 @@ body {
   pointer-events: none;
   border-radius: 6px;
 }
-.ex-tab-floating.active {
-  opacity: 1;
-  transform: translateY(0) rotate(0deg);
-  pointer-events: auto;
-  cursor: pointer;
-}
-.ex-tab-floating:hover {
-  transform: translateY(-10px) rotate(0deg) scale(1.05);
-}
-
-/* State ตอนแฟ้มถูกซ่อน */
-.folders-hidden {
-  opacity: 0;
-  transform: translateY(-30%) scale(0.95);
-  pointer-events: none;
-}
+.ex-tab-floating.active { opacity: 1; transform: translateY(0) rotate(0deg); pointer-events: auto; cursor: pointer; }
+.ex-tab-floating:hover { transform: translateY(-10px) rotate(0deg) scale(1.05); }
+.folders-hidden { opacity: 0; transform: translateY(-30%) scale(0.95); pointer-events: none; }
 
 /* =========================================
    2. PRODUCTION (ดำเต็มจอ)
@@ -212,6 +223,19 @@ body {
   align-items: center;
   justify-content: center;
   overflow: hidden;
+}
+
+/* 🚨 โค้ดใหม่: คอลัมน์ด้านซ้ายสำหรับหน้า Production 🚨 */
+.prod-left-col {
+  position: absolute;
+  left: 80px; /* ตรงกับ padding ของ footer พอดี */
+  top: 25%;
+  color: #fff;
+  z-index: 20;
+}
+
+.prod-left-col .side-nav {
+  margin-top: 30px; /* เว้นระยะจาก EXPERIENCE ตามเรฟ */
 }
 
 .production-head {
@@ -261,15 +285,7 @@ body {
   background: #000;
 }
 .work img { width: 100%; height: 100%; object-fit: cover; transition: all 0.6s ease; }
-
-.work:hover {
-  flex: 0 0 320px;
-  height: 420px;
-  opacity: 1 !important;
-  filter: grayscale(0) !important;
-  z-index: 10;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-}
+.work:hover { flex: 0 0 320px; height: 420px; opacity: 1 !important; filter: grayscale(0) !important; z-index: 10; box-shadow: 0 20px 40px rgba(0,0,0,0.6); }
 
 .overlay {
   position: absolute;
@@ -290,84 +306,24 @@ body {
 .overlay p { font-size: 16px; margin-bottom: 25px; color: #555; }
 .overlay span { font-size: 14px; letter-spacing: 1px; text-transform: uppercase; border-top: 1px solid #ddd; padding-top: 15px; display: inline-block; width: 85%; line-height: 1.6; }
 
-/* =========================================
-   หน้าจอ Popup สตอรี่บอร์ด และ ปุ่ม CLOSED
-   ========================================= */
-.sb-detail-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.95); 
-  z-index: 1000;
-  display: none; 
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  backdrop-filter: blur(10px); 
-}
-
+/* Popup สตอรี่บอร์ด */
+.sb-detail-overlay { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.95); z-index: 1000; display: none; align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(10px); }
 .sb-detail-overlay.active { display: flex; animation: fadeIn 0.4s ease; }
-
-/* Container ของสตอรี่บอร์ดจัดกลางและเรียงบนลงล่าง */
-.sb-container {
-  width: 95%;
-  max-width: 1400px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 40px 0; 
-}
-
-.sb-grid {
-  display: flex;
-  gap: 15px;
-  justify-content: center;
-  perspective: 1000px; 
-}
-
-.sb-sheet {
-  width: 23%;
-  height: auto;
-  border: 1px solid rgba(255,255,255,0.2);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-  transform: rotateY(10deg); 
-  transition: transform 0.3s ease;
-}
-
+.sb-container { width: 95%; max-width: 1400px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px 0; }
+.sb-grid { display: flex; gap: 15px; justify-content: center; perspective: 1000px; }
+.sb-sheet { width: 23%; height: auto; border: 1px solid rgba(255,255,255,0.2); box-shadow: 0 10px 30px rgba(0,0,0,0.5); transform: rotateY(10deg); transition: transform 0.3s ease; }
 .sb-sheet:hover { transform: scale(1.05) rotateY(0deg); z-index: 10; }
 .sb-sheet:nth-child(1) { transition-delay: 0.1s; }
 .sb-sheet:nth-child(2) { transition-delay: 0.2s; }
 .sb-sheet:nth-child(3) { transition-delay: 0.3s; }
 .sb-sheet:nth-child(4) { transition-delay: 0.4s; }
-
-/* ปุ่ม CLOSED แบบมีกรอบเรียงต่อลงมาใต้รูป */
-.btn-closed-frame {
-  margin-top: 40px; 
-  background: none;
-  border: 2px solid #fff; 
-  color: #fff;
-  padding: 12px 35px;
-  font-size: 14px;
-  font-weight: bold;
-  text-transform: uppercase;
-  letter-spacing: 4px; 
-  cursor: pointer;
-  z-index: 2000; 
-  transition: all 0.3s ease;
-  font-family: Helvetica, Arial, sans-serif;
-  white-space: nowrap; 
-}
-
-.btn-closed-frame:hover {
-  background: #fff;
-  color: #000;
-  transform: scale(1.05); 
-}
+.btn-closed-frame { margin-top: 40px; background: none; border: 2px solid #fff; color: #fff; padding: 12px 35px; font-size: 14px; font-weight: bold; text-transform: uppercase; letter-spacing: 4px; cursor: pointer; z-index: 2000; transition: all 0.3s ease; font-family: Helvetica, Arial, sans-serif; white-space: nowrap; }
+.btn-closed-frame:hover { background: #fff; color: #000; transform: scale(1.05); }
 
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
 /* =========================================
-   3. CSS: PHOTOGRAPHY (RIGHT-ALIGNED GRID)
+   3. CSS: PHOTOGRAPHY 
    ========================================= */
 .section-photography {
   position: relative;
@@ -379,49 +335,29 @@ body {
   overflow: hidden; 
   padding: 0;
   
-  /* 🚨 ดันเนื้อหาทั้งหมดไปชิดขวา 🚨 */
-  display: flex;
-  justify-content: flex-end; 
+  /* 🚨 ใช้ Grid แบบเดิม เพื่อให้คอลัมน์ซ้ายมีพื้นที่ 🚨 */
+  display: grid;
+  grid-template-columns: 28% 72%; 
   align-items: center; 
 }
 
-/* คอลัมน์ซ้าย (ซ่อนไว้ก่อน) */
+/* 🚨 คอลัมน์ซ้าย: จัดให้กระจายบนสุดและล่างสุด เพื่อให้เมนูอยู่ล่างสุด 🚨 */
 .photo-left-col {
-  display: none; /* 🚨 ซ่อนเนื้อหาฝั่งซ้ายชั่วคราว 🚨 */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* ดัน Title ไปบนสุด, ดัน Menu ไปล่างสุด */
+  height: 85vh; /* ความสูงเท่ากับกริดรูป */
   padding-left: 15%; 
 }
 
-.title-row {
-  display: flex;
-  justify-content: space-between;
-  width: 250px; 
-  align-items: center;
-  margin-bottom: 12px;
-}
-
-.title-row h2 {
-  font-size: 18px; 
-  font-weight: bold;
-  margin: 0;
-  letter-spacing: 0.5px;
-}
-
-.title-row span {
-  font-size: 16px;
-  font-weight: bold;
-}
-
-/* คอลัมน์ขวา: พื้นที่สำหรับตารางรูป */
 .photo-right-col {
-  padding-right: 10%; /* ระยะห่างจากขอบขวา */
+  padding-right: 10%; 
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   height: 100%; 
   align-items: center; 
-  width: 65%; /* ความกว้างของพื้นที่ขวา */
 }
 
-/* ตารางรูปภาพ 3x3 */
 .photo-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -432,60 +368,15 @@ body {
   max-width: 900px;
 }
 
-.photo-item {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between; 
-  height: 100%; 
-}
+.photo-item { display: flex; flex-direction: column; justify-content: space-between; height: 100%; }
+.photo-item .num { font-size: 1.3vh; font-weight: normal; color: #000; margin-bottom: 0.5vh; }
+.photo-item img { width: 100%; max-height: 23vh; object-fit: contain; display: block; transition: opacity 0.3s ease; align-self: flex-start; }
+.photo-item img:hover { opacity: 0.7; }
 
-.photo-item .num {
-  font-size: 1.3vh; 
-  font-weight: normal; 
-  color: #000;
-  margin-bottom: 0.5vh; 
-}
-
-.photo-item img {
-  width: 100%;
-  max-height: 23vh; 
-  object-fit: contain; 
-  display: block;
-  transition: opacity 0.3s ease; 
-  align-self: flex-start; 
-}
-
-.photo-item img:hover {
-  opacity: 0.7; 
-}
-
-/* กล่องข้อความ Photography ที่แทรกใน Grid */
-.photo-text-block {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding-right: 15px;
-  height: 100%; 
-}
-
-.photo-text-block h4 {
-  font-size: 15px; 
-  font-weight: bold;
-  margin-bottom: 1vh;
-}
-
-.photo-text-block .line {
-  width: 100%; 
-  height: 1px;
-  background: #000;
-  margin-bottom: 2vh;
-}
-
-.photo-text-block p {
-  font-size: 12px; 
-  color: #444;
-  line-height: 1.5;
-}
+.photo-text-block { display: flex; flex-direction: column; justify-content: center; padding-right: 15px; height: 100%; }
+.photo-text-block h4 { font-size: 15px; font-weight: bold; margin-bottom: 1vh; }
+.photo-text-block .line { width: 100%; height: 1px; background: #000; margin-bottom: 2vh; }
+.photo-text-block p { font-size: 12px; color: #444; line-height: 1.5; }
 </style>
 </head>
 
@@ -516,16 +407,13 @@ body {
   </div>
 
 <div class="inside-wrap" id="inside-wrap">
-  
   <button class="btn-back-folder" id="btn-back-folder" onclick="closeFolder()">
     << BACK
   </button>
-
   <img src="inside_nitto.png" class="inside-content-img" id="in-nitto" onclick="closeFolder()">
   <img src="inside_pramy.png" class="inside-content-img" id="in-pramy" onclick="closeFolder()">
   <img src="inside_laneige1.png" class="inside-content-img" id="in-laneige1" onclick="closeFolder()">
   <img src="inside_laneige2.png" class="inside-content-img" id="in-laneige2" onclick="closeFolder()">
-  
   <img src="ex_tab.png" class="ex-tab-floating" id="ex-tab" onclick="showSBDetails(event)">
 </div>
 
@@ -537,7 +425,6 @@ body {
       <img src="" id="sb-img-3" class="sb-sheet">
       <img src="" id="sb-img-4" class="sb-sheet">
     </div>
-    
     <button class="btn-closed-frame" onclick="closeSB()">
       << CLOSED
     </button>
@@ -547,6 +434,27 @@ body {
 </section>
 
 <section class="production" id="production">
+  
+  <div class="prod-left-col">
+    <div class="left-titles-wrap">
+      <div class="title-row">
+        <h2>CREATIVE WORK</h2>
+        <span>>></span>
+      </div>
+      <div class="title-row">
+        <h2>EXPERIENCE</h2>
+        <span>>></span>
+      </div>
+    </div>
+    
+    <div class="side-nav">
+      <a href="index.html#home">Home</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#storyboard">Work</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+  </div>
+
   <div class="production-head">
     <h4>Production</h4>
     <p>Collaborating across different roles<br>in visual storytelling and production</p>
@@ -604,8 +512,14 @@ body {
         <span>>></span>
       </div>
     </div>
+    
+    <div class="side-nav">
+      <a href="index.html#home">Home</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#storyboard">Work</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
   </div>
-
   <div class="photo-right-col">
     <div class="photo-grid">
       <div class="photo-item">

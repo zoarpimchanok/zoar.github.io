@@ -367,60 +367,68 @@ body {
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
 /* =========================================
-   3. CSS: PHOTOGRAPHY (PERFECT GRID LAYOUT)
+   3. CSS: PHOTOGRAPHY (SINGLE-SCREEN FIT FIX) 🚨
    ========================================= */
 .section-photography {
   position: relative;
   width: 100vw;
-  min-height: 100vh;
+  /* 🚨 บังคับความสูงให้เท่ากับหน้าจอพอดี ห้ามเกิน ห้ามมี Scroll 🚨 */
+  height: 100vh; 
   background: #e2e2e2;
   color: #000;
   font-family: Helvetica, Arial, sans-serif;
-  padding: 150px 0; 
+  overflow: hidden; /* กันเนื้อหาแลบออก */
+  padding: 0;
+  
+  /* แบ่งสัดส่วน ซ้าย-ขวา */
   display: grid;
-  grid-template-columns: 35% 65%; /* แบ่งสัดส่วน ซ้าย-ขวา */
-  align-items: flex-start;
+  grid-template-columns: 28% 72%; 
+  align-items: center; /* จัดเนื้อหาตรงกลางแนวตั้ง */
 }
 
 /* คอลัมน์ซ้าย: จัดเรียง Title ให้ตรงเป๊ะ */
 .photo-left-col {
-  position: sticky; 
-  top: 150px;
   padding-left: 15%; 
 }
 
 .title-row {
   display: flex;
   justify-content: space-between;
-  width: 260px; /* บังคับความกว้างเพื่อให้ลูกศร >> ตรงกัน */
+  width: 250px; /* ลดขนาดกรอบเล็กน้อยให้มินิมอล */
   align-items: center;
-  margin-bottom: 15px;
+  margin-bottom: 12px;
 }
 
 .title-row h2 {
-  font-size: 20px;
+  font-size: 18px; /* ลดขนาดฟอนต์เล็กน้อยให้พอดีจอ */
   font-weight: bold;
   margin: 0;
   letter-spacing: 0.5px;
 }
 
 .title-row span {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: bold;
 }
 
 /* คอลัมน์ขวา: พื้นที่สำหรับตารางรูป */
 .photo-right-col {
-  padding-right: 15%; 
+  padding-right: 12%; 
   display: flex;
   justify-content: flex-start;
+  height: 100%; /* เต็มความสูง 100vh */
+  align-items: center; /* จัด Grid ตรงกลาง */
 }
 
-/* ตารางรูปภาพ 3x3 */
+/* 🚨 แก้ไข Grid: บีบความสูงลงมา 🚨 */
 .photo-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 80px 70px; /* ระยะห่าง บนล่าง 80px, ซ้ายขวา 70px */
+  /* 🚨 บังคับความสูงรวมของ Grid ให้ไม่เกิน 85% ของหน้าจอ เพื่อเผื่อที่ให้ Title 🚨 */
+  height: 85vh; 
+  grid-template-rows: repeat(3, 1fr); /* 🚨 แบ่ง 3 แถวให้เท่ากันพอดี 🚨 */
+  
+  gap: 1.5vh 60px; /* 🚨 ลดช่องว่างแนวตั้งลงเหลือ 1.5% ของหน้าจอ 🚨 */
   width: 100%;
   max-width: 900px;
 }
@@ -428,25 +436,30 @@ body {
 .photo-item {
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* จัดตัวเลขและรูปให้ชิดซ้ายของคอลัมน์ตัวเอง */
+  justify-content: space-between; /* ให้ตัวเลขอยู่บนสุด รูปอยู่ล่างสุดในกรอบของตัวเอง */
+  height: 100%; /* เต็มความสูงของแต่ละ Cell (33.33vh - gap) */
 }
 
 .photo-item .num {
-  font-size: 14px;
-  margin-bottom: 20px;
-  font-weight: normal; /* ตัวเลขแบบบาง ตามเรฟ */
+  font-size: 1.3vh; /* ลดขนาดตัวเลขเล็กน้อย */
+  font-weight: normal; 
   color: #000;
+  /* 🚨 ลดช่องว่างแนวตั้งเพื่อให้รูปมีที่เหลือมากขึ้น 🚨 */
+  margin-bottom: 0.5vh; 
 }
 
 .photo-item img {
   width: 100%;
-  height: auto; 
+  /* 🚨 บังคับความสูงสูงสุดของรูปให้ไม่เกิน 23% ของหน้าจอ เพื่อให้ 3 รูปพอดีใน 100vh 🚨 */
+  max-height: 23vh; 
+  object-fit: contain; /* 🚨 สำคัญ: ย่อรูปโดยคงสัดส่วนเดิมไว้ ไม่โดนตัด 🚨 */
   display: block;
-  transition: opacity 0.3s ease; /* เอฟเฟกต์เฟดแบบมินิมอล (ลบเงาและการซูมออก) */
+  transition: opacity 0.3s ease; 
+  align-self: flex-start; /* ดันรูปลงมาต่อจากตัวเลข */
 }
 
 .photo-item img:hover {
-  opacity: 0.8; /* ดูคลีนและแพงกว่าการเด้งซูม */
+  opacity: 0.7; 
 }
 
 /* กล่องข้อความ Photography ที่แทรกใน Grid */
@@ -454,26 +467,27 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-right: 20px;
+  padding-right: 15px;
+  height: 100%; /* เต็มความสูง Cell */
 }
 
 .photo-text-block h4 {
-  font-size: 16px;
+  font-size: 15px; /* ลดขนาดฟอนต์ */
   font-weight: bold;
-  margin-bottom: 15px;
+  margin-bottom: 1vh;
 }
 
 .photo-text-block .line {
-  width: 100%; /* เส้นยาวเต็มกรอบของมัน */
+  width: 100%; 
   height: 1px;
   background: #000;
-  margin-bottom: 25px;
+  margin-bottom: 2vh;
 }
 
 .photo-text-block p {
-  font-size: 13px;
+  font-size: 12px; /* ลดขนาดฟอนต์ */
   color: #444;
-  line-height: 1.6;
+  line-height: 1.5;
 }
 </style>
 </head>

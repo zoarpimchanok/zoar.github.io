@@ -47,52 +47,65 @@ margin-right:20px;
 opacity:.8;
 }
 
-/* HERO */
+/* =========================================
+   HERO SECTION (LAYOUT: Editorial Magazine)
+   ========================================= */
 .hero {
   position: relative;
   height: 100vh;
   width: 100vw;
   background: #111; 
-  display: flex;
-  justify-content: center; 
-  align-items: center; 
   overflow: hidden;
 }
 
+/* 🚨 กล่องข้อความให้อยู่ฝั่งซ้าย 🚨 */
 .hero-text {
   position: absolute;
-  left: 10vw; 
+  left: 8vw; /* ระยะห่างจากขอบซ้าย */
+  top: 50%;
+  transform: translateY(-50%); /* ล็อกให้อยู่กึ่งกลางแนวตั้ง */
   z-index: 5; 
+  width: 40vw; /* ให้ข้อความมีพื้นที่กว้างขึ้น */
 }
 
 .hero-text-img {
-  width: 500px; 
-  max-width: 80vw;
+  width: 100%; 
+  max-width: 600px; /* ขนาดใหญ่สุดของรูปข้อความ (ปรับให้ใหญ่ขึ้นตามเรฟ) */
   height: auto;
   display: block;
 }
 
-.hero img.hero-portrait {
-  max-height: 80vh; 
-  max-width: 90vw;
-  object-fit: contain;
-  display: block;
+/* 🚨 กล่องรูปภาพให้อยู่ฝั่งขวา 🚨 */
+.hero-img-box {
+  position: absolute;
+  right: 8vw; /* ระยะห่างจากขอบขวา */
+  top: 50%;
+  transform: translateY(-50%);
+  height: 85vh; /* 👈 บังคับให้รูปสูงใหญ่ 85% ของหน้าจอแบบในเรฟ! */
   z-index: 1;
+  display: flex;
+  justify-content: flex-end; /* ดันรูปภาพให้ชิดขอบกล่อง */
 }
 
-/* TABLET */
+.hero img.hero-portrait {
+  height: 100%; /* สูงเต็มกล่อง 85vh */
+  width: auto;
+  object-fit: contain; /* รักษาสัดส่วนรูปไว้ ไม่ให้โดนตัด */
+  display: block;
+}
+
+/* --- TABLET --- */
 @media (max-width: 1024px) {
-  .hero-text-img { width: 400px; }
+  .hero-text { left: 5vw; width: 45vw; }
+  .hero-img-box { right: 5vw; height: 70vh; }
 }
 
-/* MOBILE */
+/* --- MOBILE --- */
 @media (max-width: 768px) {
-  .hero { align-items: flex-end; padding-bottom: 5vh; }
-  .hero-text { left: 5vw; top: 15%; }
-  .hero-text-img { width: 280px; }
-  .hero img.hero-portrait { max-height: 65vh; }
+  .hero { display: flex; flex-direction: column; justify-content: center; align-items: center; padding-top: 80px; }
+  .hero-text { position: relative; left: 0; top: 0; transform: none; width: 80vw; margin-bottom: 30px; }
+  .hero-img-box { position: relative; right: 0; top: 0; transform: none; height: 50vh; justify-content: center; }
 }
-
 /* INTRO SECTION */
 
 .intro{

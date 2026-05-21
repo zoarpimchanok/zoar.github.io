@@ -74,6 +74,7 @@ a:hover {
 }
 .nav-vertical a:hover { opacity: 1; }
 
+
 /* =========================================
    3. SECTION: STORYBOARD (หน้าแรก)
    ========================================= */
@@ -109,8 +110,8 @@ a:hover {
 /* กองแฟ้มตรงกลางขวา */
 .folders-wrap {
   position: absolute;
-  right: 8%;     
-  top: 55%;       
+  right: 8%;      
+  top: 55%;        
   transform: translateY(-50%);
   width: 55vw;
   max-width: 900px; 
@@ -129,22 +130,33 @@ a:hover {
 
 /* เนื้อหาในแฟ้ม */
 .inside-wrap {
-  position: absolute; right: 8%; top: 50%; transform: translateY(-50%); width: 60vw; max-width: 1000px; z-index: 20; pointer-events: none;
+  position: absolute; 
+  right: 8%; 
+  top: 50%; 
+  transform: translateY(-50%); 
+  width: 60vw; 
+  max-width: 1000px; 
+  z-index: 20; 
+  /* นำ pointer-events: none ออกเพื่อให้ปุ่มลูกข้างในทำงานได้ปกติ */
 }
 .inside-content-img {
   position: absolute; top: 50%; left: 0; transform: translateY(-50%) scale(0.95); width: 100%; height: auto; opacity: 0; transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1); border-radius: 10px; cursor: pointer; 
+  z-index: 1; /* กำหนดให้อยู่เลเยอร์ล่างปุ่ม */
+  pointer-events: none; /* ปิดการคลิกเมื่อรูปยังไม่ถูกเปิด */
 }
 .inside-content-img.active { opacity: 1; transform: translateY(-50%) scale(1); pointer-events: auto; }
 
 /* ปุ่มย้อนกลับ */
 .btn-back-folder {
-  position: absolute; top: -30px; right: 40px; background: rgba(0, 0, 0, 0.4); border: 1px solid #fff; color: #fff; padding: 10px 25px; font-size: 12px; font-weight: bold; letter-spacing: 2px; cursor: pointer; z-index: 100; opacity: 0; pointer-events: none; transition: all 0.4s ease; text-transform: uppercase; backdrop-filter: blur(4px);      
+  position: absolute; top: -30px; right: 40px; background: rgba(0, 0, 0, 0.4); border: 1px solid #fff; color: #fff; padding: 10px 25px; font-size: 12px; font-weight: bold; letter-spacing: 2px; cursor: pointer; 
+  z-index: 999 !important; /* จัดเลเยอร์ขึ้นเหนือรูปภาพคอนเทนต์ชัดเจน */
+  opacity: 0; pointer-events: none; transition: all 0.4s ease; text-transform: uppercase; backdrop-filter: blur(4px);          
 }
 .btn-back-folder:hover { background: #fff; color: #000; opacity: 1 !important; }
 .btn-back-folder.active { opacity: 1; pointer-events: auto; }
 
 /* กระดาษพรีวิวเล็ก */
-.ex-tab-floating { position: absolute; left: 105px; bottom: -240px; width: 180px; opacity: 0; transition: all 0.6s ease; transform: translateY(20px); pointer-events: none; border-radius: 6px; }
+.ex-tab-floating { position: absolute; left: 105px; bottom: -240px; width: 180px; opacity: 0; transition: all 0.6s ease; transform: translateY(20px); pointer-events: none; border-radius: 6px; z-index: 50; }
 .ex-tab-floating.active { opacity: 1; transform: translateY(0) rotate(0deg); pointer-events: auto; cursor: pointer; }
 .ex-tab-floating:hover { transform: translateY(-10px) rotate(0deg) scale(1.05); }
 .folders-hidden { opacity: 0; transform: translateY(-30%) scale(0.95); pointer-events: none; }
@@ -250,7 +262,7 @@ a:hover {
     </div>
   </div>
 
-  <nav class="top-right-nav" style="bottom: 90px; left: 77%;>
+  <nav class="top-right-nav" style="bottom: 90px; left: 77%;">
     <a href="#home">Home</a>
     <a href="#about">About</a>
     <a href="#storyboard">Work</a>

@@ -129,6 +129,7 @@ a:hover {
 #tab-laneige2 { z-index: 4; top: 120px; }
 
 /* เนื้อหาในแฟ้ม */
+/* เนื้อหาในแฟ้ม */
 .inside-wrap {
   position: absolute; 
   right: 8%; 
@@ -137,23 +138,65 @@ a:hover {
   width: 60vw; 
   max-width: 1000px; 
   z-index: 20; 
-  /* นำ pointer-events: none ออกเพื่อให้ปุ่มลูกข้างในทำงานได้ปกติ */
+  
+  /* 1. เปลี่ยนจาก none เป็น auto เพื่อเปิดพื้นที่ให้กดปุ่ม BACK ได้ */
+  pointer-events: auto; 
 }
+
 .inside-content-img {
-  position: absolute; top: 50%; left: 0; transform: translateY(-50%) scale(0.95); width: 100%; height: auto; opacity: 0; transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1); border-radius: 10px; cursor: pointer; 
-  z-index: 1; /* กำหนดให้อยู่เลเยอร์ล่างปุ่ม */
-  pointer-events: none; /* ปิดการคลิกเมื่อรูปยังไม่ถูกเปิด */
+  position: absolute; 
+  top: 50%; 
+  left: 0; 
+  transform: translateY(-50%) scale(0.95); 
+  width: 100%; 
+  height: auto; 
+  opacity: 0; 
+  transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1); 
+  border-radius: 10px; 
+  cursor: pointer; 
+  z-index: 1;
+
+  /* 2. บล็อกการกดโดนรูปภาพถ้ามันยังไม่แสดงตัว (ยังไม่มีคลาส .active) */
+  pointer-events: none; 
 }
-.inside-content-img.active { opacity: 1; transform: translateY(-50%) scale(1); pointer-events: auto; }
+
+/* ตอนที่รูปเปิดขึ้นมาแสดงผล */
+.inside-content-img.active { 
+  opacity: 1; 
+  transform: translateY(-50%) scale(1); 
+  
+  /* 3. เปิดให้รูปกดได้ (แต่คราวนี้มันจะไม่ปิดตัวเอง เพราะเราลบ onclick ออกจาก HTML แล้ว) */
+  pointer-events: auto; 
+}
 
 /* ปุ่มย้อนกลับ */
 .btn-back-folder {
-  position: absolute; top: -30px; right: 40px; background: rgba(0, 0, 0, 0.4); border: 1px solid #fff; color: #fff; padding: 10px 25px; font-size: 12px; font-weight: bold; letter-spacing: 2px; cursor: pointer; 
-  z-index: 999 !important; /* จัดเลเยอร์ขึ้นเหนือรูปภาพคอนเทนต์ชัดเจน */
-  opacity: 0; pointer-events: none; transition: all 0.4s ease; text-transform: uppercase; backdrop-filter: blur(4px);          
+  position: absolute; 
+  top: -30px; 
+  right: 40px; 
+  background: rgba(0, 0, 0, 0.4); 
+  border: 1px solid #fff; 
+  color: #fff; 
+  padding: 10px 25px; 
+  font-size: 12px; 
+  font-weight: bold; 
+  letter-spacing: 2px; 
+  cursor: pointer; 
+  transition: all 0.4s ease; 
+  text-transform: uppercase; 
+  backdrop-filter: blur(4px);    
+  
+  /* 4. ดันขึ้นระนาบสูงสุดเพื่อป้องกันสิ่งกีดขวาง */
+  z-index: 999 !important; 
+  opacity: 0; 
+  pointer-events: none;      
 }
-.btn-back-folder:hover { background: #fff; color: #000; opacity: 1 !important; }
-.btn-back-folder.active { opacity: 1; pointer-events: auto; }
+
+/* ตอนที่ปุ่มโผล่ขึ้นมา */
+.btn-back-folder.active { 
+  opacity: 1; 
+  pointer-events: auto; /* เปิดให้เมาส์คลิกโดนปุ่มได้ 100% */
+}
 
 /* กระดาษพรีวิวเล็ก */
 .ex-tab-floating { position: absolute; left: 105px; bottom: -240px; width: 180px; opacity: 0; transition: all 0.6s ease; transform: translateY(20px); pointer-events: none; border-radius: 6px; z-index: 50; }

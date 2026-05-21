@@ -95,7 +95,7 @@
 
         /* COLUMN 2: CENTER CONTROL SLAT */
         .center-menu-slat {
-            background: #1c2331; /* สีกรมท่าเทาแมตต์คลาสสิก */
+            background: #1c2331; /* สีกรมท่าเทาแมตต์ */
             padding: 140px 45px 40px;
             display: flex;
             flex-direction: column;
@@ -138,97 +138,151 @@
             opacity: 1;
         }
 
-        /* COLUMN 3: RIGHT MAIN VIEWPORT WITH BACKGROUND TEXT EFFECT */
+        /* COLUMN 3: RIGHT VIEWPORT MATCHING THE RESUME REF */
         .right-content-viewer {
-            padding: 140px 6vw 80px 5vw;
+            padding: 140px 5vw 80px 4vw;
             min-height: 100vh;
             background: #000000;
             color: #ffffff;
             position: relative;
-            overflow: hidden;
+            overflow-y: auto;
         }
 
-        /* BACKGROUND WATERMARK TEXT EFFECT (ล้อดีไซน์จากแผ่นเรซูเม่จริง) */
+        /* BACKGROUND TYPOGRAPHY WATERMARK */
         .bg-watermark-text {
             position: absolute;
-            top: 30%;
+            top: 22%;
             left: 50%;
             transform: translate(-50%, -50%);
-            font-size: 26vw;
+            font-size: 28vw;
             font-weight: 700;
-            color: rgba(255, 255, 255, 0.02);
+            color: rgba(255, 255, 255, 0.015);
             z-index: 1;
             pointer-events: none;
             user-select: none;
+            letter-spacing: 0.08em;
+        }
+
+        .resume-sheet-content {
+            position: relative;
+            z-index: 2;
+            max-width: 780px;
+        }
+
+        /* HEADER IDENTIFIER LINK */
+        .resume-ref-header {
+            margin-bottom: 45px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding-bottom: 25px;
+        }
+
+        .resume-ref-header h2 {
+            font-size: 26px;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            margin-bottom: 5px;
+            color: #fff;
+        }
+
+        .resume-ref-header p {
+            font-size: 12px;
+            font-weight: 400;
+            color: #888;
             letter-spacing: 0.05em;
         }
 
-        .bio-info-sheet {
-            position: relative;
-            z-index: 2; /* ให้อยู่เหนือน้ำหลัง */
+        /* SECTION LAYOUT BLOCK */
+        .section-block {
+            margin-bottom: 40px;
         }
 
-        .bio-info-sheet h2 {
-            font-size: 20px;
-            font-weight: 400;
-            line-height: 1.6;
-            margin-bottom: 50px;
-            max-width: 850px;
-            color: #fff;
-        }
-
-        /* GRID STRUCTURE FOR EXPERIENCES */
-        .matrix-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 45px 80px;
-        }
-
-        .matrix-block {
-            color: #ccc;
-        }
-
-        .matrix-block h4 {
+        .section-title {
             font-size: 11px;
-            font-weight: 600;
+            font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1px;
-            border-bottom: 1px solid rgba(255,255,255,0.15);
-            padding-bottom: 6px;
-            margin-bottom: 16px;
             color: #fff;
+            margin-bottom: 12px;
         }
 
-        .exp-row {
-            margin-bottom: 18px;
+        .profile-desc {
+            font-size: 13px;
+            line-height: 1.65;
+            color: #aaa;
+            font-weight: 300;
+            text-align: justify;
         }
 
-        .exp-row .meta-tag {
+        /* TWO COLUMN ROW FOR EDUCATION & LISTS */
+        .info-split-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 40px;
+            margin-bottom: 15px;
+        }
+
+        .info-left-col {
+            flex: 1;
+        }
+
+        .info-right-col {
+            width: 200px;
+            text-align: left;
+        }
+
+        .info-text-bold {
+            font-size: 13px;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+
+        .info-text-sub {
+            font-size: 12px;
+            color: #888;
+            line-height: 1.5;
+        }
+
+        /* EXPERTISE SPLIT SYSTEM FROM REF */
+        .skills-matrix-row {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+        }
+
+        .skills-matrix-row:last-child {
+            border-bottom: none;
+        }
+
+        .skills-sub-title {
+            font-size: 11px;
+            font-weight: 600;
+            color: #888;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            letter-spacing: 0.5px;
+        }
+
+        /* TIMELINE FLOW */
+        .timeline-item {
+            margin-bottom: 22px;
+        }
+
+        .timeline-meta {
             font-size: 11px;
             color: #555;
+            font-weight: 600;
             text-transform: uppercase;
-            display: block;
-            margin-bottom: 2px;
-            font-weight: 500;
+            margin-bottom: 3px;
         }
 
-        .exp-row p {
-            font-size: 13px;
-            line-height: 1.6;
-            color: #aaa;
-        }
-
-        .exp-row p strong {
-            color: #fff;
-        }
-
-        /* RESPONSIVE DESIGN FOR SMARTPHONES & TABLETS */
+        /* RESPONSIVE STRUCTURE */
         @media (max-width: 1100px) {
             .main-resume-grid { grid-template-columns: 1fr; }
             .left-indicator-panel, .center-menu-slat { height: auto; position: relative; top: 0; padding: 40px; }
             .right-content-viewer { padding: 40px; }
-            .matrix-grid { grid-template-columns: 1fr; }
-            .bg-watermark-text { font-size: 40vw; top: 50%; }
+            .info-split-row { flex-direction: column; gap: 15px; }
+            .info-right-col { width: 100%; }
         }
     </style>
 </head>
@@ -257,107 +311,169 @@
             </div>
             
             <div class="left-portrait-crop">
-                <img src="hero-center.JPG" alt="Pimchanok Y. Eye Portrait">
+                <img src="hero-center.JPG" alt="Pimchanok Y. Visual">
             </div>
         </div>
 
         <div class="center-menu-slat">
             <div class="sub-menu-nav-links" id="resume-sub-nav">
-                <a href="#" id="sub-management" class="active" onclick="scrollToBlock('management'); return false;">Project Operations</a>
-                <a href="#" id="sub-creative" onclick="scrollToBlock('creative'); return false;">Creative Execution</a>
-                <a href="#" id="sub-education" onclick="scrollToBlock('education'); return false;">Education & Honors</a>
-                <a href="#" id="sub-skills" onclick="scrollToBlock('skills'); return false;">Core Capabilities</a>
+                <a href="#" id="sub-profile" class="active" onclick="scrollToSection('sec-profile'); return false;">Professional Profile</a>
+                <a href="#" id="sub-history" onclick="scrollToSection('sec-history'); return false;">Employment History</a>
+                <a href="#" id="sub-skills" onclick="scrollToSection('sec-skills'); return false;">Expertise & Skills</a>
+                <a href="#" id="sub-edu" onclick="scrollToSection('sec-edu'); return false;">Education & Credentials</a>
             </div>
             
             <a href="index.html" class="back-portfolio-btn">← Portfolio Hub</a>
         </div>
 
-        <div class="right-content-viewer">
+        <div class="right-content-viewer" id="scroll-container">
             
             <div class="bg-watermark-text">ZOAR</div>
 
-            <div class="bio-info-sheet">
-                <h2>A multidisciplinary creative specializing in visual culture, storytelling, and contemporary media. Proven ability to conceptualize, manage, and execute complex workflows across interactive installations, film productions, and cross-cultural events.</h2>
+            <div class="resume-sheet-content">
                 
-                <div class="matrix-grid">
+                <div class="resume-ref-header">
+                    <h2>PIMCHANOK YAEMSIRI</h2>
+                    <p>Multidisciplinary Creative | Visual Artist | Filmmaker [cite: 1, 2]</p>
+                </div>
+
+                <div class="section-block" id="sec-profile">
+                    <div class="section-title">Professional Profile [cite: 6]</div>
+                    <p class="profile-desc">
+                        A multidisciplinary creative specializing in visual culture, storytelling, and contemporary media. [cite: 8] Proven ability to conceptualize and execute projects across film production, art direction, and interactive digital media. [cite: 9] Passionate about transforming abstract concepts into meaningful visual experiences, observing human behavior, and exploring new methods of visual communication. [cite: 10]
+                    </p>
+                </div>
+
+                <div class="section-block" id="sec-history">
+                    <div class="section-title">Employment History</div>
                     
-                    <div class="matrix-block" id="block-management">
-                        <h4>Project Operations & Management</h4>
-                        
-                        <div class="exp-row">
-                            <span class="meta-tag">2025 – 2026</span>
-                            <p><strong>Assistant Project Manager</strong> — Mads Festival 2025 & Mads Degree Show 2026. Directed structural layouts, backend flow, and onsite exhibition logistics for the media arts graduate showcase.</p>
-                        </div>
-                        
-                        <div class="exp-row">
-                            <span class="meta-tag">2025 – 2026</span>
-                            <p><strong>Bilingual Operation Staff</strong> — Fly To The Moon Festival (Koh Mak). Managed live backend operations and international guest relations for a multi-day music and arts event.</p>
-                        </div>
-                        
-                        <div class="exp-row">
-                            <span class="meta-tag">2025 – 2026</span>
-                            <p><strong>Bilingual Operations Assistant</strong> — Glom Glom Children's Day & Skylight Lantern Festival. Supervised onsite visitor traffic, scheduling, and bilingual public relations.</p>
-                        </div>
+                    <div class="timeline-item">
+                        <div class="timeline-meta">2025 – 2026</div>
+                        <div class="info-text-bold">Assistant Project Manager — Mads Festival & Degree Show</div>
+                        <div class="info-text-sub">Directed structural operations, backend configuration, and physical onsite logistics execution for the media arts exhibition.</div>
+                    </div>
 
-                        <div class="exp-row">
-                            <span class="meta-tag">International Delegation</span>
-                            <p><strong>Collaborative Presentation Member</strong> — ImaginAsia: Crossing Borders (Taipei, Taiwan). Co-developed visual presentation strategies and pitched collaborative cultural concepts to international panels.</p>
+                    <div class="timeline-item">
+                        <div class="timeline-meta">2025 – 2026</div>
+                        <div class="info-text-bold">Bilingual Operation Staff — Fly To The Moon Festival (Koh Mak)</div>
+                        <div class="info-text-sub">Managed event orchestration, real-time artist line management, and international guest relations.</div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-meta">2025 – 2026</div>
+                        <div class="info-text-bold">Bilingual Operations Assistant — Children's Day & Skylight Lantern Festival</div>
+                        <div class="info-text-sub">Supervised onsite crowd flow planning, schedule structure enforcement, and native English liaison duties.</div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-meta">2024 – 2025</div>
+                        <div class="info-text-bold">Public Relations & Image Specialist — Weng Khun Nalee Chiang Mai</div>
+                        <div class="info-text-sub">Oversaw full strategic brand placement identity and visual messaging systems for a one-year residency.</div>
+                    </div>
+                </div>
+
+                <div class="section-block" id="sec-skills">
+                    <div class="section-title">Expertise & Technical Skills [cite: 15]</div>
+                    
+                    <div class="skills-matrix-row">
+                        <div class="skills-sub-title">Film & Video Production [cite: 15]</div>
+                        <div class="info-split-row">
+                            <div class="info-left-col">
+                                <div class="info-text-sub">Director, Assistant Director [cite: 16]</div>
+                                <div class="info-text-sub">Director of Photography (DOP) [cite: 16]</div>
+                                <div class="info-text-sub">Video Editor, Colorist [cite: 16]</div>
+                            </div>
+                            <div class="info-right-col">
+                                <div class="skills-sub-title" style="margin-bottom: 4px;">Software & Tools [cite: 17]</div>
+                                <div class="info-text-sub">DaVinci Resolve [cite: 17]</div>
+                                <div class="info-text-sub">Premiere Pro [cite: 17]</div>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="matrix-block" id="block-creative">
-                        <h4>Creative Execution & Marketing</h4>
-                        
-                        <div class="exp-row">
-                            <span class="meta-tag">2024 – 2025</span>
-                            <p><strong>Public Relations Specialist</strong> — Weng Khun Nalee Chiang Mai. Orchestrated brand identity, visual communication, and media outreach initiatives across a year-long campaign.</p>
-                        </div>
-
-                        <div class="exp-row">
-                            <span class="meta-tag">Commercial Pre-Visualization</span>
-                            <p><strong>Storyboard Artist</strong> — Designed comprehensive shot sequences and narrative pacing for premium commercial brands including LANEIGE and NITTO.</p>
-                        </div>
-
-                        <div class="exp-row">
-                            <span class="meta-tag">Software Mastery</span>
-                            <p>• DaVinci Resolve (Advanced Color Grading & Timing)<br>• Premiere Pro, Photoshop, Illustrator, Unreal Engine Suite</p>
+                    <div class="skills-matrix-row">
+                        <div class="skills-sub-title">Art Direction & Visual Design [cite: 18]</div>
+                        <div class="info-split-row">
+                            <div class="info-left-col">
+                                <div class="info-text-sub">Art Director, Prop Master, Storyboard Artist [cite: 19]</div>
+                                <div class="skills-sub-title" style="margin-top: 8px; margin-bottom: 4px;">Capabilities [cite: 20]</div>
+                                <div class="info-text-sub">Pre-visualizations, Shot Compositions [cite: 21]</div>
+                                <div class="info-text-sub">Conceptual Design, Prop Making [cite: 22]</div>
+                            </div>
+                            <div class="info-right-col">
+                                <div class="skills-sub-title" style="margin-bottom: 4px;">Software & Tools [cite: 25]</div>
+                                <div class="info-text-sub">Adobe Creative Suite [cite: 25]</div>
+                                <div class="info-text-sub" style="color: #555;">(Photoshop, Illustrator, etc.) [cite: 26]</div>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="matrix-block" id="block-education">
-                        <h4>Education & Endorsements</h4>
-                        <div class="exp-row">
-                            <p><strong>BA in Media Arts and Design (MADs)</strong><br>Chiang Mai University, Fine Arts Department (Senior Standing)</p>
-                            <p style="margin-top: 10px; color: #666; font-size: 12px; line-height: 1.5;">• Received the Best Research Certificate for outstanding project presentation and structural methodologies in an academic seminar.</p>
+                    <div class="skills-matrix-row">
+                        <div class="info-split-row">
+                            <div class="info-left-col">
+                                <div class="skills-sub-title">Interactive & Digital Media [cite: 23]</div>
+                                <div class="info-text-sub">Interactive Media Creator [cite: 24]</div>
+                                <div class="info-text-sub" style="margin-top: 4px;"><strong>Programming:</strong> C++, Java, Python [cite: 24, 28]</div>
+                            </div>
+                            <div class="info-right-col">
+                                <div class="skills-sub-title" style="margin-bottom: 4px;">Software & Tools [cite: 27]</div>
+                                <div class="info-text-sub">Unreal Engine [cite: 27]</div>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="matrix-block" id="block-skills">
-                        <h4>Core Capabilities</h4>
-                        <div class="exp-row">
-                            <p><strong>Expertise:</strong> Film Directing, Art Direction, Video Editing, Expert Color Grading, Prop Making, Cinematography, Interactive Systems Design, Cross-cultural Troubleshooting.</p>
-                            <p style="margin-top: 10px;"><strong>Languages:</strong> Thai (Native) / English (Conversational - CMU TEP B1) / Chinese (Basic)</p>
+                    <div class="skills-matrix-row">
+                        <div class="skills-sub-title">Languages [cite: 32]</div>
+                        <div class="info-split-row">
+                            <div class="info-left-col">
+                                <div class="info-text-sub"><strong>Thai:</strong> Native [cite: 32]</div>
+                                <div class="info-text-sub"><strong>English:</strong> Intermediate / Conversational (CMU TEP Level B1) [cite: 32]</div>
+                                <div class="info-text-sub"><strong>Chinese:</strong> Basic / Conversational [cite: 33, 34]</div>
+                            </div>
+                            <div class="info-right-col">
+                                <div class="skills-sub-title" style="margin-bottom: 4px;">Core Competencies [cite: 30]</div>
+                                <div class="info-text-sub" style="font-size: 11px; line-height: 1.4; color: #777;">
+                                    Film Directing, Art Direction, Video Editing, Color Grading, Visual Storytelling, Prop Making, Cinematography, Interactive Media [cite: 31]
+                                </div>
+                            </div>
                         </div>
                     </div>
 
                 </div>
+
+                <div class="section-block" id="sec-edu">
+                    <div class="section-title">Education & Credentials</div>
+                    
+                    <div class="info-split-row">
+                        <div class="info-left-col">
+                            <div class="info-text-bold">Bachelor of Arts in Media Arts and Design (MADs) [cite: 12]</div>
+                            <div class="info-text-sub">Chiang Mai University, Thailand [cite: 12]</div>
+                        </div>
+                        <div class="info-right-col">
+                            <div class="skills-sub-title" style="margin-bottom: 4px;">Awarded [cite: 13]</div>
+                            <div class="info-text-sub" style="font-size: 11px; line-height: 1.4;">Best Research Certificate for outstanding project presentation in academic seminar [cite: 14]</div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
 
     <script>
-        function scrollToBlock(blockId) {
-            // ควบคุมการไฮไลท์ลิงก์แถบเมนูตรงกลาง
+        function scrollToSection(sectionId) {
+            // ควบคุมสถานะ Active บนแถบเมนูตรงกลาง
             const links = document.querySelectorAll('.sub-menu-nav-links a');
             links.forEach(l => l.classList.remove('active'));
             
-            const activeLink = document.getElementById(`sub-${blockId}`);
-            if (activeLink) activeLink.classList.add('active');
+            // เพิ่มไฮไลท์ปุ่มที่ถูกกด
+            const currentLink = document.querySelector(`[onclick="scrollToSection('${sectionId}'); return false;"]`);
+            if (currentLink) currentLink.classList.add('active');
 
-            // ทำการ Scroll หน้าจอฝั่งขวาไปยังหัวข้อหลักอย่างนุ่มนวล
-            const targetElement = document.getElementById(`block-${blockId}`);
-            if (targetElement) {
-                targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            // เลื่อนกล่อง Viewport ฝั่งขวาไปยังพาร์ทเนื้อหาที่เลือก
+            const target = document.getElementById(sectionId);
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
         }
     </script>

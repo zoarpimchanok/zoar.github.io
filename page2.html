@@ -127,7 +127,10 @@ a:hover {
 #tab-laneige1 { z-index: 3; top: 80px; }
 #tab-laneige2 { z-index: 4; top: 120px; }
 
-/* เนื้อหาในแฟ้ม */
+/* =========================================
+   แก้ไขโซนเนื้อหาแฟ้มและปุ่ม BACK เพื่อไม่ให้บังกันเอง
+   ========================================= */
+
 .inside-wrap {
   position: absolute; 
   right: 8%; 
@@ -135,8 +138,8 @@ a:hover {
   transform: translateY(-50%); 
   width: 60vw; 
   max-width: 1000px; 
-  z-index: 20;  
-  pointer-events: none; /* เริ่มต้นให้ทะลุได้ เพื่อไม่ให้กล่องเปล่าไปบังหน้าแฟ้มหลัก */
+  z-index: 99; /* 1. ดันเลเยอร์ตัวครอบทั้งหมดขึ้นมาให้สูงขึ้น */
+  pointer-events: none; 
 }
 
 /* เพิ่มคลาส active ให้ตัวครอบเปิดการคลิกเมื่อเปิดแฟ้ม */
@@ -154,8 +157,8 @@ a:hover {
   opacity: 0; 
   transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1); 
   border-radius: 10px; 
-  cursor: default; /* เปลี่ยนเป็นลูกศรปกติ เพราะเราต้องการให้มากดที่ปุ่ม BACK แทน */
-  z-index: 1;
+  cursor: default; 
+  z-index: 10; /* 2. ปล่อยให้รูปอยู่ระนาบล่างของกลุ่มเนื้อหาชั้นใน */
   pointer-events: none; 
 }
 .inside-content-img.active { 
@@ -169,7 +172,7 @@ a:hover {
   position: absolute; 
   top: -30px; 
   right: 40px; 
-  background: rgba(0, 0, 0, 0.4); 
+  background: rgba(0, 0, 0, 0.6); /* เพิ่มความเข้มขึ้นอีกนิดให้เห็นชัดๆ */
   border: 1px solid #fff; 
   color: #fff; 
   padding: 10px 25px; 
@@ -180,11 +183,17 @@ a:hover {
   transition: all 0.4s ease; 
   text-transform: uppercase; 
   backdrop-filter: blur(4px);    
-  z-index: 999 !important; /* การันตีลอยเหนือน้ำ */
+  
+  /* 3. ดันปุ่มขึ้นมาอยู่ที่ z-index ระดับสูงสุด เพื่อให้ลอยเหนือขอบของรูป .inside-content-img ชัวร์ๆ 100% */
+  z-index: 999999 !important; 
   opacity: 0; 
   pointer-events: none;       
 }
-.btn-back-folder:hover { background: #fff; color: #000; opacity: 1 !important; }
+.btn-back-folder:hover { 
+  background: #fff; 
+  color: #000; 
+  opacity: 1 !important; 
+}
 .btn-back-folder.active { 
   opacity: 1; 
   pointer-events: auto; 

@@ -439,15 +439,18 @@ a:hover {
     document.getElementById('sb-popup').classList.remove('active');
   }
 
-  function closeFolder() {
-    let insides = document.querySelectorAll('.inside-content-img');
-    insides.forEach(el => el.classList.remove('active'));
-    let extab = document.getElementById('ex-tab');
-    if(extab) extab.classList.remove('active');
-    document.getElementById('folders-wrap').classList.remove('folders-hidden');
-    let btnBack = document.getElementById('btn-back-folder');
-    if(btnBack) btnBack.classList.remove('active');
-  }
+  function closeFolder(event) {
+  // ถ้ามีการกดปุ่ม ให้หยุดแรงกดไว้ตรงนั้น ไม่ให้ทะลุไปโดนเลเยอร์อื่นซ้ำซ้อน
+  if (event) { event.stopPropagation(); }
+
+  let insides = document.querySelectorAll('.inside-content-img');
+  insides.forEach(el => el.classList.remove('active'));
+  let extab = document.getElementById('ex-tab');
+  if(extab) extab.classList.remove('active');
+  document.getElementById('folders-wrap').classList.remove('folders-hidden');
+  let btnBack = document.getElementById('btn-back-folder');
+  if(btnBack) btnBack.classList.remove('active');
+}
 </script>
 
 </body>

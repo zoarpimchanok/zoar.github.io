@@ -15,6 +15,10 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth; /* ช่วยให้หน้าจอเลื่อนสไลด์อย่างนุ่มนวลเวลาคลิกลิงก์เมนู */
+}
+
 body {
   background: #e2e2e2;
   color: #000;
@@ -57,6 +61,7 @@ a:hover {
   align-items: center;
   font-weight: bold;
   letter-spacing: 1px;
+  cursor: pointer;
 }
 
 .title-row h2 { font-size: 18px; margin: 0; }
@@ -80,6 +85,14 @@ a:hover {
 #storyboard {
   background: #e2e2e2;
   color: #000;
+}
+
+/* ตั้งตำแหน่งตำแหน่งเมนูซ้ายบนของหน้าแรกให้ลอยเด่นเหนือกองแฟ้มและกดได้ */
+.top-left-menu {
+  position: absolute;
+  top: 80px;
+  left: 8%;
+  z-index: 99;
 }
 
 /* เมนูบนขวา (เฉพาะหน้านี้) */
@@ -127,10 +140,7 @@ a:hover {
 #tab-laneige1 { z-index: 3; top: 80px; }
 #tab-laneige2 { z-index: 4; top: 120px; }
 
-/* =========================================
-   แก้ไขโซนเนื้อหาแฟ้มและปุ่ม BACK เพื่อไม่ให้บังกันเอง
-   ========================================= */
-
+/* เนื้อหาในแฟ้ม */
 .inside-wrap {
   position: absolute; 
   right: 8%; 
@@ -138,8 +148,8 @@ a:hover {
   transform: translateY(-50%); 
   width: 60vw; 
   max-width: 1000px; 
-  z-index: 99; /* 1. ดันเลเยอร์ตัวครอบทั้งหมดขึ้นมาให้สูงขึ้น */
-  pointer-events: none; 
+  z-index: 99;  
+  pointer-events: none; /* เริ่มต้นให้ทะลุได้ เพื่อไม่ให้กล่องเปล่าไปบังหน้าแฟ้มหลัก */
 }
 
 /* เพิ่มคลาส active ให้ตัวครอบเปิดการคลิกเมื่อเปิดแฟ้ม */
@@ -157,8 +167,8 @@ a:hover {
   opacity: 0; 
   transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1); 
   border-radius: 10px; 
-  cursor: default; 
-  z-index: 10; /* 2. ปล่อยให้รูปอยู่ระนาบล่างของกลุ่มเนื้อหาชั้นใน */
+  cursor: default; /* เปลี่ยนเป็นลูกศรปกติ เพราะเราต้องการให้มากดที่ปุ่ม BACK แทน */
+  z-index: 10;     /* อยู่ในระนาบด้านล่างของปุ่ม BACK เพื่อไม่ให้ขอบภาพบังพิกัดเมาส์ */
   pointer-events: none; 
 }
 .inside-content-img.active { 
@@ -172,7 +182,7 @@ a:hover {
   position: absolute; 
   top: -30px; 
   right: 40px; 
-  background: rgba(0, 0, 0, 0.6); /* เพิ่มความเข้มขึ้นอีกนิดให้เห็นชัดๆ */
+  background: rgba(0, 0, 0, 0.6); 
   border: 1px solid #fff; 
   color: #fff; 
   padding: 10px 25px; 
@@ -183,17 +193,11 @@ a:hover {
   transition: all 0.4s ease; 
   text-transform: uppercase; 
   backdrop-filter: blur(4px);    
-  
-  /* 3. ดันปุ่มขึ้นมาอยู่ที่ z-index ระดับสูงสุด เพื่อให้ลอยเหนือขอบของรูป .inside-content-img ชัวร์ๆ 100% */
-  z-index: 999999 !important; 
+  z-index: 999999 !important; /* การันตีลอยเหนือน้ำและพ้นขอบรูปภาพชัวร์ 100% */
   opacity: 0; 
   pointer-events: none;       
 }
-.btn-back-folder:hover { 
-  background: #fff; 
-  color: #000; 
-  opacity: 1 !important; 
-}
+.btn-back-folder:hover { background: #fff; color: #000; opacity: 1 !important; }
 .btn-back-folder.active { 
   opacity: 1; 
   pointer-events: auto; 
@@ -273,7 +277,7 @@ a:hover {
 .photo-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px 40px; 
+  gap: 20px 40px;  
 }
 
 .photo-item { display: flex; flex-direction: column; }
@@ -294,31 +298,27 @@ a:hover {
 .photo-text-block p { font-size: 12px; color: #444; line-height: 1.5; }
 
 /* =========================================
-   SIDE OVERLAY MENU STYLE (แถบเมนูลอยฝั่งซ้าย)
+   6. SIDE OVERLAY MENU STYLE (แถบเมนูลอยฝั่งซ้าย)
    ========================================= */
 .side-menu-overlay {
   position: fixed;
   top: 0;
   left: 0;
-  width: 320px;            /* ความกว้างของแถบเมนูตามภาพตัวอย่างของคุณ */
+  width: 320px;            
   height: 100vh;
-  background: #333333;     /* สีเทาเข้มเนื้อแมตต์ตามภาพ Reference */
+  background: #333333;     
   color: #ffffff;
-  z-index: 99999;          /* สูงที่สุดเพื่อให้ลอยทับทุกเซกชัน */
+  z-index: 9999999 !important; /* มั่นใจว่าลอยอยู่เหนือทุกเลเยอร์ในทุกๆ หน้าจอ */
   padding: 80px 40px;
   box-shadow: 5px 0 30px rgba(0,0,0,0.3);
-  
-  /* เริ่มต้นด้วยการซ่อนไว้ทางซ้ายนอกหน้าจอ */
   transform: translateX(-100%);
   transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-/* คลาสที่จะเปิดทำงานเมื่อสั่งกดปุ่ม */
 .side-menu-overlay.active {
   transform: translateX(0);
 }
 
-/* ปุ่มกากบาทปิดเมนู */
 .btn-close-menu {
   position: absolute;
   top: 30px;
@@ -335,7 +335,6 @@ a:hover {
   opacity: 1;
 }
 
-/* การจัดระเบียบเนื้อหาด้านใน */
 .side-menu-content {
   display: flex;
   flex-direction: column;
@@ -374,7 +373,7 @@ a:hover {
 
 .menu-sub-list a:hover {
   color: #ffffff;
-  transform: translateX(5px); /* เลื่อนขวานิดๆ ตอน hover ให้ดูมี Dynamic */
+  transform: translateX(5px);
   opacity: 1;
 }
 
@@ -396,8 +395,8 @@ a:hover {
   
   <div class="top-left-menu">
     <div class="title-group">
-      <a href="#work" class="title-row"><h2>CREATIVE WORK</h2><span>>></span></a>
-      <a href="#experience" class="title-row"><h2>EXPERIENCE</h2><span>>></span></a>
+      <a href="#" class="title-row" onclick="toggleSideMenu(event)"><h2>CREATIVE WORK</h2><span>>></span></a>
+      <a href="#" class="title-row" onclick="toggleSideMenu(event)"><h2>EXPERIENCE</h2><span>>></span></a>
     </div>
   </div>
 
@@ -448,11 +447,10 @@ a:hover {
 <section class="section-wrapper" id="production">
   
   <div style="position: absolute; top: 25%; left: 8%; z-index: 50;">
-  <div class="title-group">
-  <a href="#" class="title-row" onclick="toggleSideMenu(event)"><h2>CREATIVE WORK</h2><span>>></span></a>
-  <a href="#" class="title-row" onclick="toggleSideMenu(event)"><h2>EXPERIENCE</h2><span>>></span></a>
-</div>
-     
+    <div class="title-group">
+      <a href="#" class="title-row" onclick="toggleSideMenu(event)"><h2>CREATIVE WORK</h2><span>>></span></a>
+      <a href="#" class="title-row" onclick="toggleSideMenu(event)"><h2>EXPERIENCE</h2><span>>></span></a>
+    </div>
     <nav class="nav-vertical" style="margin-top: 40px;">
       <a href="#home">Home</a>
       <a href="#about">About</a>
@@ -508,8 +506,8 @@ a:hover {
   
   <div style="position: absolute; top: 25%; left: 8%; z-index: 50;">
     <div class="title-group">
-      <a href="#work" class="title-row"><h2>CREATIVE WORK</h2><span>>></span></a>
-      <a href="#experience" class="title-row"><h2>EXPERIENCE</h2><span>>></span></a>
+      <a href="#" class="title-row" onclick="toggleSideMenu(event)"><h2>CREATIVE WORK</h2><span>>></span></a>
+      <a href="#" class="title-row" onclick="toggleSideMenu(event)"><h2>EXPERIENCE</h2><span>>></span></a>
     </div>
   </div>
   
@@ -539,35 +537,38 @@ a:hover {
       <div class="photo-item"><span class="num">(8)</span><img src="photoset_8.JPG" alt="photo8"></div>
     </div>
   </div>
+</section>
+
 <div class="side-menu-overlay" id="sideMenu">
-  <button class="btn-close-menu" onclick="toggleSideMenu()">×</button>
-  
+  <button class="btn-close-menu" onclick="toggleSideMenu(event)">×</button>
   <div class="side-menu-content">
+    
     <div class="menu-section">
       <h2 class="menu-main-title">CREATIVE WORK</h2>
       <ul class="menu-sub-list">
-        <li><a href="#storyboard" onclick="toggleSideMenu()">Storyboard</a></li>
-        <li><a href="#production" onclick="toggleSideMenu()">Production</a></li>
-        <li><a href="#photography" onclick="toggleSideMenu()">Photography</a></li>
+        <li><a href="#storyboard" onclick="navigateToSection(event, 'storyboard')">Storyboard</a></li>
+        <li><a href="#production" onclick="navigateToSection(event, 'production')">Production</a></li>
+        <li><a href="#photography" onclick="navigateToSection(event, 'photography')">Photography</a></li>
       </ul>
     </div>
 
     <div class="menu-section">
       <h2 class="menu-main-title">EXPERIENCE</h2>
       <ul class="menu-sub-list">
-        <li><a href="#experience" onclick="toggleSideMenu()">Overview</a></li>
+        <li><a href="#experience" onclick="navigateToSection(event, 'experience')">Overview</a></li>
       </ul>
     </div>
 
     <div class="menu-footer-links">
-      <a href="#home" onclick="toggleSideMenu()">Home</a>
+      <a href="#home" onclick="navigateToSection(event, 'home')">Home</a>
     </div>
   </div>
 </div>
-</section>
-
 
 <script>
+  // =========================================
+  // 1. LOGIC พาร์ทแฟ้มผลงานเดิมของคุณทั้งหมด (ห้ามแตะต้อง)
+  // =========================================
   const sbInventory = {
     'in-laneige1': ['laneige1_sb1.png', 'laneige1_sb2.png', 'laneige1_sb3.png', 'laneige1_sb4.png'],
     'in-laneige2': ['laneige2_sb1.jpg', 'laneige2_sb2.jpg', 'laneige2_sb3.jpg', 'laneige2_sb4.jpg'],
@@ -580,8 +581,6 @@ a:hover {
   function openFolder(targetId) {
     currentActiveFolder = targetId; 
     document.getElementById('folders-wrap').classList.add('folders-hidden');
-    
-    // เปิดการรับ event คลิกบนกล่องครอบชั้นใน
     document.getElementById('inside-wrap').classList.add('active');
     
     let insides = document.querySelectorAll('.inside-content-img');
@@ -613,34 +612,41 @@ a:hover {
  function closeFolder(event) {
     if (event) { event.stopPropagation(); } 
 
-    // ปิดการแสดงเนื้อหาในแฟ้ม
     let insides = document.querySelectorAll('.inside-content-img');
     insides.forEach(el => el.classList.remove('active'));
     
-    // ปิดการแสดง ex-tab
     let extab = document.getElementById('ex-tab');
     if(extab) extab.classList.remove('active');
     
-    // แสดงแฟ้มอีกครั้ง
     document.getElementById('folders-wrap').classList.remove('folders-hidden');
     
-    // ซ่อนปุ่ม BACK
     let btnBack = document.getElementById('btn-back-folder');
     if(btnBack) btnBack.classList.remove('active');
     
-    // ปิดการรับคำสั่งคลิกกล่องครอบชั้นใน
     document.getElementById('inside-wrap').classList.remove('active');
-}
-   // ฟังก์ชันสำหรับ เปิด/ปิด แถบเมนูลอยฝั่งซ้าย
-function toggleSideMenu(event) {
-  if (event) {
-    event.preventDefault(); // ป้องกันไม่ให้หน้าจอกระตุกตามลิงก์ในตอนแรก
   }
-  const sideMenu = document.getElementById('sideMenu');
-  if (sideMenu) {
-    sideMenu.classList.toggle('active');
+
+  // =========================================
+  // 2. LOGIC พาร์ทระบบแถบเมนูลอยตัวใหม่ที่เพิ่มเติมเข้ามา
+  // =========================================
+  function toggleSideMenu(event) {
+    if (event) { event.preventDefault(); event.stopPropagation(); }
+    const sideMenu = document.getElementById('sideMenu');
+    if (sideMenu) {
+      sideMenu.classList.toggle('active');
+    }
   }
-}
+
+  function navigateToSection(event, sectionId) {
+    if (event) { event.preventDefault(); }
+    const targetSection = document.getElementById(sectionId);
+    if (targetSection) {
+      targetSection.scrollIntoView({ behavior: 'smooth' });
+    }
+    // หลังจากกดเลื่อนหน้าจอเสร็จแล้ว สั่งให้แถบข้างหดตัวซ่อนกลับไปโดยอัตโนมัติ
+    const sideMenu = document.getElementById('sideMenu');
+    if (sideMenu) { sideMenu.classList.remove('active'); }
+  }
 </script>
 
 </body>

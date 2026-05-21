@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pimchanok Y. — Resume</title>
+    <title>Pimchanok Y. — Experience System</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
@@ -20,7 +20,7 @@
             letter-spacing: -0.02em;
         }
 
-        /* TOP GLOBAL NAVBAR */
+        /* GLOBAL TOP NAVIGATION BAR */
         .navbar {
             position: fixed;
             top: 0;
@@ -37,7 +37,7 @@
             color: inherit;
             text-decoration: none;
             margin-right: 25px;
-            opacity: .7;
+            opacity: .6;
             transition: opacity 0.3s;
         }
 
@@ -45,7 +45,7 @@
             opacity: 1;
         }
 
-        /* 3-COLUMN LAYOUT SYSTEM */
+        /* SPLIT LAYOUT SYSTEM (3 COLUMNS) */
         .main-resume-grid {
             display: grid;
             grid-template-columns: 24% 20% 56%;
@@ -53,17 +53,17 @@
             width: 100vw;
         }
 
-        /* COL 1: LEFT INDICATOR PANEL */
+        /* COLUMN 1: LEFT INDICATOR AREA */
         .left-indicator-panel {
             background: #000;
-            padding: 140px 40px 60px 60px;
+            padding: 140px 40px 40px 60px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             position: sticky;
             top: 0;
             height: 100vh;
-            border-right: 1px solid rgba(255, 255, 255, 0.05);
+            border-right: 1px solid rgba(255, 255, 255, 0.03);
         }
 
         .main-cats h1 {
@@ -71,31 +71,32 @@
             font-weight: 700;
             letter-spacing: 0.5px;
             margin-bottom: 12px;
-            cursor: pointer;
+            color: #fff;
+        }
+
+        .left-portrait-crop {
+            width: 100%;
+            max-width: 140px;
+            height: 55px;
+            overflow: hidden;
+            opacity: 0.5;
             transition: opacity 0.3s;
         }
-
-        .main-cats h1.inactive {
-            font-weight: 300;
-            opacity: 0.2;
-        }
-
-        .left-portrait-footer img {
-            width: 100%;
-            max-width: 160px;
-            filter: grayscale(1);
-            opacity: 0.6;
-            transition: opacity 0.4s;
-        }
         
-        .left-portrait-footer img:hover {
-            opacity: 1;
+        .left-portrait-crop:hover {
+            opacity: 0.9;
         }
 
-        /* COL 2: CENTER MENU SLAT */
+        .left-portrait-crop img {
+            width: 100%;
+            object-fit: cover;
+            filter: grayscale(1);
+        }
+
+        /* COLUMN 2: CENTER CONTROL SLAT */
         .center-menu-slat {
-            background: #1c2331; /* สีกรมท่าเทาเข้มเนื้อแมตต์ตามภาพแบบ */
-            padding: 140px 45px 60px;
+            background: #1c2331; /* สีกรมท่าเทาแมตต์คลาสสิก */
+            padding: 140px 45px 40px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -107,7 +108,7 @@
         .sub-menu-nav-links {
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 18px;
         }
 
         .sub-menu-nav-links a {
@@ -115,7 +116,7 @@
             text-decoration: none;
             font-size: 14px;
             font-weight: 400;
-            opacity: 0.5;
+            opacity: 0.4;
             transition: opacity 0.3s, transform 0.3s;
         }
 
@@ -124,256 +125,110 @@
             transform: translateX(4px);
         }
 
-        .center-menu-slat .home-btn {
+        .center-menu-slat .back-portfolio-btn {
             color: #fff;
             text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            opacity: 0.8;
+            font-size: 13px;
+            font-weight: 400;
+            opacity: 0.6;
+            transition: opacity 0.3s;
+        }
+        
+        .center-menu-slat .back-portfolio-btn:hover {
+            opacity: 1;
         }
 
-        /* COL 3: RIGHT DYNAMIC VIEWPORT */
+        /* COLUMN 3: RIGHT MAIN VIEWPORT WITH BACKGROUND TEXT EFFECT */
         .right-content-viewer {
-            padding: 140px 6vw 120px 5vw;
+            padding: 140px 6vw 80px 5vw;
             min-height: 100vh;
-            background: #e5e5e5; /* เปลี่ยนสลับสีพื้นหลังตามเมนูหลัก */
-            color: #111;
-            transition: background 0.4s, color 0.4s;
-        }
-
-        .view-section {
-            display: none;
-            animation: paneFadeIn 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-        }
-
-        .view-section.active {
-            display: block;
-        }
-
-        @keyframes paneFadeIn {
-            from { opacity: 0; transform: translateY(15px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* STYLE: STORYBOARD PANE (FOLDER ART) */
-        .storyboard-flex-layout {
-            display: flex;
-            gap: 40px;
-            align-items: center;
-            margin-top: 20px;
-        }
-
-        .sb-meta-text {
-            max-width: 250px;
-        }
-
-        .sb-meta-text h3 {
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-
-        .sb-meta-text p {
-            font-size: 13px;
-            color: #555;
-            line-height: 1.5;
-        }
-
-        .folder-box {
-            width: 100%;
-            max-width: 580px;
-            background: #000;
-            border-radius: 0 16px 16px 16px;
+            background: #000000;
+            color: #ffffff;
             position: relative;
-            padding: 40px;
-            color: #fff;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.15);
-        }
-
-        .folder-box::before {
-            content: attr(data-tab);
-            position: absolute;
-            top: -30px;
-            left: 0;
-            height: 30px;
-            background: #000;
-            padding: 0 25px;
-            font-size: 11px;
-            font-weight: 500;
-            letter-spacing: 0.5px;
-            display: flex;
-            align-items: center;
-            border-radius: 12px 12px 0 0;
-            clip-path: polygon(0 0, 88% 0, 100% 100%, 0 100%);
-        }
-
-        .preview-btn-card {
-            width: 110px;
-            height: 145px;
-            background: #fff;
-            color: #000;
-            padding: 15px;
-            font-size: 11px;
-            font-weight: 700;
-            cursor: pointer;
-            border-radius: 4px;
-            margin-top: 35px;
-            display: flex;
-            align-items: flex-end;
-            transition: transform 0.3s;
-        }
-
-        .preview-btn-card:hover {
-            transform: translateY(-4px);
-        }
-
-        .next-proj-link {
-            position: absolute;
-            right: 40px;
-            bottom: 40px;
-            background: transparent;
-            border: 1px solid rgba(255,255,255,0.3);
-            color: #fff;
-            padding: 8px 18px;
-            font-size: 11px;
-            cursor: pointer;
-            transition: background 0.3s, color 0.3s;
-        }
-
-        .next-proj-link:hover {
-            background: #fff;
-            color: #000;
-        }
-
-        /* STYLE: PRODUCTION WORK LIST */
-        .production-header-info {
-            font-size: 13px;
-            color: #666;
-            text-align: right;
-            margin-bottom: 40px;
-            line-height: 1.6;
-        }
-
-        .prod-layout-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
-            margin-top: 40px;
-        }
-
-        .prod-thumb-card {
-            background: #dcdcdc;
-            height: 150px;
-            border-radius: 4px;
             overflow: hidden;
         }
 
-        .prod-thumb-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: grayscale(0.3);
+        /* BACKGROUND WATERMARK TEXT EFFECT (ล้อดีไซน์จากแผ่นเรซูเม่จริง) */
+        .bg-watermark-text {
+            position: absolute;
+            top: 30%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 26vw;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.02);
+            z-index: 1;
+            pointer-events: none;
+            user-select: none;
+            letter-spacing: 0.05em;
         }
 
-        /* STYLE: PHOTOGRAPHY GALLERY GRID */
-        .photo-gallery-matrix {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-            margin-top: 20px;
+        .bio-info-sheet {
+            position: relative;
+            z-index: 2; /* ให้อยู่เหนือน้ำหลัง */
         }
 
-        .photo-slot {
-            display: flex;
-            flex-direction: column;
-            font-size: 11px;
-            color: #555;
-        }
-
-        .photo-slot span {
-            margin-bottom: 8px;
-        }
-
-        .photo-slot img {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-            border-radius: 2px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-        }
-
-        .photo-statement {
-            margin-top: 40px;
-            max-width: 300px;
-            font-size: 13px;
-            line-height: 1.6;
-            border-top: 1px solid #ccc;
-            padding-top: 15px;
-        }
-
-        /* STYLE: COMPREHENSIVE EXPERIENCE & PROFILE */
         .bio-info-sheet h2 {
-            font-size: 22px;
+            font-size: 20px;
             font-weight: 400;
-            line-height: 1.5;
+            line-height: 1.6;
             margin-bottom: 50px;
-            max-width: 800px;
+            max-width: 850px;
+            color: #fff;
         }
 
+        /* GRID STRUCTURE FOR EXPERIENCES */
         .matrix-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 50px 80px;
+            gap: 45px 80px;
+        }
+
+        .matrix-block {
+            color: #ccc;
         }
 
         .matrix-block h4 {
-            font-size: 12px;
+            font-size: 11px;
+            font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 1px;
-            border-bottom: 1px solid currentColor;
-            padding-bottom: 8px;
-            margin-bottom: 15px;
+            border-bottom: 1px solid rgba(255,255,255,0.15);
+            padding-bottom: 6px;
+            margin-bottom: 16px;
+            color: #fff;
         }
 
-        .matrix-block p {
+        .exp-row {
+            margin-bottom: 18px;
+        }
+
+        .exp-row .meta-tag {
+            font-size: 11px;
+            color: #555;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 2px;
+            font-weight: 500;
+        }
+
+        .exp-row p {
             font-size: 13px;
-            line-height: 1.7;
-            margin-bottom: 10px;
+            line-height: 1.6;
+            color: #aaa;
         }
 
-        /* LIGHTBOX SYSTEM */
-        .lightbox-modal {
-            position: fixed;
-            top: 0; left: 0; width: 100vw; height: 100vh;
-            background: rgba(0,0,0,0.95);
-            z-index: 1000;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            opacity: 0; pointer-events: none;
-            transition: opacity 0.4s;
+        .exp-row p strong {
+            color: #fff;
         }
 
-        .lightbox-modal.active {
-            opacity: 1; pointer-events: auto;
-        }
-
-        .lightbox-wrap { display: flex; gap: 20px; max-width: 85vw; overflow-x: auto; }
-        .lightbox-wrap img { height: 65vh; border-radius: 4px; }
-        
-        .close-lb-btn {
-            margin-top: 30px; background: #fff; color: #000; border: none;
-            padding: 10px 24px; font-size: 11px; font-weight: 600; cursor: pointer;
-        }
-
-        /* RESPONSIVE DESIGN */
+        /* RESPONSIVE DESIGN FOR SMARTPHONES & TABLETS */
         @media (max-width: 1100px) {
             .main-resume-grid { grid-template-columns: 1fr; }
             .left-indicator-panel, .center-menu-slat { height: auto; position: relative; top: 0; padding: 40px; }
             .right-content-viewer { padding: 40px; }
-            .photo-gallery-matrix { grid-template-columns: repeat(2, 1fr); }
             .matrix-grid { grid-template-columns: 1fr; }
+            .bg-watermark-text { font-size: 40vw; top: 50%; }
         }
     </style>
 </head>
@@ -398,237 +253,112 @@
         
         <div class="left-indicator-panel">
             <div class="main-cats">
-                <h1 id="cat-creative" onclick="activateSection('creative')">CREATIVE WORK &gt;&gt;</h1>
-                <h1 id="cat-experience" class="inactive" onclick="activateSection('experience')">EXPERIENCE &gt;&gt;</h1>
+                <h1 id="cat-experience">EXPERIENCE &gt;&gt;</h1>
             </div>
             
-            <div class="left-portrait-footer">
-                <img src="hero-center.JPG" alt="Pimchanok Y. Portrait">
+            <div class="left-portrait-crop">
+                <img src="hero-center.JPG" alt="Pimchanok Y. Eye Portrait">
             </div>
         </div>
 
         <div class="center-menu-slat">
             <div class="sub-menu-nav-links" id="resume-sub-nav">
-                </div>
+                <a href="#" id="sub-management" class="active" onclick="scrollToBlock('management'); return false;">Project Operations</a>
+                <a href="#" id="sub-creative" onclick="scrollToBlock('creative'); return false;">Creative Execution</a>
+                <a href="#" id="sub-education" onclick="scrollToBlock('education'); return false;">Education & Honors</a>
+                <a href="#" id="sub-skills" onclick="scrollToBlock('skills'); return false;">Core Capabilities</a>
+            </div>
             
-            <a href="index.html" class="home-btn">← Portfolio</a>
+            <a href="index.html" class="back-portfolio-btn">← Portfolio Hub</a>
         </div>
 
-        <div class="right-content-viewer" id="viewport-ctx">
+        <div class="right-content-viewer">
+            
+            <div class="bg-watermark-text">ZOAR</div>
 
-            <div id="pane-storyboard" class="view-section active">
-                <div class="storyboard-flex-layout" id="folder-laneige">
-                    <div class="sb-meta-text">
-                        <h3>Storyboard</h3>
-                        <p>Pre-visualizing narrative structure and shot composition for commercial films.</p>
-                    </div>
-                    <div class="folder-box" data-tab="2024 - LANEIGE">
-                        <h2>NEW MISSION Alert !</h2>
-                        <p style="color: #aaa; font-size: 12px; margin-top: 5px;">Let's explore the LANEIGE planet.</p>
-                        <div class="preview-btn-card" onclick="openLightbox('laneige')">PREVIEW &gt;&gt;<br>storyboard</div>
-                        <button class="next-proj-link" onclick="toggleBrandFolder('nitto')">Next Project &gt;&gt;</button>
-                    </div>
-                </div>
-
-                <div class="storyboard-flex-layout" id="folder-nitto" style="display: none;">
-                    <div class="sb-meta-text">
-                        <h3>Storyboard</h3>
-                        <p>Pre-visualizing narrative structure and shot composition for commercial films.</p>
-                    </div>
-                    <div class="folder-box" data-tab="2024 - NITTO">
-                        <h2>DYNAMIC PERFORMANCE</h2>
-                        <p style="color: #aaa; font-size: 12px; margin-top: 5px;">Sleek sequencing for automotive tire branding.</p>
-                        <div class="preview-btn-card" onclick="openLightbox('nitto')">PREVIEW &gt;&gt;<br>storyboard</div>
-                        <button class="next-proj-link" onclick="toggleBrandFolder('laneige')">Back &lt;&lt;</button>
-                    </div>
-                </div>
-            </div>
-
-            <div id="pane-production" class="view-section">
-                <div class="production-header-info">
-                    <p>Production Suite</p>
-                    <p style="color:#666;">Collaborating across core roles in contemporary filmmaking and installations.</p>
-                </div>
+            <div class="bio-info-sheet">
+                <h2>A multidisciplinary creative specializing in visual culture, storytelling, and contemporary media. Proven ability to conceptualize, manage, and execute complex workflows across interactive installations, film productions, and cross-cultural events.</h2>
                 
-                <div style="margin-top: 20px; font-size: 14px; line-height: 1.8;">
-                    <p style="margin-bottom: 12px;"><strong>YONLAPA — Saltburn (Official Music Video)</strong><br><span style="color:#555; font-size:13px;">Assistant Director / Video Editor / Colorist (DaVinci Resolve workflow)</span></p>
-                    <p style="margin-bottom: 12px;"><strong>"Mimesis" Interactive Installation</strong><br><span style="color:#555; font-size:13px;">Technical Co-Director / Designing immersive environments with Unreal Engine integration</span></p>
-                </div>
-
-                <div class="prod-layout-grid">
-                    <div class="prod-thumb-card"><img src="mv1.jpg" alt="Production Frame 1"></div>
-                    <div class="prod-thumb-card"><img src="mv2.jpg" alt="Production Frame 2"></div>
-                    <div class="prod-thumb-card"><img src="mv3.jpg" alt="Production Frame 3"></div>
-                    <div class="prod-thumb-card"><img src="mimesis1.jpg" alt="Mimesis Setup"></div>
-                </div>
-            </div>
-
-            <div id="pane-photography" class="view-section">
-                <div class="photo-gallery-matrix">
-                    <div class="photo-slot"><span>(01)</span><img src="portrait.jpg"></div>
-                    <div class="photo-slot"><span>(02)</span><img src="mv1.jpg"></div>
-                    <div class="photo-slot"><span>(03)</span><img src="mv2.jpg"></div>
-                    <div class="photo-slot"><span>(04)</span><img src="mv3.jpg"></div>
-                    <div class="photo-slot"><span>(05)</span><img src="mimesis2.jpg"></div>
-                    <div class="photo-slot"><span>(06)</span><img src="mimesis3.jpg"></div>
-                </div>
-                <div class="photo-statement">
-                    <p style="font-weight:600; margin-bottom:5px;">Visual Capture</p>
-                    <p style="color:#666; font-size:12px;">Capturing lighting gradients, set textures, and human expressions during live sets and site experiments.</p>
-                </div>
-            </div>
-
-            <div id="pane-bio" class="view-section">
-                <div class="bio-info-sheet">
-                    <h2>สวัสดีค่ะ พิมพ์ชนก แย้มศิริ (โซอาร์) | Multidisciplinary Creative ที่เชี่ยวชาญการบริหารจัดการโครงการ (Management) และการผลิตสื่อสร้างสรรค์ (Production) มีประสบการณ์ประสานงานสองภาษา (Bilingual) ในนิทรรศการและเทศกาลนานาชาติหน้างานจริง</h2>
+                <div class="matrix-grid">
                     
-                    <div class="matrix-grid">
-                        <div class="matrix-block">
-                            <h4>Management & Operations</h4>
-                            <p style="color:#aaa; font-size:11px;">Mads Festival 2568 & Mads Degree 2569</p>
-                            <p><strong>Assistant Project Manager:</strong> ควบคุมโครงสร้าง ระบบคิว และการจัดการหน้างานนิทรรศการศิลปะนิพนธ์</p>
-                            
-                            <p style="color:#aaa; font-size:11px; margin-top:12px;">Fly To The Moon Festival (เกาะหมาก)</p>
-                            <p><strong>Bilingual Operation Staff:</strong> ดูแลความเรียบร้อยและประสานงานสองภาษาในเทศกาลดนตรีระดับสากล</p>
-                            
-                            <p style="color:#aaa; font-size:11px; margin-top:12px;">Glom Glom Children's Day & Skylight Festival</p>
-                            <p><strong>Operation Assistant:</strong> รันระบบหลังบ้านและดูแลต้อนรับกลุ่มนักท่องเที่ยวต่างชาติหน้างานอีเวนต์</p>
-
-                            <p style="color:#aaa; font-size:11px; margin-top:12px;">ImaginAsia: Crossing Borders (Taipei, Taiwan)</p>
-                            <p><strong>Collaborative Presentation Member:</strong> ตัวแทนประเทศไทยร่วมวางแผนกลยุทธ์การนำเสนอโปรเจกต์กับทีมงานนานาชาติ</p>
+                    <div class="matrix-block" id="block-management">
+                        <h4>Project Operations & Management</h4>
+                        
+                        <div class="exp-row">
+                            <span class="meta-tag">2025 – 2026</span>
+                            <p><strong>Assistant Project Manager</strong> — Mads Festival 2025 & Mads Degree Show 2026. Directed structural layouts, backend flow, and onsite exhibition logistics for the media arts graduate showcase.</p>
+                        </div>
+                        
+                        <div class="exp-row">
+                            <span class="meta-tag">2025 – 2026</span>
+                            <p><strong>Bilingual Operation Staff</strong> — Fly To The Moon Festival (Koh Mak). Managed live backend operations and international guest relations for a multi-day music and arts event.</p>
+                        </div>
+                        
+                        <div class="exp-row">
+                            <span class="meta-tag">2025 – 2026</span>
+                            <p><strong>Bilingual Operations Assistant</strong> — Glom Glom Children's Day & Skylight Lantern Festival. Supervised onsite visitor traffic, scheduling, and bilingual public relations.</p>
                         </div>
 
-                        <div class="matrix-block">
-                            <h4>Creative Production & PR</h4>
-                            <p style="color:#aaa; font-size:11px;">เวิ้งคุณนลี เชียงใหม่</p>
-                            <p><strong>Public Relations (PR):</strong> วางแผนกลยุทธ์และบริหารภาพลักษณ์แบรนด์เป็นระยะเวลา 1 ปีเต็ม</p>
-
-                            <p style="color:#aaa; font-size:11px; margin-top:12px;">Commercial Storyboards</p>
-                            <p><strong>Storyboard Artist:</strong> จัดทำตารางลำดับภาพให้กับแบรนด์สากลชั้นนำอย่าง LANEIGE และ NITTO</p>
-
-                            <p style="color:#aaa; font-size:11px; margin-top:12px;">Technical Skills & Tools</p>
-                            <p>• DaVinci Resolve (Expert Color Grading / Subtitle Workflow)<br>• Premiere Pro, Photoshop, Illustrator, Unreal Engine</p>
-                        </div>
-
-                        <div class="matrix-block">
-                            <h4>Education & Honors</h4>
-                            <p><strong>Media Arts and Design (MADs)</strong><br>คณะวิจิตรศิลป์ มหาวิทยาลัยเชียงใหม่ (นักศึกษาชั้นปีที่ 4)</p>
-                            <p style="margin-top: 10px;"><strong>Awarded:</strong> Certificate for Best Research Presentation (เกียรติบัตรการนำเสนองานวิจัยยอดเยี่ยมในเวทีสัมมนาวิชาการ)</p>
-                        </div>
-
-                        <div class="matrix-block">
-                            <h4>Core Skills & Languages</h4>
-                            <p><strong>Interpersonal:</strong> การแก้ปัญหาเฉพาะหน้าในงานอีเวนต์สเกลใหญ่, การประสานงานระหว่างวัฒนธรรม (Cross-cultural Coordination), การวางระบบบริหารหลังบ้าน</p>
-                            <p style="margin-top: 10px;"><strong>Languages:</strong> Thai (Native) / English (Professional / Bilingual Experience - CMU TEP B1) / Chinese (Basic)</p>
+                        <div class="exp-row">
+                            <span class="meta-tag">International Delegation</span>
+                            <p><strong>Collaborative Presentation Member</strong> — ImaginAsia: Crossing Borders (Taipei, Taiwan). Co-developed visual presentation strategies and pitched collaborative cultural concepts to international panels.</p>
                         </div>
                     </div>
+
+                    <div class="matrix-block" id="block-creative">
+                        <h4>Creative Execution & Marketing</h4>
+                        
+                        <div class="exp-row">
+                            <span class="meta-tag">2024 – 2025</span>
+                            <p><strong>Public Relations Specialist</strong> — Weng Khun Nalee Chiang Mai. Orchestrated brand identity, visual communication, and media outreach initiatives across a year-long campaign.</p>
+                        </div>
+
+                        <div class="exp-row">
+                            <span class="meta-tag">Commercial Pre-Visualization</span>
+                            <p><strong>Storyboard Artist</strong> — Designed comprehensive shot sequences and narrative pacing for premium commercial brands including LANEIGE and NITTO.</p>
+                        </div>
+
+                        <div class="exp-row">
+                            <span class="meta-tag">Software Mastery</span>
+                            <p>• DaVinci Resolve (Advanced Color Grading & Timing)<br>• Premiere Pro, Photoshop, Illustrator, Unreal Engine Suite</p>
+                        </div>
+                    </div>
+
+                    <div class="matrix-block" id="block-education">
+                        <h4>Education & Endorsements</h4>
+                        <div class="exp-row">
+                            <p><strong>BA in Media Arts and Design (MADs)</strong><br>Chiang Mai University, Fine Arts Department (Senior Standing)</p>
+                            <p style="margin-top: 10px; color: #666; font-size: 12px; line-height: 1.5;">• Received the Best Research Certificate for outstanding project presentation and structural methodologies in an academic seminar.</p>
+                        </div>
+                    </div>
+
+                    <div class="matrix-block" id="block-skills">
+                        <h4>Core Capabilities</h4>
+                        <div class="exp-row">
+                            <p><strong>Expertise:</strong> Film Directing, Art Direction, Video Editing, Expert Color Grading, Prop Making, Cinematography, Interactive Systems Design, Cross-cultural Troubleshooting.</p>
+                            <p style="margin-top: 10px;"><strong>Languages:</strong> Thai (Native) / English (Conversational - CMU TEP B1) / Chinese (Basic)</p>
+                        </div>
+                    </div>
+
                 </div>
             </div>
-
         </div>
-    </div>
-
-    <div id="sb-lightbox" class="lightbox-modal">
-        <div class="lightbox-wrap" id="lb-gallery-vault"></div>
-        <button class="close-lb-btn" onclick="closeLightbox()">CLOSE PREVIEW</button>
     </div>
 
     <script>
-        // ฟังก์ชันสลับเมนูใหญ่ฝั่งซ้ายสุด
-        function activateSection(secName) {
-            document.getElementById('cat-creative').classList.add('inactive');
-            document.getElementById('cat-experience').classList.add('inactive');
-            document.getElementById(`cat-${secName}`).classList.remove('inactive');
-
-            renderCenterSlatMenu(secName);
-        }
-
-        // ฟังก์ชันสร้างลิงก์ตรงแถบกลาง (Center Menu Line)
-        function renderCenterSlatMenu(secName) {
-            const menuVault = document.getElementById('resume-sub-nav');
-            menuVault.innerHTML = '';
-
-            if (secName === 'creative') {
-                // ปรับขวาเป็นสีเทาอ่อนตามมูดแสดงงานศิลปะ
-                document.getElementById('viewport-ctx').style.background = '#e5e5e5';
-                document.getElementById('viewport-ctx').style.color = '#111';
-
-                menuVault.innerHTML = `
-                    <a href="#" id="sub-story" class="active" onclick="switchRightPane('storyboard'); return false;">Storyboard</a>
-                    <a href="#" id="sub-prod" onclick="switchRightPane('production'); return false;">Production</a>
-                    <a href="#" id="sub-photo" onclick="switchRightPane('photography'); return false;">Photography</a>
-                `;
-                switchRightPane('storyboard');
-            } else {
-                // ปรับขวาเป็นสีดำสนิทเข้มขลังตามแบบประวัติทางการ
-                document.getElementById('viewport-ctx').style.background = '#000000';
-                document.getElementById('viewport-ctx').style.color = '#ffffff';
-
-                menuVault.innerHTML = `
-                    <a href="#" id="sub-bio" class="active" onclick="switchRightPane('bio'); return false;">Biography & Profile</a>
-                `;
-                switchRightPane('bio');
-            }
-        }
-
-        // ฟังก์ชันสลับหน้าคอนเทนต์ใน Viewport ขวาสุด
-        function switchRightPane(paneId) {
-            document.querySelectorAll('.view-section').forEach(p => p.classList.remove('active'));
-            document.getElementById(`pane-${paneId}`).classList.add('active');
-
+        function scrollToBlock(blockId) {
+            // ควบคุมการไฮไลท์ลิงก์แถบเมนูตรงกลาง
             const links = document.querySelectorAll('.sub-menu-nav-links a');
             links.forEach(l => l.classList.remove('active'));
             
-            if (paneId === 'storyboard') {
-                const activeLink = document.getElementById('sub-story');
-                if (activeLink) activeLink.classList.add('active');
-                toggleBrandFolder('laneige');
-            } else if (paneId === 'production') {
-                const activeLink = document.getElementById('sub-prod');
-                if (activeLink) activeLink.classList.add('active');
-            } else if (paneId === 'photography') {
-                const activeLink = document.getElementById('sub-photo');
-                if (activeLink) activeLink.classList.add('active');
-            } else if (paneId === 'bio') {
-                const activeLink = document.getElementById('sub-bio');
-                if (activeLink) activeLink.classList.add('active');
+            const activeLink = document.getElementById(`sub-${blockId}`);
+            if (activeLink) activeLink.classList.add('active');
+
+            // ทำการ Scroll หน้าจอฝั่งขวาไปยังหัวข้อหลักอย่างนุ่มนวล
+            const targetElement = document.getElementById(`block-${blockId}`);
+            if (targetElement) {
+                targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }
-        }
-
-        // สลับแสดงผลกล่องโฟลเดอร์แบรนด์โฆษณา
-        function toggleBrandFolder(brand) {
-            const laneigeLink = document.getElementById('sub-story');
-            
-            if (brand === 'laneige') {
-                document.getElementById('folder-laneige').style.display = 'flex';
-                document.getElementById('folder-nitto').style.display = 'none';
-                if (laneigeLink) laneigeLink.innerText = 'Storyboard (LANEIGE)';
-            } else {
-                document.getElementById('folder-laneige').style.display = 'none';
-                document.getElementById('folder-nitto').style.display = 'flex';
-                if (laneigeLink) laneigeLink.innerText = 'Storyboard (NITTO)';
-            }
-        }
-
-        // หน้าต่างจำลองเปิดดูสไลด์งานบอร์ด
-        function openLightbox(brand) {
-            const container = document.getElementById('lb-gallery-vault');
-            container.innerHTML = '';
-            for(let i=1; i<=3; i++) {
-                const img = document.createElement('img');
-                img.src = 'storyboard-preview-sample.jpg'; // แทนที่ด้วยไฟล์รูปภาพจริงของคุณได้เลยค่ะ
-                container.appendChild(img);
-            }
-            document.getElementById('sb-lightbox').classList.add('active');
-        }
-
-        function closeLightbox() {
-            document.getElementById('sb-lightbox').classList.remove('active');
-        }
-
-        // โหลดฟังก์ชันตั้งต้น
-        window.onload = function() {
-            renderCenterSlatMenu('creative');
         }
     </script>
 </body>

@@ -282,12 +282,14 @@ a:hover {
     <img src="laneige2_tab.png" class="folder-img" id="tab-laneige2" onclick="openFolder('in-laneige2')">
   </div>
 
-  <div class="inside-wrap" id="inside-wrap">
-    <button class="btn-back-folder" id="btn-back-folder" onclick="closeFolder()"><< BACK</button>
-    <img src="inside_nitto.png" class="inside-content-img" id="in-nitto" onclick="closeFolder()">
-    <img src="inside_pramy.png" class="inside-content-img" id="in-pramy" onclick="closeFolder()">
-    <img src="inside_laneige1.png" class="inside-content-img" id="in-laneige1" onclick="closeFolder()">
-    <img src="inside_laneige2.png" class="inside-content-img" id="in-laneige2" onclick="closeFolder()">
+<div class="inside-wrap" id="inside-wrap">
+    <button class="btn-back-folder" id="btn-back-folder" onclick="closeFolder(event)"><< BACK</button>
+    
+    <img src="inside_nitto.png" class="inside-content-img" id="in-nitto">
+    <img src="inside_pramy.png" class="inside-content-img" id="in-pramy">
+    <img src="inside_laneige1.png" class="inside-content-img" id="in-laneige1">
+    <img src="inside_laneige2.png" class="inside-content-img" id="in-laneige2">
+    
     <img src="ex_tab.png" class="ex-tab-floating" id="ex-tab" onclick="showSBDetails(event)">
   </div>
 
@@ -439,18 +441,17 @@ a:hover {
     document.getElementById('sb-popup').classList.remove('active');
   }
 
-  function closeFolder(event) {
-  // ถ้ามีการกดปุ่ม ให้หยุดแรงกดไว้ตรงนั้น ไม่ให้ทะลุไปโดนเลเยอร์อื่นซ้ำซ้อน
-  if (event) { event.stopPropagation(); }
+function closeFolder(event) {
+    if (event) { event.stopPropagation(); } // บรรทัดนี้สำคัญมาก จะช่วยไม่ให้ปุ่มเอ๋อครับ
 
-  let insides = document.querySelectorAll('.inside-content-img');
-  insides.forEach(el => el.classList.remove('active'));
-  let extab = document.getElementById('ex-tab');
-  if(extab) extab.classList.remove('active');
-  document.getElementById('folders-wrap').classList.remove('folders-hidden');
-  let btnBack = document.getElementById('btn-back-folder');
-  if(btnBack) btnBack.classList.remove('active');
-}
+    let insides = document.querySelectorAll('.inside-content-img');
+    insides.forEach(el => el.classList.remove('active'));
+    let extab = document.getElementById('ex-tab');
+    if(extab) extab.classList.remove('active');
+    document.getElementById('folders-wrap').classList.remove('folders-hidden');
+    let btnBack = document.getElementById('btn-back-folder');
+    if(btnBack) btnBack.classList.remove('active');
+  }
 </script>
 
 </body>

@@ -292,6 +292,101 @@ a:hover {
 .photo-text-block h4 { font-size: 15px; font-weight: bold; margin-bottom: 10px; }
 .photo-text-block .line { width: 100%; height: 1px; background: #000; margin-bottom: 15px; }
 .photo-text-block p { font-size: 12px; color: #444; line-height: 1.5; }
+
+/* =========================================
+   SIDE OVERLAY MENU STYLE (แถบเมนูลอยฝั่งซ้าย)
+   ========================================= */
+.side-menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 320px;            /* ความกว้างของแถบเมนูตามภาพตัวอย่างของคุณ */
+  height: 100vh;
+  background: #333333;     /* สีเทาเข้มเนื้อแมตต์ตามภาพ Reference */
+  color: #ffffff;
+  z-index: 99999;          /* สูงที่สุดเพื่อให้ลอยทับทุกเซกชัน */
+  padding: 80px 40px;
+  box-shadow: 5px 0 30px rgba(0,0,0,0.3);
+  
+  /* เริ่มต้นด้วยการซ่อนไว้ทางซ้ายนอกหน้าจอ */
+  transform: translateX(-100%);
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* คลาสที่จะเปิดทำงานเมื่อสั่งกดปุ่ม */
+.side-menu-overlay.active {
+  transform: translateX(0);
+}
+
+/* ปุ่มกากบาทปิดเมนู */
+.btn-close-menu {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 32px;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+}
+.btn-close-menu:hover {
+  opacity: 1;
+}
+
+/* การจัดระเบียบเนื้อหาด้านใน */
+.side-menu-content {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.menu-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.menu-main-title {
+  font-size: 18px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  color: #ffffff;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  padding-bottom: 10px;
+}
+
+.menu-sub-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.menu-sub-list a {
+  font-size: 15px;
+  color: #cccccc;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.menu-sub-list a:hover {
+  color: #ffffff;
+  transform: translateX(5px); /* เลื่อนขวานิดๆ ตอน hover ให้ดูมี Dynamic */
+  opacity: 1;
+}
+
+.menu-footer-links a {
+  font-size: 16px;
+  font-weight: bold;
+  color: #ffffff;
+  opacity: 0.7;
+}
+.menu-footer-links a:hover {
+  opacity: 1;
+}
 </style>
 </head>
 
@@ -353,10 +448,11 @@ a:hover {
 <section class="section-wrapper" id="production">
   
   <div style="position: absolute; top: 25%; left: 8%; z-index: 50;">
-    <div class="title-group">
-      <a href="#work" class="title-row"><h2>CREATIVE WORK</h2><span>>></span></a>
-      <a href="#experience" class="title-row"><h2>EXPERIENCE</h2><span>>></span></a>
-    </div>
+  <div class="title-group">
+  <a href="#" class="title-row" onclick="toggleSideMenu(event)"><h2>CREATIVE WORK</h2><span>>></span></a>
+  <a href="#" class="title-row" onclick="toggleSideMenu(event)"><h2>EXPERIENCE</h2><span>>></span></a>
+</div>
+     
     <nav class="nav-vertical" style="margin-top: 40px;">
       <a href="#home">Home</a>
       <a href="#about">About</a>
@@ -443,8 +539,33 @@ a:hover {
       <div class="photo-item"><span class="num">(8)</span><img src="photoset_8.JPG" alt="photo8"></div>
     </div>
   </div>
+<div class="side-menu-overlay" id="sideMenu">
+  <button class="btn-close-menu" onclick="toggleSideMenu()">×</button>
+  
+  <div class="side-menu-content">
+    <div class="menu-section">
+      <h2 class="menu-main-title">CREATIVE WORK</h2>
+      <ul class="menu-sub-list">
+        <li><a href="#storyboard" onclick="toggleSideMenu()">Storyboard</a></li>
+        <li><a href="#production" onclick="toggleSideMenu()">Production</a></li>
+        <li><a href="#photography" onclick="toggleSideMenu()">Photography</a></li>
+      </ul>
+    </div>
 
+    <div class="menu-section">
+      <h2 class="menu-main-title">EXPERIENCE</h2>
+      <ul class="menu-sub-list">
+        <li><a href="#experience" onclick="toggleSideMenu()">Overview</a></li>
+      </ul>
+    </div>
+
+    <div class="menu-footer-links">
+      <a href="#home" onclick="toggleSideMenu()">Home</a>
+    </div>
+  </div>
+</div>
 </section>
+
 
 <script>
   const sbInventory = {
@@ -509,6 +630,16 @@ a:hover {
     
     // ปิดการรับคำสั่งคลิกกล่องครอบชั้นใน
     document.getElementById('inside-wrap').classList.remove('active');
+}
+   // ฟังก์ชันสำหรับ เปิด/ปิด แถบเมนูลอยฝั่งซ้าย
+function toggleSideMenu(event) {
+  if (event) {
+    event.preventDefault(); // ป้องกันไม่ให้หน้าจอกระตุกตามลิงก์ในตอนแรก
+  }
+  const sideMenu = document.getElementById('sideMenu');
+  if (sideMenu) {
+    sideMenu.classList.toggle('active');
+  }
 }
 </script>
 

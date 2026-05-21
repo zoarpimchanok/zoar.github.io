@@ -480,22 +480,27 @@ a:hover {
     document.getElementById('sb-popup').classList.remove('active');
   }
 
-  function closeFolder(event) {
+ function closeFolder(event) {
     if (event) { event.stopPropagation(); } 
 
+    // ปิดการแสดงเนื้อหาในแฟ้ม
     let insides = document.querySelectorAll('.inside-content-img');
     insides.forEach(el => el.classList.remove('active'));
+    
+    // ปิดการแสดง ex-tab
     let extab = document.getElementById('ex-tab');
     if(extab) extab.classList.remove('active');
     
+    // แสดงแฟ้มอีกครั้ง
     document.getElementById('folders-wrap').classList.remove('folders-hidden');
     
+    // ซ่อนปุ่ม BACK
     let btnBack = document.getElementById('btn-back-folder');
     if(btnBack) btnBack.classList.remove('active');
     
-    // ปิดการรับคำสั่งคลิกกล่องครอบชั้นใน เพื่อให้กลับไปกดเลือกแฟ้มอันอื่นได้ปกติ
+    // ปิดการรับคำสั่งคลิกกล่องครอบชั้นใน
     document.getElementById('inside-wrap').classList.remove('active');
-  }
+}
 </script>
 
 </body>

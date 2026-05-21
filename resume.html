@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pimchanok Y. — Resume</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #e5e5e5; /* สีเทาอ่อนตามมูดใน Screenshot ของคุณ */
+            color: #111;
+            overflow-x: hidden;
+            letter-spacing: -0.02em;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 30px 60px;
+            z-index: 100;
+            font-size: 13px;
+            mix-blend-mode: difference;
+            color: white;
+        }
+
+        .navbar a {
+            color: inherit;
+            text-decoration: none;
+            margin-right: 25px;
+            opacity: .8;
+            transition: opacity 0.3s;
+        }
+
+        .navbar a:hover {
+            opacity: 1;
+        }
+
+        /* MAIN SPLIT-SCREEN LAYOUT */
+        .resume-container {
+            display: grid;
+            grid-template-columns: 30% 70%;
+            min-height: 100vh;
+            padding-top: 100px;
+        }
+
+        /* LEFT SIDE (STICKY NAVIGATION & CATEGORY INDICATOR) */
+        .left-panel {
+            position: sticky;
+            top: 100px;
+            height: calc(100vh - 100px);
+            padding: 40px 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .category-indicators h1 {
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .category-indicators h1.inactive {
+            opacity: 0.2;
+        }
+
+        .side-sub-menu {
+            margin-top: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .side-sub-menu a {
+            font-size: 13px;
+            color: #111;
+            text-decoration: none;
+            opacity: 0.4;
+            transition: opacity 0.3s, transform 0.3s;
+            display: inline-block;
+        }
+
+        .side-sub-menu a.active, .side-sub-menu a:hover {
+            opacity: 1;
+            transform: translateX(5px);
+        }
+
+        .back-home-link {
+            font-size: 13px;
+            text-decoration: none;
+            color: #111;
+            opacity: 0.6;
+            margin-top: auto;
+        }
+
+        /* RIGHT SIDE (CONTENT BLOCK) */
+        .right-panel {
+            padding: 40px 8vw 120px 4vw;
+            border-left: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .content-section {
+            display: none;
+            animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* INTERACTIVE FOLDER STYLING (LANEIGE / NITTO) */
+        .folder-wrapper {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+            margin-top: 40px;
+        }
+
+        .work-desc-meta {
+            max-width: 280px;
+        }
+
+        .work-desc-meta h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .work-desc-meta p {
+            font-size: 13px;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .folder-container {
+            width: 100%;
+            max-width: 650px;
+            background: #000;
+            border-radius: 0px 16px 16px 16px;
+            position: relative;
+            padding: 40px;
+            color: #fff;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+        }
+
+        /* Folder Tab */
+        .folder-container::before {
+            content: attr(data-tab);
+            position: absolute;
+            top: -30px;
+            left: 0;
+            height: 30px;
+            background: #000;
+            padding: 0 30px;
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            border-radius: 12px 12px 0 0;
+            clip-path: polygon(0 0, 85% 0, 100% 100%, 0 100%);
+        }
+
+        .folder-content {
+            min-height: 280px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .folder-header h2 {
+            font-size: 16px;
+            font-weight: 400;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .folder-header p {
+            font-size: 12px;
+            color: #aaa;
+        }
+
+        .preview-trigger-box {
+            width: 120px;
+            height: 155px;
+            background: #fff;
+            color: #000;
+            padding: 15px;
+            font-size: 11px;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 4px;
+            margin-top: 30px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            align-items: flex-end;
+            border: 1px solid #ddd;
+        }
+
+        .preview-trigger-box:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(255,255,255,0.1);
+        }
+
+        .folder-nav-btn {
+            position: absolute;
+            right: 40px;
+            bottom: 40px;
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.4);
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 11px;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+        }
+
+        .folder-nav-btn:hover {
+            background: #fff;
+            color: #000;
+        }
+
+        /* EXPERIENCE BLOCK STYLING */
+        .experience-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 50px;
+            margin-top: 20px;
+        }
+
+        .exp-row {
+            display: grid;
+            grid-template-columns: 180px 1fr;
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+            padding-bottom: 30px;
+        }
+
+        .exp-time {
+            font-size: 13px;
+            font-weight: 500;
+            color: #666;
+        }
+
+        .exp-details h2 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .exp-details .company {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #444;
+            margin-bottom: 12px;
+        }
+
+        .exp-details p {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #333;
+            max-width: 750px;
+        }
+
+        /* PROFILE & SKILLS LAYOUT */
+        .profile-header-block {
+            margin-bottom: 60px;
+        }
+
+        .profile-header-block h2 {
+            font-size: 28px;
+            font-weight: 400;
+            line-height: 1.4;
+            max-width: 800px;
+            margin-bottom: 20px;
+        }
+
+        .skills-table-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .skill-column h4 {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 1px solid #111;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+
+        .skill-column p {
+            font-size: 13px;
+            line-height: 1.8;
+            color: #333;
+        }
+
+        /* LIGHTBOX OVERLAY FOR STORYBOARD PREVIEW */
+        .lightbox-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: #000;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+        }
+
+        .lightbox-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .lightbox-images-container {
+            display: flex;
+            gap: 20px;
+            max-width: 90vw;
+            overflow-x: auto;
+            padding: 20px;
+        }
+
+        .lightbox-images-container img {
+            height: 60vh;
+            border-radius: 4px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+        }
+
+        .lightbox-close-btn {
+            margin-top: 40px;
+            background: #fff;
+            color: #000;
+            border: none;
+            padding: 12px 30px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: background 0.3s;
+        }
+
+        /* RESPONSIBILITY ON LARGE SCREEN ONLY (DESKTOP) */
+        @media (max-width: 1024px) {
+            .resume-container { grid-template-columns: 1fr; }
+            .left-panel { position: relative; height: auto; top: 0; padding: 40px; }
+            .right-panel { padding: 40px; }
+            .folder-wrapper { flex-direction: column; align-items: flex-start; }
+            .exp-row { grid-template-columns: 1fr; gap: 10px; }
+            .skills-table-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div>
+            <a href="index.html#home">Home</a>
+            <a href="index.html#about">About</a>
+            <a href="index.html#work">Work</a>
+            <a href="index.html#contact">Contact</a>
+        </div>
+        <div>ZOAR</div>
+        <div>
+            <a href="https://www.instagram.com/zoarrq/" target="_blank">Instagram</a>
+            <a href="https://www.facebook.com/share/1L4xDdpmgP/?mibextid=wwXIfr" target="_blank">Facebook</a>
+            <a href="resume.html" style="text-decoration: underline;">Resume</a>
+        </div>
+    </nav>
+
+    <div class="resume-container">
+        
+        <div class="left-panel">
+            <div class="category-indicators">
+                <h1 id="trigger-creative" onclick="switchTab('creative')">CREATIVE WORK &gt;&gt;</h1>
+                <h1 id="trigger-experience" class="inactive" onclick="switchTab('experience')">EXPERIENCE &gt;&gt;</h1>
+                
+                <div class="side-sub-menu" id="sub-menu-container">
+                    </div>
+            </div>
+
+            <a href="index.html" class="back-home-link">← Back to Portfolio Home</a>
+        </div>
+
+        <div class="right-panel">
+
+            <div id="sect-creative" class="content-section active">
+                
+                <div class="folder-wrapper" id="work-laneige">
+                    <div class="work-desc-meta">
+                        <h3>Storyboard</h3>
+                        <p>Pre-visualizing narrative structure and shot composition for commercial films.</p>
+                    </div>
+                    
+                    <div class="folder-container" data-tab="2024 - LANEIGE">
+                        <div class="folder-content">
+                            <div class="folder-header">
+                                <h2>NEW MISSION Alert !</h2>
+                                <p>Let's explore the LANEIGE planet.</p>
+                            </div>
+                            
+                            <div class="preview-trigger-box" onclick="openLightbox('laneige')">
+                                PREVIEW &gt;&gt;<br>storyboard
+                            </div>
+                            
+                            <button class="folder-nav-btn" onclick="toggleFolderProject('nitto')">Next Project &gt;&gt;</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="folder-wrapper" id="work-nitto" style="display: none;">
+                    <div class="work-desc-meta">
+                        <h3>Storyboard</h3>
+                        <p>Pre-visualizing narrative structure and shot composition for commercial films.</p>
+                    </div>
+                    
+                    <div class="folder-container" data-tab="2024 - NITTO">
+                        <div class="folder-content">
+                            <div class="folder-header">
+                                <h2>DYNAMIC PERFORMANCE</h2>
+                                <p>Sleek and powerful sequencing for automotive tire branding.</p>
+                            </div>
+                            
+                            <div class="preview-trigger-box" onclick="openLightbox('nitto')">
+                                PREVIEW &gt;&gt;<br>storyboard
+                            </div>
+                            
+                            <button class="folder-nav-btn" onclick="toggleFolderProject('laneige')">Back to Laneige &lt;&lt;</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div id="sect-experience" class="content-section">
+                
+                <div class="profile-header-block">
+                    <h2>สวัสดีค่ะ ชื่อพิมพ์ชนก แย้มศิริ (โซอาร์) นะคะ เป็น Multidisciplinary Creative ที่เชี่ยวชาญทั้งการบริหารจัดการโครงการ (Management) และกระบวนการผลิตสื่อสร้างสรรค์ (Production) พร้อมทักษะภาษาอังกฤษและทีมเวิร์กเต็มเปี่ยมค่ะ</h2>
+                </div>
+
+                <div class="exp-sub-group" id="exp-management">
+                    <div class="experience-grid">
+                        <div class="exp-row">
+                            <div class="exp-time">2025 — 2026</div>
+                            <div class="exp-details">
+                                <h2>Assistant Project Manager</h2>
+                                <div class="company">Mads Festival 2568 & Mads Degree 2569</div>
+                                <p>ดูแลภาพรวมโครงสร้างและการจัดการระบบหน้างานทั้งหมดของนิทรรศการศิลปะนิพนธ์และเทศกาลจัดแสดงผลงานประจำสาขาวิชา Media Arts and Design มหาวิทยาลัยเชียงใหม่</p>
+                            </div>
+                        </div>
+
+                        <div class="exp-row">
+                            <div class="exp-time">2025 — 2026</div>
+                            <div class="exp-details">
+                                <h2>Bilingual Operation Staff</h2>
+                                <div class="company">Fly To The Moon Festival (Koh Mak)</div>
+                                <p>รับผิดชอบงานประสานงานสองภาษา ควบคุมการรันคิว และดูแลความเรียบร้อยรอบด้านภายในงานเทศกาลดนตรีและศิลปะระดับนานาชาติในช่วงเทศกาลปีใหม่</p>
+                            </div>
+                        </div>
+
+                        <div class="exp-row">
+                            <div class="exp-time">2026</div>
+                            <div class="exp-details">
+                                <h2>Bilingual Operation Assistant</h2>
+                                <div class="company">Glom Glom Children’s Day Festival (Tinker Town)</div>
+                                <p>สนับสนุนทีม Operation ระบบหลังบ้าน พร้อมจัดการประสานงานภาษาอังกฤษเพื่อรองรับกลุ่มผู้เข้าร่วมงานหลากหลายสัญชาติ ณ VP City Park เชียงใหม่</p>
+                            </div>
+                        </div>
+
+                        <div class="exp-row">
+                            <div class="exp-time">2025</div>
+                            <div class="exp-details">
+                                <h2>Bilingual Operation Staff</h2>
+                                <div class="company">Skylight Festival (Chiang Mai Heritage Sky Lantern)</div>
+                                <p>ดูแลต้อนรับกลุ่มนักท่องเที่ยวต่างชาติ ให้คำแนะนำด้านวัฒนธรรม และบริหารจัดการหน้างาน ณ ปางแฟน เชียงใหม่</p>
+                            </div>
+                        </div>
+
+                        <div class="exp-row">
+                            <div class="exp-time">International</div>
+                            <div class="exp-details">
+                                <h2>Collaborative Presentation Member</h2>
+                                <div class="company">ImaginAsia: Crossing Borders (Taipei, Taiwan)</div>
+                                <p>หนึ่งในทีมตัวแทนประเทศไทยไปร่วมพรีเซนต์นำเสนอโปรเจกต์เชิงวิชาการ/ศิลปะ ณ กรุงไทเป โดยร่วมวางแผนกลยุทธ์การสื่อสารและการทำเวิร์กชอปร่วมกับทีมงานนานาชาติ</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="exp-sub-group" id="exp-production" style="margin-top: 60px;">
+                    <div class="experience-grid">
+                        <div class="exp-row">
+                            <div class="exp-time">2024 — 2025</div>
+                            <div class="exp-details">
+                                <h2>Public Relations & Content Creative</h2>
+                                <div class="company">เวิ้งคุณนลี เชียงใหม่</div>
+                                <p>ดูแลและวางแผนกลยุทธ์ภาพรวมของการประชาสัมพันธ์แบรนด์ สร้างสรรค์เนื้อหา และโปรโมตภาพลักษณ์เชิงบวกให้กับสถานที่ตลอดระยะเวลา 1 ปีเต็ม</p>
+                            </div>
+                        </div>
+
+                        <div class="exp-row">
+                            <div class="exp-time">Ongoing</div>
+                            <div class="exp-details">
+                                <h2>Production Specialist</h2>
+                                <div class="company">Freelance & CMU Projects</div>
+                                <p>ทำงานในตำแหน่ง Editor, Color Grading (DaVinci Resolve), Art Director, DOP และ Assistant Director ทั้งงานโปรดักชันอิสระ มิวสิควิดีโอศิลปิน (YONLAPA - Saltburn) และโปรเจกต์งานสร้างสรรค์ภายในคณะ</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="exp-sub-group" id="exp-service" style="margin-top: 60px;">
+                    <div class="experience-grid">
+                        <div class="exp-row">
+                            <div class="exp-time">2023</div>
+                            <div class="exp-details">
+                                <h2>Barista & Server</h2>
+                                <div class="company">NO.39 Cafe Chiang Mai</div>
+                                <p>ดูแลรับผิดชอบงานจัดเตรียมวัตถุดิบ (Prep) รังสรรค์เครื่องดื่ม บริหารระบบคิว และส่งมอบงานบริการคุณภาพเป็นเวลา 1 ปี</p>
+                            </div>
+                        </div>
+
+                        <div class="exp-row">
+                            <div class="exp-time">2022</div>
+                            <div class="exp-details">
+                                <h2>Barista & Waitress</h2>
+                                <div class="company">Monday Cafe Chiang Mai</div>
+                                <p>ดูแลการจัดการส่วนหน้าของร้าน รับออเดอร์ ต้อนรับลูกค้า และทำเครื่องดื่มกาแฟสเปเชียลตี้เป็นเวลา 1 ปี</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skills-table-grid">
+                    <div class="skill-column">
+                        <h4>Education & Honors</h4>
+                        <p><strong>2022 – Present:</strong> Bachelor of Arts in Media Arts and Design (MADs), Chiang Mai University</p>
+                        <p style="margin-top: 10px;"><strong>Awarded:</strong> Best Research Certificate สำหรับการนำเสนอโปรเจกต์โดดเด่นในเวทีสัมมนาวิชาการ</p>
+                    </div>
+
+                    <div class="skill-column">
+                        <h4>Technical Tools</h4>
+                        <p>DaVinci Resolve (Expert Color Grading), Premiere Pro, Adobe Creative Suite (Photoshop, Illustrator), Unreal Engine (C++, Java, Python interaction context)</p>
+                    </div>
+
+                    <div class="skill-column">
+                        <h4>Core Expertise</h4>
+                        <p>Project & Event Management, Cross-cultural Coordination, Film Directing, Art Direction, Visual Storytelling, Prop Making, Cafe Inventory System</p>
+                    </div>
+
+                    <div class="skill-column">
+                        <h4>Languages</h4>
+                        <p><strong>Thai:</strong> Native</p>
+                        <p><strong>English:</strong> Professional Communication / Bilingual Staff Experience (CMU TEP Level B1)</p>
+                        <p><strong>Chinese:</strong> Basic / Conversational</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <div id="storyboard-lightbox" class="lightbox-overlay">
+        <div class="lightbox-images-container" id="lightbox-gallery">
+            </div>
+        <button class="lightbox-close-btn" onclick="closeLightbox()">&lt;&lt; CLOSED</button>
+    </div>
+
+    <script>
+        // ฟังก์ชันสลับหมวดหลักฝั่งขวา (Creative Work / Experience)
+        function switchTab(tabName) {
+            document.querySelectorAll('.content-section').forEach(sect => sect.classList.remove('active'));
+            document.getElementById('trigger-creative').classList.add('inactive');
+            document.getElementById('trigger-experience').classList.add('inactive');
+
+            document.getElementById(`sect-${tabName}`).classList.add('active');
+            document.getElementById(`trigger-${tabName}`).classList.remove('inactive');
+
+            renderSubMenu(tabName);
+        }
+
+        // ฟังก์ชันสร้างเมนูย่อยไดนามิกฝั่งซ้ายตาม Screenshot
+        function renderSubMenu(tabName) {
+            const container = document.getElementById('sub-menu-container');
+            container.innerHTML = ''; // Clear เก่า
+
+            if (tabName === 'creative') {
+                container.innerHTML = `
+                    <a href="#" class="active" onclick="toggleFolderProject('laneige'); return false;">LANEIGE Brand</a>
+                    <a href="#" onclick="toggleFolderProject('nitto'); return false;">NITTO Brand</a>
+                `;
+            } else if (tabName === 'experience') {
+                container.innerHTML = `
+                    <a href="#exp-management" class="active">Management & Operation</a>
+                    <a href="#exp-production">PR & Creative Production</a>
+                    <a href="#exp-service">Service & Hospitality</a>
+                `;
+            }
+        }
+
+        // ฟังก์ชันเปิด-ปิดโฟลเดอร์โปรเจกต์โฆษณา
+        function toggleFolderProject(brand) {
+            if (brand === 'laneige') {
+                document.getElementById('work-laneige').style.display = 'flex';
+                document.getElementById('work-nitto').style.display = 'none';
+            } else {
+                document.getElementById('work-laneige').style.display = 'none';
+                document.getElementById('work-nitto').style.display = 'flex';
+            }
+        }
+
+        // ฟังก์ชันจำลองการดึงหน้าภาพ Storyboard Lightbox (อ้างอิงจากรูป Screenshot ใบที่สอง)
+        function openLightbox(brand) {
+            const gallery = document.getElementById('lightbox-gallery');
+            gallery.innerHTML = ''; // เคลียร์ภาพ
+
+            // ดึงลิสต์รูปภาพจำลองมาจัดเรียงการพรีวิว 4 แผ่นตามที่คุณจัดหน้าไว้
+            for(let i = 1; i <= 4; i++) {
+                const img = document.createElement('img');
+                // สามารถสลับเป็นพาธรูปภาพจริงของคุณได้เลย เช่น `images/${brand}-sb${i}.jpg`
+                img.src = `storyboard-preview-sample.jpg`; 
+                img.alt = `${brand} Storyboard Page ${i}`;
+                gallery.appendChild(img);
+            }
+
+            document.getElementById('storyboard-lightbox').classList.add('active');
+        }
+
+        function closeLightbox() {
+            document.getElementById('storyboard-lightbox').classList.remove('active');
+        }
+
+        // เริ่มต้นด้วยการโหลดเมนูย่อยของ Creative พาร์ทแรก
+        window.onload = function() {
+            renderSubMenu('creative');
+        }
+    </script>
+</body>
+</html>

@@ -74,7 +74,6 @@ a:hover {
 }
 .nav-vertical a:hover { opacity: 1; }
 
-
 /* =========================================
    3. SECTION: STORYBOARD (หน้าแรก)
    ========================================= */
@@ -129,7 +128,6 @@ a:hover {
 #tab-laneige2 { z-index: 4; top: 120px; }
 
 /* เนื้อหาในแฟ้ม */
-/* เนื้อหาในแฟ้ม */
 .inside-wrap {
   position: absolute; 
   right: 8%; 
@@ -137,10 +135,13 @@ a:hover {
   transform: translateY(-50%); 
   width: 60vw; 
   max-width: 1000px; 
-  z-index: 20; 
-  
-  /* 1. เปลี่ยนจาก none เป็น auto เพื่อเปิดพื้นที่ให้กดปุ่ม BACK ได้ */
-  pointer-events: auto; 
+  z-index: 20;  
+  pointer-events: none; /* เริ่มต้นให้ทะลุได้ เพื่อไม่ให้กล่องเปล่าไปบังหน้าแฟ้มหลัก */
+}
+
+/* เพิ่มคลาส active ให้ตัวครอบเปิดการคลิกเมื่อเปิดแฟ้ม */
+.inside-wrap.active {
+  pointer-events: auto;
 }
 
 .inside-content-img {
@@ -153,19 +154,13 @@ a:hover {
   opacity: 0; 
   transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1); 
   border-radius: 10px; 
-  cursor: pointer; 
+  cursor: default; /* เปลี่ยนเป็นลูกศรปกติ เพราะเราต้องการให้มากดที่ปุ่ม BACK แทน */
   z-index: 1;
-
-  /* 2. บล็อกการกดโดนรูปภาพถ้ามันยังไม่แสดงตัว (ยังไม่มีคลาส .active) */
   pointer-events: none; 
 }
-
-/* ตอนที่รูปเปิดขึ้นมาแสดงผล */
 .inside-content-img.active { 
   opacity: 1; 
-  transform: translateY(-50%) scale(1); 
-  
-  /* 3. เปิดให้รูปกดได้ (แต่คราวนี้มันจะไม่ปิดตัวเอง เพราะเราลบ onclick ออกจาก HTML แล้ว) */
+  transform: translateY(-50%) scale(1);  
   pointer-events: auto; 
 }
 
@@ -185,17 +180,14 @@ a:hover {
   transition: all 0.4s ease; 
   text-transform: uppercase; 
   backdrop-filter: blur(4px);    
-  
-  /* 4. ดันขึ้นระนาบสูงสุดเพื่อป้องกันสิ่งกีดขวาง */
-  z-index: 999 !important; 
+  z-index: 999 !important; /* การันตีลอยเหนือน้ำ */
   opacity: 0; 
-  pointer-events: none;      
+  pointer-events: none;       
 }
-
-/* ตอนที่ปุ่มโผล่ขึ้นมา */
+.btn-back-folder:hover { background: #fff; color: #000; opacity: 1 !important; }
 .btn-back-folder.active { 
   opacity: 1; 
-  pointer-events: auto; /* เปิดให้เมาส์คลิกโดนปุ่มได้ 100% */
+  pointer-events: auto; 
 }
 
 /* กระดาษพรีวิวเล็ก */
@@ -272,7 +264,7 @@ a:hover {
 .photo-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px 40px; /* ระยะห่างปรับให้พอดี 1 หน้าจอ */
+  gap: 20px 40px; 
 }
 
 .photo-item { display: flex; flex-direction: column; }
@@ -280,7 +272,7 @@ a:hover {
 
 .photo-item img {
   width: 100%; 
-  max-height: 22vh; /* ล็อกความสูงเพื่อไม่ให้ล้นหน้าจอ */
+  max-height: 22vh; 
   object-fit: contain; 
   align-self: flex-start;
   transition: transform 0.3s ease;
@@ -325,7 +317,7 @@ a:hover {
     <img src="laneige2_tab.png" class="folder-img" id="tab-laneige2" onclick="openFolder('in-laneige2')">
   </div>
 
-<div class="inside-wrap" id="inside-wrap">
+  <div class="inside-wrap" id="inside-wrap">
     <button class="btn-back-folder" id="btn-back-folder" onclick="closeFolder(event)"><< BACK</button>
     
     <img src="inside_nitto.png" class="inside-content-img" id="in-nitto">
@@ -458,6 +450,10 @@ a:hover {
   function openFolder(targetId) {
     currentActiveFolder = targetId; 
     document.getElementById('folders-wrap').classList.add('folders-hidden');
+    
+    // เปิดการรับ event คลิกบนกล่องครอบชั้นใน
+    document.getElementById('inside-wrap').classList.add('active');
+    
     let insides = document.querySelectorAll('.inside-content-img');
     insides.forEach(el => el.classList.remove('active'));
     let target = document.getElementById(targetId);
@@ -484,16 +480,21 @@ a:hover {
     document.getElementById('sb-popup').classList.remove('active');
   }
 
-function closeFolder(event) {
-    if (event) { event.stopPropagation(); } // บรรทัดนี้สำคัญมาก จะช่วยไม่ให้ปุ่มเอ๋อครับ
+  function closeFolder(event) {
+    if (event) { event.stopPropagation(); } 
 
     let insides = document.querySelectorAll('.inside-content-img');
     insides.forEach(el => el.classList.remove('active'));
     let extab = document.getElementById('ex-tab');
     if(extab) extab.classList.remove('active');
+    
     document.getElementById('folders-wrap').classList.remove('folders-hidden');
+    
     let btnBack = document.getElementById('btn-back-folder');
     if(btnBack) btnBack.classList.remove('active');
+    
+    // ปิดการรับคำสั่งคลิกกล่องครอบชั้นใน เพื่อให้กลับไปกดเลือกแฟ้มอันอื่นได้ปกติ
+    document.getElementById('inside-wrap').classList.remove('active');
   }
 </script>
 

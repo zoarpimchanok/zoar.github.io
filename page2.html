@@ -248,4 +248,405 @@ a:hover {
 
 .overlay { position: absolute; inset: 0; background: rgba(255, 255, 255, 0.95); color: #000; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px; opacity: 0; transition: opacity 0.4s ease 0.2s; }
 .work:hover .overlay { opacity: 1; }
-.overlay h4 { font-size: 24px; margin-bottom: 5px; font-
+.overlay h4 { font-size: 24px; margin-bottom: 5px; font-weight: bold; }
+.overlay p { font-size: 16px; margin-bottom: 25px; color: #555; }
+.overlay span { font-size: 14px; letter-spacing: 1px; text-transform: uppercase; border-top: 1px solid #ddd; padding-top: 15px; display: inline-block; width: 85%; line-height: 1.6; }
+
+/* Footer */
+.production-footer {
+  position: absolute; bottom: 40px; left: 0; width: 100%; display: flex; justify-content: space-between; padding: 0 80px; z-index: 20; font-size: 11px; color: #777; font-weight: bold; letter-spacing: 1px;
+}
+
+/* =========================================
+   5. SECTION: PHOTOGRAPHY (หน้าสาม)
+   ========================================= */
+#photography {
+  background: #e2e2e2;
+  color: #000;
+}
+
+/* กริดตารางรูปภาพ กึ่งกลางขวา */
+.photo-grid-wrapper {
+  position: absolute;
+  top: 50%; right: 8%;
+  transform: translateY(-50%);
+  width: 55vw; max-width: 900px;
+  z-index: 20;
+}
+
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px 40px;  
+}
+
+.photo-item { display: flex; flex-direction: column; }
+.photo-item .num { font-size: 12px; margin-bottom: 10px; font-weight: bold; }
+
+.photo-item img {
+  width: 100%; 
+  max-height: 22vh; 
+  object-fit: contain; 
+  align-self: flex-start;
+  transition: transform 0.3s ease;
+}
+.photo-item img:hover { transform: scale(1.05); }
+
+.photo-text-block { display: flex; flex-direction: column; justify-content: center; padding-right: 15px; }
+.photo-text-block h4 { font-size: 15px; font-weight: bold; margin-bottom: 10px; }
+.photo-text-block .line { width: 100%; height: 1px; background: #000; margin-bottom: 15px; }
+.photo-text-block p { font-size: 12px; color: #444; line-height: 1.5; }
+
+/* =========================================
+   6. SIDE OVERLAY MENU STYLE (แถบเมนูลอยฝั่งซ้าย)
+   ========================================= */
+.side-menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 320px;            
+  height: 100vh;
+  background: #333333;     
+  color: #ffffff;
+  z-index: 9999999 !important; /* มั่นใจว่าลอยอยู่เหนือทุกเลเยอร์ในทุกๆ หน้าจอ */
+  padding: 80px 40px;
+  box-shadow: 5px 0 30px rgba(0,0,0,0.3);
+  transform: translateX(-100%);
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.side-menu-overlay.active {
+  transform: translateX(0);
+}
+
+.btn-close-menu {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 32px;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+}
+.btn-close-menu:hover {
+  opacity: 1;
+}
+
+.side-menu-content {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.menu-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.menu-main-title {
+  font-size: 18px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  color: #ffffff;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  padding-bottom: 10px;
+}
+
+.menu-sub-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.menu-sub-list a {
+  font-size: 15px;
+  color: #cccccc;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.menu-sub-list a:hover {
+  color: #ffffff;
+  transform: translateX(5px);
+  opacity: 1;
+}
+
+.menu-footer-links a {
+  font-size: 16px;
+  font-weight: bold;
+  color: #ffffff;
+  opacity: 0.7;
+}
+.menu-footer-links a:hover {
+  opacity: 1;
+}
+</style>
+</head>
+
+<body>
+
+<section class="section-wrapper" id="storyboard">
+  
+  <div class="top-left-menu">
+    <div class="title-group">
+      <a href="#" class="title-row" onclick="toggleSideMenu(event)"><h2>CREATIVE WORK</h2><span>>></span></a>
+      <a href="#" class="title-row" onclick="toggleSideMenu(event)"><h2>EXPERIENCE</h2><span>>></span></a>
+    </div>
+  </div>
+
+  <nav class="top-right-nav" style="bottom: 90px; left: 77%;">
+    <a href="index.html#home">Home</a>
+    <a href="index.html#about">About</a>
+    <a href="index.html#work">Work</a>
+    <a href="index.html#contact">Contact</a>
+  </nav>
+
+  <div class="sb-text-block">
+    <h3>Storyboard</h3>
+    <div class="line"></div>
+    <p>Pre-visualizing narrative structure<br>and shot composition for commercial films.</p>
+  </div>
+
+  <div class="folders-wrap" id="folders-wrap">
+    <img src="nitto_tab.png" class="folder-img" id="tab-nitto" onclick="openFolder('in-nitto')">
+    <img src="pramy_tab.png" class="folder-img" id="tab-pramy" onclick="openFolder('in-pramy')">
+    <img src="laneige1_tab.png" class="folder-img" id="tab-laneige1" onclick="openFolder('in-laneige1')">
+    <img src="laneige2_tab.png" class="folder-img" id="tab-laneige2" onclick="openFolder('in-laneige2')">
+  </div>
+
+  <div class="inside-wrap" id="inside-wrap">
+    <button class="btn-back-folder" id="btn-back-folder" onclick="closeFolder(event)"><< BACK</button>
+    
+    <img src="inside_nitto.png" class="inside-content-img" id="in-nitto">
+    <img src="inside_pramy.png" class="inside-content-img" id="in-pramy">
+    <img src="inside_laneige1.png" class="inside-content-img" id="in-laneige1">
+    <img src="inside_laneige2.png" class="inside-content-img" id="in-laneige2">
+    
+    <img src="ex_tab.png" class="ex-tab-floating" id="ex-tab" onclick="showSBDetails(event)">
+  </div>
+
+  <div class="sb-detail-overlay" id="sb-popup">
+    <div class="sb-container">
+      <div class="sb-grid">
+        <img src="" id="sb-img-1" class="sb-sheet">
+        <img src="" id="sb-img-2" class="sb-sheet">
+        <img src="" id="sb-img-3" class="sb-sheet">
+        <img src="" id="sb-img-4" class="sb-sheet">
+      </div>
+      <button class="btn-closed-frame" onclick="closeSB()"><< CLOSED</button>
+    </div>
+  </div>
+</section>
+
+<section class="section-wrapper" id="production">
+  
+  <div style="position: absolute; top: 25%; left: 8%; z-index: 50;">
+    <div class="title-group">
+      <a href="#" class="title-row" onclick="toggleSideMenu(event)"><h2>CREATIVE WORK</h2><span>>></span></a>
+      <a href="#" class="title-row" onclick="toggleSideMenu(event)"><h2>EXPERIENCE</h2><span>>></span></a>
+    </div>
+    <nav class="nav-vertical" style="margin-top: 40px;">
+      <a href="index.html#home">Home</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#work">Work</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+  </div>
+
+  <div class="production-head">
+    <h4>Production</h4>
+    <p>Collaborating across different roles<br>in visual storytelling and prod</p>
+  </div>
+    
+  <div class="production-row">
+    <a href="https://youtube.com" target="_blank" class="work">
+      <img src="production_01.jpg">
+      <div class="overlay"><h4>fluffypak - ได้ไหม</h4><p>Unoffical MV</p><span>Director / Editor / Art Director</span></div>
+    </a>
+    <a href="https://youtube.com" target="_blank" class="work">
+      <img src="production_02.jpg">
+      <div class="overlay"><h4>That's How It Happened</h4><p>live session</p><span>Editor / Color Grading</span></div>
+    </a>
+    <a href="https://youtube.com" target="_blank" class="work">
+      <img src="production_03.jpg">
+      <div class="overlay"><h4>Pigsy</h4><p>Golf Hair Salon</p><span>Director / Cinematography / Editing</span></div>
+    </a>
+    <a href="https://youtube.com" target="_blank" class="work">
+      <img src="production_04.jpg">
+      <div class="overlay"><h4>THokori no Oka</h4><p>offical MV</p><span>Art Director team</span></div>
+    </a>
+    <a href="https://youtube.com" target="_blank" class="work">
+      <img src="production_05.jpg">
+      <div class="overlay"><h4>เทพใช้ (ThepChoice)</h4><p>Advertisement</p><span>Director / Editing / Prop Master</span></div>
+    </a>
+    <a href="https://youtube.com" target="_blank" class="work">
+      <img src="production_06.jpg">
+      <div class="overlay"><h4>อิเซไก</h4><p>Short film</p><span>Art Director / Prop Master</span></div>
+    </a>
+    <a href="https://youtube.com" target="_blank" class="work">
+      <img src="production_07.jpg">
+      <div class="overlay"><h4>Letter from Congo (2025)</h4><p>Experimental Film</p><span>DOP / camera operator / PM / Color Grading</span></div>
+    </a>
+  </div>
+  
+  <div class="production-footer">
+    <div>SELECTED WORKS</div>
+    <div>FILM & VISUAL PRODUCTION</div>
+    <div style="text-align: right;">2022-2025<br>COLLABORATIVE PROJECTS</div>
+  </div>
+</section>
+
+<section class="section-wrapper" id="photography">
+  
+  <div style="position: absolute; top: 25%; left: 8%; z-index: 50;">
+    <div class="title-group">
+      <a href="#" class="title-row" onclick="toggleSideMenu(event)"><h2>CREATIVE WORK</h2><span>>></span></a>
+      <a href="#" class="title-row" onclick="toggleSideMenu(event)"><h2>EXPERIENCE</h2><span>>></span></a>
+    </div>
+  </div>
+  
+  <nav class="nav-vertical" style="position: absolute; bottom: 160px; left: 8%; z-index: 50;">
+    <a href="index.html#home">Home</a>
+    <a href="index.html#about">About</a>
+    <a href="index.html#work">Work</a>
+    <a href="index.html#contact">Contact</a>
+  </nav>
+
+  <div class="photo-grid-wrapper">
+    <div class="photo-grid">
+      <div class="photo-item"><span class="num">(1)</span><img src="photoset_1.jpg" alt="photo1"></div>
+      <div class="photo-item"><span class="num">(2)</span><img src="photoset_2.jpg" alt="photo2"></div>
+      <div class="photo-item"><span class="num">(3)</span><img src="photoset_3.jpg" alt="photo3"></div>
+
+      <div class="photo-text-block">
+        <h4>Photography</h4>
+        <div class="line"></div>
+        <p>Visual storytelling<br>through still images</p>
+      </div>
+      
+      <div class="photo-item"><span class="num">(4)</span><img src="photoset_4.jpg" alt="photo4"></div>
+      <div class="photo-item"><span class="num">(5)</span><img src="photoset_5.JPG" alt="photo5"></div>
+      <div class="photo-item"><span class="num">(6)</span><img src="photoset_6.jpg" alt="photo6"></div>
+      <div class="photo-item"><span class="num">(7)</span><img src="photoset_7.JPG" alt="photo7"></div>
+      <div class="photo-item"><span class="num">(8)</span><img src="photoset_8.JPG" alt="photo8"></div>
+    </div>
+  </div>
+</section>
+
+<div class="side-menu-overlay" id="sideMenu">
+  <button class="btn-close-menu" onclick="toggleSideMenu(event)">×</button>
+  <div class="side-menu-content">
+    
+    <div class="menu-section">
+      <h2 class="menu-main-title">CREATIVE WORK</h2>
+      <ul class="menu-sub-list">
+        <li><a href="#storyboard" onclick="navigateToSection(event, 'storyboard')">Storyboard</a></li>
+        <li><a href="#production" onclick="navigateToSection(event, 'production')">Production</a></li>
+        <li><a href="#photography" onclick="navigateToSection(event, 'photography')">Photography</a></li>
+      </ul>
+    </div>
+
+    <div class="menu-section">
+      <h2 class="menu-main-title">EXPERIENCE</h2>
+      <ul class="menu-sub-list">
+        <li><a href="index.html#experience">Overview</a></li>
+      </ul>
+    </div>
+
+    <div class="menu-footer-links">
+      <a href="index.html#home">Home</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  // =========================================
+  // 1. LOGIC พาร์ทแฟ้มผลงานเดิมของคุณทั้งหมด (คงเดิมไว้ทั้งหมด)
+  // =========================================
+  const sbInventory = {
+    'in-laneige1': ['laneige1_sb1.png', 'laneige1_sb2.png', 'laneige1_sb3.png', 'laneige1_sb4.png'],
+    'in-laneige2': ['laneige2_sb1.jpg', 'laneige2_sb2.jpg', 'laneige2_sb3.jpg', 'laneige2_sb4.jpg'],
+    'in-nitto':    ['niito_sb1.JPG', 'niito_sb2.JPG', 'niito_sb3.JPG', 'niito_sb4.JPG'],
+    'in-pramy':    ['pramy_sb1.jpg', 'pramy_sb2.jpg', 'pramy_sb3.jpg', 'pramy_sb4.jpg']
+  };
+
+  let currentActiveFolder = ''; 
+
+  function openFolder(targetId) {
+    currentActiveFolder = targetId; 
+    document.getElementById('folders-wrap').classList.add('folders-hidden');
+    document.getElementById('inside-wrap').classList.add('active');
+    
+    let insides = document.querySelectorAll('.inside-content-img');
+    insides.forEach(el => el.classList.remove('active'));
+    let target = document.getElementById(targetId);
+    if(target) target.classList.add('active');
+    let extab = document.getElementById('ex-tab');
+    if(extab) extab.classList.add('active');
+    let btnBack = document.getElementById('btn-back-folder');
+    if(btnBack) btnBack.classList.add('active');
+  }
+
+ function showSBDetails(event) {
+    if (event) { event.preventDefault(); event.stopPropagation(); }
+    const photos = sbInventory[currentActiveFolder];
+    if (photos) {
+      for (let i = 1; i <= 4; i++) {
+        let imgSlot = document.getElementById(`sb-img-${i}`);
+        if(imgSlot) { imgSlot.src = photos[i-1]; }
+      }
+      document.getElementById('sb-popup').classList.add('active');
+    }
+  }
+
+  function closeSB() {
+    document.getElementById('sb-popup').classList.remove('active');
+  }
+
+ function closeFolder(event) {
+    if (event) { event.stopPropagation(); } 
+
+    let insides = document.querySelectorAll('.inside-content-img');
+    insides.forEach(el => el.classList.remove('active'));
+    
+    let extab = document.getElementById('ex-tab');
+    if(extab) extab.classList.remove('active');
+    
+    document.getElementById('folders-wrap').classList.remove('folders-hidden');
+    
+    let btnBack = document.getElementById('btn-back-folder');
+    if(btnBack) btnBack.classList.remove('active');
+    
+    document.getElementById('inside-wrap').classList.remove('active');
+  }
+
+  // =========================================
+  // 2. LOGIC พาร์ทระบบแถบเมนูลอย
+  // =========================================
+  function toggleSideMenu(event) {
+    if (event) { event.preventDefault(); event.stopPropagation(); }
+    const sideMenu = document.getElementById('sideMenu');
+    if (sideMenu) {
+      sideMenu.classList.toggle('active');
+    }
+  }
+
+  function navigateToSection(event, sectionId) {
+    if (event) { event.preventDefault(); }
+    const targetSection = document.getElementById(sectionId);
+    if (targetSection) {
+      targetSection.scrollIntoView({ behavior: 'smooth' });
+    }
+    const sideMenu = document.getElementById('sideMenu');
+    if (sideMenu) { sideMenu.classList.remove('active'); }
+  }
+</script>
+
+</body>
+</html>
